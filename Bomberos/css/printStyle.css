@@ -1,0 +1,272 @@
+/*
+	# = ids
+	. = clases 
+*/
+
+#imgCabecera{
+	width: 100px;
+	height: 120px;
+	
+}
+
+#txt1Cabecera{
+	margin-top: -110px;
+	margin-left: 110px;
+}
+
+#txt2Cabecera{
+	margin-top: -15px;
+	margin-left: 110px;
+	font: condensed 120% sans-serif;
+	font-size: 18px;
+}
+
+#txt3Cabecera{
+	margin-top: -15px;
+	margin-left: 110px;
+	font: condensed 120% sans-serif;
+	font-size: 18px;
+}
+
+
+#salto{
+	margin-top: -15px;
+}
+
+.contenedor{
+	border: 1px solid;
+	
+}
+
+.titulo{
+	background-color: #19DAF9;
+	border-bottom: 1px solid;	
+}
+
+
+.tableHead{
+	background-color: #42BACD;
+	padding: 2px;
+	border: solid 1px;
+}
+
+.table{
+	padding: 15px;
+	border-spacing: 0;
+}
+
+.td{
+	border: solid 1px;
+	padding: 5px;
+}
+
+#imgPerfil{
+	width: 230px;
+	height: 250px;
+	padding: 15px;
+	
+}
+
+#datosPersonales1{	
+	margin-top: -260px;
+	margin-left: 280px;
+}
+
+#datosPersonales2{	
+	margin-left: -264px;
+	margin-top: 13px;
+}
+
+#datosPersonales3{		
+	margin-left: -260px;
+	margin-top: 30px;
+	
+}
+
+
+.inputStyle{	
+	margin-top : -10px;
+	margin-left : 180px;
+	border:none; 
+	background-color: #FFFFFF;
+	font-size: 15px;
+	padding: 1px;
+	color: #000000;
+}
+
+.title1{
+	font-weight: bold;
+	padding-bottom: 1px;
+	
+}
+
+.title2{
+	margin-top: -20px;
+	margin-left: 160px;
+	
+}
+
+.resp1{
+	margin-top: -6px;
+}
+
+/*datos personales 2*/
+
+.title3{
+	/*margin-left: -264px;*/
+	margin-top: 2px;
+	font-weight: bold;
+}
+
+.title4{
+	margin-left: 84px;
+	margin-top: -21px;
+	
+}
+
+.resp2{
+	margin-left: -80px;
+	margin-top: -9px;
+}
+
+
+/*datos personales 3*/
+
+.title5{
+	font-weight: bold;
+	padding-bottom: 2px;
+}
+
+.title6{
+	margin-left: 240px;
+	margin-top: -18px;	
+	padding-bottom: 2px;
+}
+
+.resp3{
+	margin-left: 110px;
+	margin-top: -13px;
+	padding-bottom: 2px;
+}
+
+
+/*info bomberil*/
+
+.inputStyle2{	
+	border:none; 
+	background-color: #FFFFFF;
+	font-size: 15px;
+	padding: 1px;
+	color: #000000;
+}
+
+#informacionBomberil1{	
+	padding: 30px;
+}
+
+.title7{
+	font-weight: bold;
+}
+
+.title8{
+	margin-left: 180px;
+	margin-top: -18px;	
+}
+
+.resp4{	
+	margin-left: 240px;
+	margin-top: -18px;	
+}
+
+
+
+#informacionBomberil2{	
+	margin-top: -50px;
+	margin-left: 700px;
+}
+
+.title9{
+	font-weight: bold;
+}
+
+.title10{
+	margin-top: -20px;
+	margin-left: 150px;
+}
+
+.resp5{
+	margin-top: -16px;
+	margin-left: 180px;
+}
+
+
+/*Info personal*/
+
+#informacionPersonal{	
+	margin-top: 20px;
+	padding: 30px;
+}
+
+.title11{
+	font-weight: bold;
+	padding-top: 2px;
+}
+
+.title12{
+	margin-left: 190px;
+	margin-top: -20px;
+	padding-top: 2px;
+}
+
+.resp6{
+	margin-left: 230px;
+	margin-top: -20px;
+	padding-top: 2px;
+}
+
+/*Info Medica*/
+
+#informacionMedica1{	
+	padding: 30px;
+}
+
+#informacionMedica2{
+	padding: 30px;
+	margin-top: -140px;
+	margin-left: 570px;
+}
+
+.title13{
+	font-weight: bold;
+	padding-top: 4px;
+	
+	}
+
+.title14{
+	margin-left: 220px;
+	margin-top: -20px;
+	padding-top: 4px;
+}
+
+.resp7{
+	margin-left: 300px;
+	margin-top: -20px;
+	padding-top: 4px;
+}
+
+.title15{
+	font-weight: bold;
+	padding-top: 4px;
+}
+
+.title16{	
+	margin-left: 220px;
+	margin-top: -20px;
+	padding-top: 4px;
+}
+
+.resp8{
+	margin-left: 300px;
+	margin-top: -20px;
+	padding-top: 4px;
+}

@@ -1,0 +1,21 @@
+<?php
+
+require_once("../model/Data.php");
+require_once("../model/Tbl_MaterialMenor.php");
+
+
+session_start();
+
+$idABuscar=$_SESSION["idMaterialAVerSolicitado"];
+
+$d= new Data();
+
+$materialMenor=$d->buscarMaterialMenorPorId($idABuscar);
+
+
+$_SESSION["materialMenorAVerSolicitado"] = $materialMenor;
+header("location:../verInventario.php ");
+
+
+
+?>
