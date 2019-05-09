@@ -292,6 +292,7 @@ if (isset($infoLaboral)) {
 /*INFO LABORAL*/
 
 /*INFO FAMILIAR*/
+/*
 $nombreInfoFami = "";
 $fechaInfoFami = "";
 $parentesco = "";
@@ -308,7 +309,7 @@ foreach ($infoFamiliar as $iFamiliar => $datos) {
 /*INFO FAMILIAR*/
 
 /*INFO ACADEMICA*/
-
+/*
 $actividadAcademica = "";
 $fechaInfoAca = "";
 $estadoCursoInfoAca = "";
@@ -321,7 +322,9 @@ foreach ($infoAcademica as $iAcademica => $datos) {
 
 /*INFO ACADEMICA*/
 
+
 /*ENTRENAMIENTO ESTANDAR*/
+/*
 $fechaEntrenamiento = "";
 $actividad = "";
 $estadoCurso = "";
@@ -332,10 +335,12 @@ foreach ($infoEntrenamientoEstandar as $iEstandar => $datos) {
     $estadoCurso =  $d->buscarEstadoDeCursoPorId($datos->getFkEstadoCurso());
     
 }
-
+*/
 /*ENTRENAMIENTO ESTANDAR*/
 
+
 /*FECHA DE CAMBIO*/
+/*
 $nombreRegion = "";
 $cuerpo = "";
 $compañia = "";
@@ -356,21 +361,21 @@ foreach ($infoHistorica as $iHistorica => $info) {
     $detalle = $info->getdetalle();
     $cargo = utf8_encode($info->getCargo());
 }
+*/
 /*FECHA DE CAMBIO*/
 
-
-// INFO DE CARGOS
-$cantidadAsignada = "";
-$nombreCargo = "";
-foreach ($infoCargos as $icargos => $datos) {
+/*
+ INFO DE CARGOS
+//$cantidadAsignada = "";
+//$nombreCargo = "";
+//foreach ($infoCargos as $icargos => $datos) {
     $material=$d->getMaterialeMenorPorId($datos->getFk_materialMenorAsignado_informacionDeCargos());
     
     $nombreCargo = utf8_encode($material->getNombre_material_menor());
     $cantidadAsignada = $datos->getCantidadAsignada_informacionDeCargos();
 }
 
-// INFO DE CARGOS
-
+*/
 $fecha = $data->obtenerFecha();
 
 $html='
@@ -849,15 +854,17 @@ $html='
 				<th class="tableHead">Parentesco</th>
 			</tr>
 		</thead>
-		<tbody>
-	    
-        <tr>
-				<td class="td">'.$nombreInfoFami.'</td>
-				<td class="td">'.$fechaInfoFami.'</td>
-				<td class="td">'.$parentesco.'</td>
+		<tbody>';
+            foreach ($infoFamiliar as $iFamiliar => $datos) {
+        
+        $html.= '<tr>
+				<td class="td">'.utf8_encode($datos->getNombresInformacionFamiliar()).'</td>
+				<td class="td">'.utf8_encode(date("d-m-Y", strtotime($datos->getFechaNacimientoInformacionFamiliar()))).'</td>
+				<td class="td">'.utf8_encode($d->buscarNombreParentescoPorId($datos->getfkParentescoinformacionFamiliar())->getNombreParentesco()).'</td>';
 				    
-				    
-        </tr>
+        
+        }
+        $html.= '</tr>
 				    
 		</tbody>
 	</table>
@@ -880,13 +887,17 @@ $html='
 			</tr>
 		</thead>
 	    
-		<tbody>
-	    
-           <tr>
-                <td class="td">'.$fechaInfoAca.'</td>
-				<td class="td">'.$actividadAcademica.'</td>
-				<td class="td">'.$estadoCursoInfoAca.'</td>
-            </tr>
+		<tbody>';
+            foreach ($infoAcademica as $iAcademica => $datos) {
+
+           $html.= '<tr>
+                <td class="td">'.utf8_encode(date("d-m-Y", strtotime($datos->getfechaInformacionAcademica()))).'</td>
+				<td class="td">'.utf8_encode($datos->getactividadInformacionAcademica()).'</td>
+				<td class="td">'.utf8_encode($d->buscarEstadoDeCursoPorId($datos->getfkEstadoCursoInformacionAcademica())).'</td>';
+           
+            }
+           
+           $html .= '</tr>
 				    
 		</tbody>
 	</table>
@@ -908,12 +919,17 @@ $html='
 					<th class="tableHead">Estado</th>
 				</tr>
 			</thead>
-			<tbody>
-                <tr>
-					<td class="td">'.$fechaEntrenamiento.'</td>
-					<td class="td">'.$actividad.'</td>
-					<td class="td">'.$estadoCurso.'</td>
-                </tr>
+			<tbody>';
+            foreach ($infoEntrenamientoEstandar as $iEstandar => $datos) {
+    
+
+            $html.= '<tr>
+					<td class="td">' . utf8_encode(date("d-m-Y", strtotime($datos->getfechaEntrenamientoEstandar()))) . '</td>
+					<td class="td">'. utf8_encode($datos->getactividad()).'</td>
+					<td class="td">'.utf8_encode($d->buscarEstadoDeCursoPorId($datos->getFkEstadoCurso())).'</td>';
+                
+            }
+            $html .= '</tr>
 			</tbody>
 		</table>
 					    
@@ -925,7 +941,7 @@ $html='
 					    
 <div class = "contenedor">
 	<div class="titulo">'.utf8_encode("Información Histórica").'</div>
-	    
+
 		<table   cellspacing="1" cellpadding="4"   class="table">
 			<thead>
 				<tr>
@@ -939,18 +955,22 @@ $html='
 					<th class="tableHead">Cargo</th>
 				</tr>
 			</thead>
-			<tbody>
-					    
-             <tr>
-				<td class="td">'.$nombreRegion.'</td>
-				<td class="td">'.$cuerpo.'</td>
-				<td class="td">'.$compañia.'</td>
-				<td class="td">'.$fechaCambio.'</td>
-				<td class="td">'.$premio.'</td>
-				<td class="td">'.$motivo.'</td>
-				<td class="td">'.$detalle.'</td>
-				<td class="td">'.$cargo.'</td>
-			</tr>
+			<tbody>';
+                foreach ($infoHistorica as $iHistorica => $info) {
+                    
+ $html .= '<tr>
+                 
+                  <td class="td">' . utf8_encode($d->buscarNombreDeRegionPorId($info->getfkRegioninformacionHistorica())) . '</td>
+                  <td class="td">' . utf8_encode($info->getcuerpo()) . '</td>
+                  <td class="td">' . utf8_encode($info->getcompania()) . '</td>
+                  <td class="td">' . utf8_encode(date("d-m-Y", strtotime($info->getfechaDeCambio()))) . '</td>
+                  <td class="td">' . utf8_encode($info->getPremio()) . '</td>
+                  <td class="td">' . utf8_encode($info->getmotivo()) . '</td>
+                  <td class="td">' . utf8_encode($info->getdetalle()) . '</td>
+                  <td class="td">' . utf8_encode($info->getCargo()) . '</td>';
+                }
+                
+ $html .= '</tr>
             </tbody>
 	</table>
 					    
@@ -961,8 +981,7 @@ $html='
 <br><br>
 <br>
 <br><br>
-<br>
-<br>
+
 
 <div class = "contenedor">
 	<div class="titulo">'.utf8_encode("Información de Cargos").'</div>
@@ -974,12 +993,17 @@ $html='
 					<th class="tableHead">Cantidad Asignada</th>
 				</tr>
 			</thead>
-			<tbody>
-					    
-             <tr>
-				<td class="td">'.$nombreCargo.'</td>
-				<td class="td">'.$cantidadAsignada.'</td>
-			</tr>
+            <tbody>';
+                foreach ($infoCargos as $icargos => $datos) {
+                    $material=$d->getMaterialeMenorPorId($datos->getFk_materialMenorAsignado_informacionDeCargos());
+                    
+ $html .= '<tr>
+                 
+                  <td class="td">' . utf8_encode($material->getNombre_material_menor()) . '</td>
+                  <td class="td">' . utf8_encode($datos->getCantidadAsignada_informacionDeCargos()) . '</td>';
+                }
+                
+ $html .= '</tr>
              </tbody>
 	</table>
 					    

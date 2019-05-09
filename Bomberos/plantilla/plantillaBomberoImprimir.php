@@ -121,7 +121,7 @@ if (isset($_SESSION["resultadosDeBusquedaDeMaterialMenor"])) {
 		<div class="title2">:</div> 
 		
 		<div class="resp1">
-			<input class="inputStyle" value="<?php echo utf8_encode($infoPersonal->getNombreInformacionPersonal());?>" 		
+			<input class="inputStyle" value="<?php echo utf8_encode($infoPersonal->getNombreInformacionPersonal());?>">		
 		</div>
 		
 		
@@ -218,9 +218,7 @@ if (isset($_SESSION["resultadosDeBusquedaDeMaterialMenor"])) {
 		<div class="title2">:</div>
 		 
 		<div class="resp1">
-			<input class="inputStyle"
-		value="<?php echo $infoPersonal->getPeso();?>" type="text"
-		name="txtpeso" disabled		
+			<input class="inputStyle" value="<?php echo $infoPersonal->getPeso();?>" type="text" name="txtpeso" disabled>		
 		</div> 
 		 
 		
@@ -459,7 +457,6 @@ if (isset($_SESSION["resultadosDeBusquedaDeMaterialMenor"])) {
 					<div class="title8">:</div> 
                        
                     <div class="resp4">
-    			<input
             		<input class="inputStyle2"
                 		value="<?php echo $infoBomberil->getNRegGeneralinformacionBomberil();?>"
                 		type="text" name="txtgeneral" disabled>                       

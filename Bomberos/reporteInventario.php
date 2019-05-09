@@ -172,7 +172,7 @@
 
         <span><h3 style="font-weight:bold;">Reporte Inventario</h3></span>
         
-        <form action="plantilla/plantillaInventarioByFiltro.php" method="post" >
+        <form target="_blank"  action="plantilla/plantillaInventarioByFiltro.php" method="post" >
         	<span><h5 style="font-weight:bold;"><?php echo utf8_encode(" Compañia");?></h5></span>
         	<input type="checkbox" id="chkComUno" name="chkComUno" value="Cuerpo de Bomberos de Machali"><?php echo utf8_encode(" Cuerpo de Bomberos de Machalí");?><br>
         	<input type="checkbox" id="chkComDos" name="chkComDos"  value="1° Compañía"><?php echo utf8_encode(" 1° Compañía");?><br>
@@ -210,7 +210,38 @@
         	<input class="btn btn-default" type="submit" name="btnGenerarReporte" value="Generar Reporte" class="btn button-primary" style="width: 150px; height:30px;" style="margin-top: 400px;">
         
         
+        </form>
+        </div>
+        
+        <br>
+        <br>
+        <br>
+        
+        <div>
+        	<span><h3 style="font-weight:bold;">Inventario de Materiales a Bomberos</h3></span>
+        
+        <form target="_blank"  action="plantilla/plantillaInventarioCargos.php" method="post" >
+        	<span><h5 style="font-weight:bold;"><?php echo utf8_encode(" Compañia");?></h5></span>
+        	
+        	<br>
+        	
+        	Entidad a Cargo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <select name="cboCompania" id="cboCompania" style="width:250px;">
+               <?php
+                   $entiPropietaria = $data->getEntidadACargo();
+                   foreach ($entiPropietaria as $ep) {
+                       echo "<option value='".$ep->getIdEntidadACargo()."'>";
+                           echo utf8_encode($ep->getNombreEntidadACargo());
+                       echo"</option>";
+                   }
+               ?>
+           </select>
+        	<br>
+        	<br>
+        	
+        	<input class="btn btn-default" type="submit" name="btnGenerarReporteCargos" value="Generar Reporte De Cargos" class="btn button-primary" style="width: 220px; height:30px;" style="margin-top: 400px;">
         </form>     
+        
         </div>
    </div>
  </div>

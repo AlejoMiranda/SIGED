@@ -51,6 +51,8 @@ require_once ("VistaUnidadReporte.php");
 require_once ("VistaUnidadByFiltro.php");
 require_once ("VistaCombustibleReporte.php");
 require_once ("VistaInventarioReporte.php");
+require_once ("VistaCargoByCompania.php");
+
 
 
 class Data
@@ -1086,6 +1088,58 @@ class Data
         $this->c->desconectar();
         return $listado;
         
+    }
+    
+    public function getCargosParaReporteByCompania($nomCompania)
+    {
+        $this->c->conectar();
+        $query = "SELECT 
+                    tbl_material_menor.nombre_material_menor AS 'Material', 
+                    tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
+                    tbl_informacionpersonal.nombre_informacionPersonal AS 'Nombre', 
+                    concat_ws(' ',tbl_informacionpersonal.apellido_paterno_informacionPersonal ,tbl_informacionpersonal.apellido_materno_informacionPersonal) AS 'Apellido',
+                    tbl_informaciondecargos.cantidadAsignada_informacionDeCargos AS 'Cantidad', 
+                    tbl_material_menor.detalle_material_menor AS 'Descripcion'
+                  FROM 
+                    tbl_material_menor, 
+                    tbl_entidadacargo,
+                    tbl_informacionpersonal, 
+                    tbl_informaciondecargos,
+                    tbl_informacionbomberil
+                  WHERE
+                    tbl_informaciondecargos.fk_materialMenorAsignado_informacionDeCargos = tbl_material_menor.id_material_menor
+                    AND tbl_informaciondecargos.fk_personal_informacionDeCargos = tbl_informacionPersonal.id_informacionPersonal
+                    AND tbl_informacionpersonal.id_informacionPersonal = tbl_informacionbomberil.fk_informacion_personal__informacionBomberil
+                    AND tbl_informacionbomberil.fk_id_entidadACargo_informacionBomberil = tbl_entidadACargo.id_entidadACargo
+                  AND tbl_entidadacargo.nombre_entidadACargo LIKE '$nomCompania'";
+        
+        $rs = $this->c->ejecutar($query);
+        $listado = array();
+        
+        while ($reg = $rs->fetch_array()) {
+            
+            $material = $reg[0];
+            $compania = $reg[1];
+            $nombre = $reg[2];
+            $apellido = $reg[3];
+            $bombero = $nombre . " ". $apellido;
+            $cantidad = $reg[4];
+            $fechaEntrega = "No Existe";
+            $descripcion = $reg[5];
+            
+            $obj = new VistaCargoByCompania();
+            
+            $obj->setMaterial($material);
+            $obj->setCompania($compania);
+            $obj->setBombero($bombero);
+            $obj->setCantidad($cantidad);
+            $obj->setFechaEntrega($fechaEntrega);
+            $obj->setDescripcion($descripcion);
+            
+            $listado[] = $obj;
+        }
+        $this->c->desconectar();
+        return $listado;
     }
 
         

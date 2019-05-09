@@ -1139,3 +1139,26 @@ bodega LIKE '%Unidad B-1%' OR bodega LIKE '%Bodega Primera%' OR bodega LIKE '%Cu
 bodega LIKE '%Unidad B-2%' OR bodega LIKE '%Bodega Segunda%' OR bodega LIKE '%Cuartel Segunda%' OR 
 bodega LIKE '%Unidad B-3%' OR bodega LIKE '%Bodega Tercera%' OR bodega LIKE '%Cuartel Tercera%';
 */
+
+------------------------------------------------------------------------
+
+
+SELECT 
+tbl_material_menor.nombre_material_menor AS 'Material', 
+tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
+tbl_informacionpersonal.nombre_informacionPersonal AS 'Nombre', 
+concat_ws(" ",tbl_informacionpersonal.apellido_paterno_informacionPersonal ,tbl_informacionpersonal.apellido_materno_informacionPersonal) AS 'Apellido',
+tbl_informaciondecargos.cantidadAsignada_informacionDeCargos AS 'Cantidad', 
+tbl_material_menor.detalle_material_menor AS 'Descripcion'
+FROM 
+tbl_material_menor, 
+tbl_entidadacargo,
+tbl_informacionpersonal, 
+tbl_informaciondecargos,
+tbl_informacionbomberil
+WHERE
+tbl_informaciondecargos.fk_materialMenorAsignado_informacionDeCargos = tbl_material_menor.id_material_menor
+AND tbl_informaciondecargos.fk_personal_informacionDeCargos = tbl_informacionPersonal.id_informacionPersonal
+AND tbl_informacionpersonal.id_informacionPersonal = tbl_informacionbomberil.fk_informacion_personal__informacionBomberil
+AND tbl_informacionbomberil.fk_id_entidadACargo_informacionBomberil = tbl_entidadACargo.id_entidadACargo
+AND tbl_entidadacargo.nombre_entidadACargo LIKE '';
