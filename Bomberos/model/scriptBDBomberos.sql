@@ -1,4 +1,4 @@
-CREATE DATABASE SIGED_BD;
+CREATE DATABASE SIGED_BD CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 USE SIGED_BD;
 SET lc_time_names = 'es_CL';
@@ -36,9 +36,9 @@ PRIMARY KEY (id_tipo_usuario_permisos)
 
 CREATE TABLE tbl_usuario(
 id_usuario_usuario INT AUTO_INCREMENT,
-nombre_usuario_usuario VARCHAR(20000),
+nombre_usuario_usuario VARCHAR(255),
 fk_tipo_usuario__usuario INT,
-contrasenia_usuario_usuario VARCHAR (2000),
+contrasenia_usuario_usuario VARCHAR (255),
 FOREIGN KEY (fk_tipo_usuario__usuario) REFERENCES tbl_tipo_usuario (id_tipo_usuario),
 PRIMARY KEY (id_usuario_usuario)
 );
@@ -52,7 +52,7 @@ PRIMARY KEY (id_estado_civil)
 
 CREATE TABLE tbl_genero(
 id_genero INT AUTO_INCREMENT,
-nombre_genero VARCHAR (21844),
+nombre_genero VARCHAR (50),
 PRIMARY KEY (id_genero)
 );
 
@@ -77,21 +77,21 @@ tbl_informacionPersonal.fk_medida_informacionPersonal=tbl_medida.id_medida AND t
 CREATE TABLE tbl_informacionPersonal(
 id_informacionPersonal INT AUTO_INCREMENT,
 rut_informacionPersonal VARCHAR (12) UNIQUE,
-nombre_informacionPersonal VARCHAR (5000),
-apellido_paterno_informacionPersonal VARCHAR (5000),
-apellido_materno_informacionPersonal VARCHAR (5000),
+nombre_informacionPersonal VARCHAR (255),
+apellido_paterno_informacionPersonal VARCHAR (255),
+apellido_materno_informacionPersonal VARCHAR (255),
 fecha_de_nacimiento_informacionPersonal DATE,
 fk_estado_civil_informacionPersonal INT,
 fk_medida_informacionPersonal INT,
-altura_en_metros_informacionPersonal VARCHAR (5000),
-peso_en_kg_informacionPersonal VARCHAR (5000),
-e_mail_informacionPersonal VARCHAR (5000),
+altura_en_metros_informacionPersonal VARCHAR (255),
+peso_en_kg_informacionPersonal VARCHAR (255),
+e_mail_informacionPersonal VARCHAR (255),
 fk_genero_informacionPersonal INT,
-telefono_fijo_informacionPersonal VARCHAR (5000),
-telefono_movil_informacionPersonal VARCHAR (5000),
-direccion_personal_informacionPersonal VARCHAR (5000),
-pertenecio_a_brigada_juvenil_informacionPersonal VARCHAR (5000),
-esInstructor_informacionPersonal VARCHAR (5000),
+telefono_fijo_informacionPersonal VARCHAR (255),
+telefono_movil_informacionPersonal VARCHAR (255),
+direccion_personal_informacionPersonal VARCHAR (255),
+pertenecio_a_brigada_juvenil_informacionPersonal VARCHAR (255),
+esInstructor_informacionPersonal VARCHAR (255),
 FOREIGN KEY (fk_estado_civil_informacionPersonal) REFERENCES tbl_estado_civil (id_estado_civil),
 FOREIGN KEY (fk_medida_informacionPersonal) REFERENCES tbl_medida (id_medida),
 FOREIGN KEY (fk_genero_informacionPersonal) REFERENCES tbl_genero (id_genero),
@@ -101,7 +101,7 @@ PRIMARY KEY (id_informacionPersonal)
 
 CREATE TABLE tbl_entidadACargo (
 id_entidadACargo INT AUTO_INCREMENT,
-nombre_entidadACargo VARCHAR (5000),
+nombre_entidadACargo VARCHAR (255),
 PRIMARY KEY(id_entidadACargo)
 );
 
@@ -134,13 +134,13 @@ CREATE TABLE tbl_comuna (
 
 CREATE TABLE tbl_estadoBombero (
 id_estado INT AUTO_INCREMENT,
-nombre_estado VARCHAR (20000),
+nombre_estado VARCHAR (255),
 PRIMARY KEY (id_estado)
 );
 
 CREATE TABLE tbl_cargo (
 id_cargo INT AUTO_INCREMENT,
-nombre_cargo VARCHAR (5000),
+nombre_cargo VARCHAR (255),
 PRIMARY KEY (id_cargo)
 );
 
@@ -149,7 +149,7 @@ PRIMARY KEY (id_cargo)
 CREATE TABLE tbl_informacionBomberil (
 id_informacionBomberil INT AUTO_INCREMENT,
 fk_region_informacionBomberil INT,
-cuerpo_informacionBomberil VARCHAR (20000),
+cuerpo_informacionBomberil VARCHAR (255),
 fk_id_entidadACargo_informacionBomberil INT,
 fk_cargo_informacionBomberil INT,
 fecha_de_ingreso_informacionBomberil DATE,
@@ -171,14 +171,14 @@ PRIMARY KEY (id_informacionBomberil)
 
 CREATE TABLE tbl_informacionLaboral (
 id_informacionLaboral INT AUTO_INCREMENT,
-nombre_de_empresa_informacionLaboral VARCHAR (5000),
-direccion_de_empresa_informacionLaboral VARCHAR (5000),
-telefono_de_empresa_informacionLaboral VARCHAR (5000),
-cargo_en_la_empresa_informacionLaboral VARCHAR (5000),
+nombre_de_empresa_informacionLaboral VARCHAR (255),
+direccion_de_empresa_informacionLaboral VARCHAR (255),
+telefono_de_empresa_informacionLaboral VARCHAR (255),
+cargo_en_la_empresa_informacionLaboral VARCHAR (255),
 fecha_de_ingreso_a_la_empresa_informacionLaboral DATE,
-area_o_departamento_en_la_empresa_informacionLaboral VARCHAR (5000),
-afp_informacionLaboral VARCHAR (5000),
-profesion_informacionLaboral VARCHAR (5000),
+area_o_departamento_en_la_empresa_informacionLaboral VARCHAR (255),
+afp_informacionLaboral VARCHAR (255),
+profesion_informacionLaboral VARCHAR (255),
 fk_informacion_personal_informacionLaboral INT,
 FOREIGN KEY (fk_informacion_personal_informacionLaboral) REFERENCES tbl_informacionPersonal (id_informacionPersonal),
 PRIMARY KEY (id_informacionLaboral)
@@ -202,9 +202,9 @@ PRIMARY KEY(id_parentesco)
 
 CREATE TABLE tbl_informacionMedica1 (
 id_informacionMedica1 INT AUTO_INCREMENT,
-prestacionMedica_informacionMedica1 VARCHAR (5000),
-alergias_informacionMedica1 VARCHAR (5000),
-enfermedades_croncias_informacionMedica1 VARCHAR (5000),
+prestacionMedica_informacionMedica1 VARCHAR (255),
+alergias_informacionMedica1 VARCHAR (255),
+enfermedades_croncias_informacionMedica1 VARCHAR (255),
 fk_informacion_personal_informacionMedica1 INT,
 FOREIGN KEY (fk_informacion_personal_informacionMedica1) REFERENCES tbl_informacionPersonal (id_informacionPersonal),
 PRIMARY KEY (id_informacionMedica1)
@@ -213,11 +213,11 @@ PRIMARY KEY (id_informacionMedica1)
 
 CREATE TABLE tbl_informacionMedica2 (
 id_informacionMedica2 INT AUTO_INCREMENT,
-medicamentos_habituales_informacionMedica2 VARCHAR (5000),
-nombre_de_contacto_informacionMedica2 VARCHAR (5000),
-telefono_de_contacto_informacionMedica2 VARCHAR (5000),
+medicamentos_habituales_informacionMedica2 VARCHAR (255),
+nombre_de_contacto_informacionMedica2 VARCHAR (255),
+telefono_de_contacto_informacionMedica2 VARCHAR (255),
 fk_parentesco_del_contacto_informacionMedica2 INT,
-nivel_de_actividad_fisica_informacionMedica2 VARCHAR (5000),
+nivel_de_actividad_fisica_informacionMedica2 VARCHAR (255),
 es_donante_informacionMedica2 BOOLEAN,
 es_fumador_informacionMedica2 BOOLEAN,
 fk_grupo_sanguineo_informacionMedica2 INT,
@@ -232,7 +232,7 @@ PRIMARY KEY (id_informacionMedica2)
 
 CREATE TABLE tbl_informacionFamiliar (
 id_informacionFamiliar INT AUTO_INCREMENT,
-nombres_informacionFamiliar VARCHAR (5000),
+nombres_informacionFamiliar VARCHAR (255),
 fecha_de_nacimiento_informacionFamiliar DATE,
 fk_parentesco_informacionFamiliar INT,
 fk_informacionPersonal_informacionFamiliar INT,
@@ -244,7 +244,7 @@ PRIMARY KEY(id_informacionFamiliar)
 
 CREATE TABLE tbl_estado_curso(
 id_estado_curso INT AUTO_INCREMENT,
-nombre_estado_curso VARCHAR (5000),
+nombre_estado_curso VARCHAR (255),
 PRIMARY KEY(id_estado_curso)
 );
 
@@ -277,13 +277,13 @@ PRIMARY KEY (id_entrenamientoEstandar)
 CREATE TABLE tbl_informacionHistorica(
 id_informacionHistorica INT AUTO_INCREMENT,
 fk_region_informacionHistorica INT,
-cuerpo_informacionHistorica VARCHAR (5000),
-compania_informacionHistorica VARCHAR (5000),
+cuerpo_informacionHistorica VARCHAR (255),
+compania_informacionHistorica VARCHAR (255),
 fechaDeCambio_informacionHistorica DATE,
-premio_informacionHistorica VARCHAR (20000),
-motivo_informacionHistorica TEXT (2000),
-detalle_informacionHistorica VARCHAR (20000),
-cargo_informacionHistorica VARCHAR (5000),
+premio_informacionHistorica VARCHAR (255),
+motivo_informacionHistorica TEXT (255),
+detalle_informacionHistorica VARCHAR (255),
+cargo_informacionHistorica VARCHAR (255),
 fk_informacionPersonal_informacionHistorica INT,
 FOREIGN KEY (fk_informacionPersonal_informacionHistorica) REFERENCES tbl_informacionPersonal (id_informacionPersonal), 
 FOREIGN KEY (fk_region_informacionHistorica) REFERENCES tbl_region (id_region), 
@@ -293,27 +293,27 @@ PRIMARY KEY (id_informacionHistorica)
 
 CREATE TABLE tbl_tipo_vehiculo (
 id_tipo_vehiculo INT AUTO_INCREMENT,
-nombre_tipo_vehiculo VARCHAR (5000),
+nombre_tipo_vehiculo VARCHAR (255),
 PRIMARY KEY(id_tipo_vehiculo)
 );
 
 
 CREATE TABLE tbl_estado_unidad (
 id_estado_unidad INT AUTO_INCREMENT,
-nombre_estado_unidad VARCHAR (5000),
+nombre_estado_unidad VARCHAR (255),
 PRIMARY KEY(id_estado_unidad)
 );
 
 CREATE TABLE tbl_unidad (
 id_unidad INT AUTO_INCREMENT,
-nombre_unidad VARCHAR (300),
-anioDeFabricacion_unidad VARCHAR (300),
-marca_unidad VARCHAR (300),
-nMotor_unidad VARCHAR (300),
-nChasis_unidad VARCHAR (300),
-nVIN_unidad VARCHAR (300),
-color_unidad VARCHAR (300),
-ppu_unidad VARCHAR (300) UNIQUE,
+nombre_unidad VARCHAR (255),
+anioDeFabricacion_unidad VARCHAR (255),
+marca_unidad VARCHAR (255),
+nMotor_unidad VARCHAR (255),
+nChasis_unidad VARCHAR (255),
+nVIN_unidad VARCHAR (255),
+color_unidad VARCHAR (255),
+ppu_unidad VARCHAR (255) UNIQUE,
 fechaInscripcion_unidad DATE,
 fechaAdquisicion_unidad DATE,
 capacidadOcupantes_unidad INT,
@@ -328,7 +328,7 @@ PRIMARY KEY (id_unidad)
 
 CREATE TABLE tbl_tipoDeMantencion (
 id_tipo_de_mantencion INT AUTO_INCREMENT,
-nombre_tipoDeMantencion VARCHAR (5000),
+nombre_tipoDeMantencion VARCHAR (255),
 PRIMARY KEY(id_tipo_de_mantencion)
 );
 
@@ -337,9 +337,9 @@ CREATE TABLE tbl_mantencion (
 id_mantencion INT AUTO_INCREMENT,
 fk_tipo_mantencion INT,
 fecha_mantencion DATE,
-responsable_mantencion VARCHAR (5000),
-direccion_mantencion VARCHAR (5000),
-comentarios_mantencion VARCHAR (5000),
+responsable_mantencion VARCHAR (255),
+direccion_mantencion VARCHAR (255),
+comentarios_mantencion VARCHAR (255),
 fk_unidad INT,
 FOREIGN KEY (fk_unidad) REFERENCES tbl_unidad (id_unidad),
 FOREIGN KEY (fk_tipo_mantencion) REFERENCES tbl_tipoDeMantencion (id_tipo_de_mantencion),
@@ -348,19 +348,19 @@ PRIMARY KEY (id_mantencion)
 
 CREATE TABLE tbl_tipo_combustible (
 id_tipo_combustible INT AUTO_INCREMENT,
-nombre_tipo_combustible VARCHAR (5000),
+nombre_tipo_combustible VARCHAR (255),
 PRIMARY KEY (id_tipo_combustible)
 );
 
 CREATE TABLE tbl_cargio_combustible (
 id_cargio_combustible INT AUTO_INCREMENT,
-responsable_cargio_combustible VARCHAR (5000),
+responsable_cargio_combustible VARCHAR (255),
 fecha_cargio DATE,
-direccion_cargio VARCHAR (5000),
+direccion_cargio VARCHAR (255),
 fk_tipo_combustible_cargio_combustible INT,
 cantidad_litros_cargio_combustible FLOAT,
 precio_litro_cargio_combustible INT,
-observacion_cargio_combustible VARCHAR (5000),
+observacion_cargio_combustible VARCHAR (255),
 fk_unidad INT,
 FOREIGN KEY (fk_tipo_combustible_cargio_combustible) REFERENCES tbl_tipo_combustible (id_tipo_combustible),
 FOREIGN KEY (fk_unidad) REFERENCES tbl_unidad (id_unidad),
@@ -369,8 +369,8 @@ PRIMARY KEY (id_cargio_combustible)
 
 CREATE TABLE tbl_tipo_servicio(
 id_tipo_servicio INT AUTO_INCREMENT,
-codigo_tipo_servicio VARCHAR (5000),
-nombre_tipo_servicio VARCHAR (5000),
+codigo_tipo_servicio VARCHAR (255),
+nombre_tipo_servicio VARCHAR (255),
 PRIMARY KEY (id_tipo_servicio)
 );
 
@@ -379,10 +379,10 @@ CREATE TABLE tbl_bitacora (
 id_bitacora INT AUTO_INCREMENT,
 fecha_bitacora DATE,
 fk_tipo_de_servicio_bitacora INT,
-direccion_bitacora VARCHAR (5000),
-oficial_a_cargo_bitacora VARCHAR (5000),
-maquinista_bitacora VARCHAR (5000),
-cantidad_de_voluntarios_bitacora VARCHAR (5000),
+direccion_bitacora VARCHAR (255),
+oficial_a_cargo_bitacora VARCHAR (255),
+maquinista_bitacora VARCHAR (255),
+cantidad_de_voluntarios_bitacora VARCHAR (255),
 hora_de_salida_bitacora TIME,
 hora_de_llegada_bitacora TIME,
 kilometros_bitacora INT,
@@ -396,7 +396,7 @@ PRIMARY KEY (id_bitacora)
 
 CREATE TABLE tbl_ubicacion_fisica (
 id_ubicacion_fisica INT AUTO_INCREMENT,
-nombre_ubicacion_fisica VARCHAR (5000),
+nombre_ubicacion_fisica VARCHAR (255),
 fk_entidad_a_cargo INT,
 FOREIGN KEY (fk_entidad_a_cargo) REFERENCES tbl_entidadACargo (id_entidadACargo),
 PRIMARY KEY (id_ubicacion_fisica)
@@ -405,14 +405,14 @@ PRIMARY KEY (id_ubicacion_fisica)
 
 CREATE TABLE tbl_tipo_de_medida (
 id_tipo_de_medida INT AUTO_INCREMENT,
-nombre_tipo_de_medida VARCHAR (5000),
+nombre_tipo_de_medida VARCHAR (255),
 PRIMARY KEY (id_tipo_de_medida)
 );
 
 CREATE TABLE tbl_unidad_de_medida (
 id_unidad_de_medida INT AUTO_INCREMENT,
 fk_tipo_de_medida_unidad_de_medida INT,
-nombre_unidad_de_medida VARCHAR (5000),
+nombre_unidad_de_medida VARCHAR (255),
 FOREIGN KEY (fk_tipo_de_medida_unidad_de_medida) REFERENCES tbl_tipo_de_medida (id_tipo_de_medida),
 PRIMARY KEY (id_unidad_de_medida)
 );
@@ -641,7 +641,7 @@ PRIMARY KEY(id_estado_servicio_unidad)
 -- Procedimientos
 
 DELIMITER //
-CREATE PROCEDURE CRUDPermiso (id INT, nombre VARCHAR (5000), tipoDeOperacion INT)
+CREATE PROCEDURE CRUDPermiso (id INT, nombre VARCHAR (255), tipoDeOperacion INT)
 BEGIN
 IF tipoDeOperacion= 1 THEN
 INSERT INTO tbl_permiso VALUES (NULL , nombre);
@@ -657,7 +657,7 @@ DELIMITER ;
 
 
 DELIMITER //
-CREATE PROCEDURE CRUDTipo_usuario (id INT, nombre VARCHAR (5000), tipoDeOperacion INT )
+CREATE PROCEDURE CRUDTipo_usuario (id INT, nombre VARCHAR (255), tipoDeOperacion INT )
 BEGIN
 IF tipoDeOperacion= 1 THEN
 INSERT INTO tbl_tipo_usuario VALUES (NULL , nombre);
@@ -690,7 +690,7 @@ END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE CRUDUsuario (id INT, nombre_usuario VARCHAR (20000), fk_tipo_usuario INT, contrasenia VARCHAR (2000), tipoOperacion INT)
+CREATE PROCEDURE CRUDUsuario (id INT, nombre_usuario VARCHAR (255), fk_tipo_usuario INT, contrasenia VARCHAR (255), tipoOperacion INT)
 BEGIN
 IF tipoOperacion=1 THEN
 INSERT INTO tbl_usuario VALUES (NULL, nombre_usuario, fk_tipo_usuario, contrasenia);
@@ -781,7 +781,7 @@ END//
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE CRUDCargo (id INT, nombre VARCHAR (5000), tipoOperacion INT)
+CREATE PROCEDURE CRUDCargo (id INT, nombre VARCHAR (255), tipoOperacion INT)
 BEGIN
 IF tipoOperacion=1 THEN
 INSERT INTO tbl_cargo VALUES (NULL, nombre);
@@ -798,7 +798,7 @@ DELIMITER ;
 
 
 DELIMITER //
-CREATE PROCEDURE CRUDMedida (id INT, talla_chaqueta VARCHAR (5000), talla_pantalon VARCHAR (5000), talla_buzo VARCHAR (5000), talla_calzado VARCHAR (5000), tipoDeOperacion INT)
+CREATE PROCEDURE CRUDMedida (id INT, talla_chaqueta VARCHAR (255), talla_pantalon VARCHAR (255), talla_buzo VARCHAR (255), talla_calzado VARCHAR (255), tipoDeOperacion INT)
 BEGIN
 IF tipoDeOperacion= 1 THEN
 INSERT INTO tbl_medida VALUES (NULL , talla_chaqueta, talla_pantalon, talla_buzo, talla_calzado);
@@ -815,9 +815,9 @@ DELIMITER ;
 
 
 DELIMITER // 
-CREATE PROCEDURE CRUDInformacionPersonal (id INT, rut VARCHAR(12), nombre VARCHAR (5000), apellidoPaterno VARCHAR(5000), apellidoMaterno VARCHAR(5000), fechaDeNacimiento DATE,
-fkEstadoCivil INT, fkMedida INT, altura VARCHAR (5000), peso VARCHAR (5000), email VARCHAR (5000), fkGenero INT, telefonoFijo VARCHAR (5000), telefonoMovil VARCHAR (5000),
-direccionPersonal VARCHAR (5000), pertenecioABrigadaJuvenil VARCHAR (5000), esInstructor VARCHAR (5000), tipoOperacion INT ) 
+CREATE PROCEDURE CRUDInformacionPersonal (id INT, rut VARCHAR(12), nombre VARCHAR (255), apellidoPaterno VARCHAR(255), apellidoMaterno VARCHAR(255), fechaDeNacimiento DATE,
+fkEstadoCivil INT, fkMedida INT, altura VARCHAR (255), peso VARCHAR (255), email VARCHAR (255), fkGenero INT, telefonoFijo VARCHAR (255), telefonoMovil VARCHAR (255),
+direccionPersonal VARCHAR (255), pertenecioABrigadaJuvenil VARCHAR (255), esInstructor VARCHAR (255), tipoOperacion INT ) 
 BEGIN
 
 DECLARE fkMedidas INT;
@@ -845,7 +845,7 @@ DELIMITER ;
 
 
 DELIMITER //
-CREATE PROCEDURE CRUDFichaInformacionBomberil (id INT, fkRegion INT, cuerpo VARCHAR (2000), fkCompania INT, fkCargo INT, 
+CREATE PROCEDURE CRUDFichaInformacionBomberil (id INT, fkRegion INT, cuerpo VARCHAR (255), fkCompania INT, fkCargo INT, 
 fechaIngreso DATE, NRG INT, fkEstado INT, NRC INT, fkInformacionPersonal INT, tipoOperacion INT)
 BEGIN
 IF tipoOperacion=1 THEN
@@ -866,8 +866,8 @@ DELIMITER ;
 
 
 DELIMITER // 
-CREATE PROCEDURE CRUDInformacionLaboral (id INT, nombreEmpresa VARCHAR (5000), direccionEmpresa VARCHAR (5000), telefonoEmpresa VARCHAR (5000), cargoEmpresa VARCHAR (5000),
-fechaDeIngresoALaEmpresa DATE, dptoEnEmpresa VARCHAR (5000), afp VARCHAR (5000), profesion VARCHAR (5000), fkInfoPersonal INT, tipoOperacion INT)
+CREATE PROCEDURE CRUDInformacionLaboral (id INT, nombreEmpresa VARCHAR (255), direccionEmpresa VARCHAR (255), telefonoEmpresa VARCHAR (255), cargoEmpresa VARCHAR (255),
+fechaDeIngresoALaEmpresa DATE, dptoEnEmpresa VARCHAR (255), afp VARCHAR (255), profesion VARCHAR (255), fkInfoPersonal INT, tipoOperacion INT)
 BEGIN
 IF tipoOperacion=1 THEN
 INSERT INTO tbl_informacionLaboral VALUES (NULL, nombreEmpresa, direccionEmpresa, telefonoEmpresa, cargoEmpresa, fechaDeIngresoALaEmpresa,
@@ -888,7 +888,7 @@ DELIMITER ;
 
 
 DELIMITER // 
-CREATE PROCEDURE CRUDInformacionMedica1 (id INT, prestacionMedica VARCHAR (5000), alergias VARCHAR (5000), enfermedadesCronicas VARCHAR (5000), fkInfoPersonal INT, tipoOperacion INT)
+CREATE PROCEDURE CRUDInformacionMedica1 (id INT, prestacionMedica VARCHAR (255), alergias VARCHAR (255), enfermedadesCronicas VARCHAR (5000), fkInfoPersonal INT, tipoOperacion INT)
 BEGIN
 IF tipoOperacion=1 THEN
 INSERT INTO tbl_informacionMedica1 VALUES (NULL, prestacionMedica, alergias, enfermedadesCronicas, fkInfoPersonal);
@@ -906,8 +906,8 @@ END//
 DELIMITER ;
 
 DELIMITER // 
-CREATE PROCEDURE CRUDInformacionMedica2 (id INT, medicamentos_habituales VARCHAR (5000), nombre_de_contacto VARCHAR (5000), telefono_de_contacto VARCHAR (5000), fkParentesco INT,
-nivel_de_actividad_fisica VARCHAR (5000), es_donante BOOLEAN, es_fumador BOOLEAN, fk_grupoSanguineo INT, fk_inforPersonal INT, tipoOperacion INT)
+CREATE PROCEDURE CRUDInformacionMedica2 (id INT, medicamentos_habituales VARCHAR (255), nombre_de_contacto VARCHAR (255), telefono_de_contacto VARCHAR (255), fkParentesco INT,
+nivel_de_actividad_fisica VARCHAR (255), es_donante BOOLEAN, es_fumador BOOLEAN, fk_grupoSanguineo INT, fk_inforPersonal INT, tipoOperacion INT)
 BEGIN
 IF tipoOperacion=1 THEN
 INSERT INTO tbl_informacionMedica2 VALUES (NULL, medicamentos_habituales, nombre_de_contacto, telefono_de_contacto, fkParentesco, nivel_de_actividad_fisica, es_donante,
@@ -927,7 +927,7 @@ END//
 DELIMITER ;
 
 DELIMITER // 
-CREATE PROCEDURE CRUDInformacionFamiliar (id INT, nombresInfoFlia VARCHAR (5000), fechaDeNacimientoInfoFlia DATE, fk_parentesco INT , fk_inforPersonal INT, tipoOperacion INT)
+CREATE PROCEDURE CRUDInformacionFamiliar (id INT, nombresInfoFlia VARCHAR (255), fechaDeNacimientoInfoFlia DATE, fk_parentesco INT , fk_inforPersonal INT, tipoOperacion INT)
 BEGIN
 IF tipoOperacion=1 THEN
 INSERT INTO tbl_informacionFamiliar VALUES (NULL, nombresInfoFlia , fechaDeNacimientoInfoFlia, fk_parentesco, fk_inforPersonal);
@@ -982,8 +982,8 @@ END//
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE CRUDInformacionHistorica (id INT, fkRegion INT, cuerpo VARCHAR (5000) , compania VARCHAR (5000), fechaDeCambio DATE, premio VARCHAR (20000),
-motivo TEXT (20000), detalle VARCHAR (20000), cargo VARCHAR (5000), fkInformacionPersonal INT, tipoOperacion INT)
+CREATE PROCEDURE CRUDInformacionHistorica (id INT, fkRegion INT, cuerpo VARCHAR (255) , compania VARCHAR (255), fechaDeCambio DATE, premio VARCHAR (255),
+motivo TEXT (255), detalle VARCHAR (255), cargo VARCHAR (255), fkInformacionPersonal INT, tipoOperacion INT)
 BEGIN
 IF tipoOperacion=1 THEN
 INSERT INTO tbl_informacionHistorica VALUES (NULL, fkRegion, cuerpo, compania, fechaDeCambio, premio, motivo,  detalle, cargo, fkInformacionPersonal);
@@ -1024,5 +1024,5 @@ END //
 DELIMITER ;
 
 /*
-DROP DATABASE bomberosBD;
+DROP DATABASE SIGED_BD;
 */

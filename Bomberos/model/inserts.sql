@@ -39,7 +39,7 @@ INSERT INTO tbl_tipo_usuario VALUES (NULL,'Secretaria');
 INSERT INTO tbl_tipo_usuario VALUES (NULL,'Superintendente');
 INSERT INTO tbl_tipo_usuario VALUES (NULL,'Comandante');
 INSERT INTO tbl_tipo_usuario VALUES (NULL,'Director');
-INSERT INTO tbl_tipo_usuario VALUES (NULL,'Capitan');
+INSERT INTO tbl_tipo_usuario VALUES (NULL,'Capitán');
 INSERT INTO tbl_tipo_usuario VALUES (NULL,'Secretario');
 INSERT INTO tbl_tipo_usuario VALUES (NULL,'Ayudante');
 INSERT INTO tbl_tipo_usuario VALUES (NULL,'Central de Alarma');
@@ -954,3 +954,188 @@ INSERT INTO tbl_apoyoEntidadExterior_servicio (fk_servicio,fk_apoyo) VALUES (2,1
 
 INSERT INTO tbl_estado_de_servicio_de_maquina (nombre_estado_de_servicio_de_maquina) VALUES ('Disponible'),('No disponible'),('Fuera de servicio');
 INSERT INTO tbl_estado_servicio_unidad (fk_unidad,fk_estado)VALUES(1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(9,1),(10,1),(11,1);
+
+-----------------------------------------------
+
+CREATE VIEW mostrarBomberosReporte AS
+SELECT 
+tbl_informacionpersonal.id_informacionPersonal AS 'Registro', 
+tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
+tbl_informacionpersonal.rut_informacionPersonal AS 'RUT',
+tbl_informacionpersonal.nombre_informacionPersonal AS 'Nombre', 
+concat_ws(" ", tbl_informacionpersonal.apellido_paterno_informacionPersonal, tbl_informacionpersonal.apellido_materno_informacionPersonal) AS 'Apellido', 
+DATE_FORMAT(tbl_informacionbomberil.fecha_de_ingreso_informacionBomberil , '%d/%m/%Y') AS 'Fecha Ingreso', 
+DATE_FORMAT(tbl_informacionpersonal.fecha_de_nacimiento_informacionPersonal , '%d/%m/%Y') AS 'Fecha Nacimiento', 
+tbl_estadobombero.nombre_estado AS 'Tipo Voluntario', 
+tbl_informacionpersonal.telefono_movil_informacionPersonal AS 'Teléfono', 
+tbl_informacionpersonal.e_mail_informacionPersonal AS 'Email'
+FROM tbl_informacionpersonal, tbl_entidadacargo, tbl_informacionbomberil, tbl_estadobombero
+WHERE 
+tbl_informacionpersonal.id_informacionPersonal = tbl_informacionbomberil.fk_informacion_personal__informacionBomberil
+AND tbl_informacionbomberil.fk_id_entidadACargo_informacionBomberil = tbl_entidadACargo.id_entidadACargo
+AND tbl_informacionbomberil.fk_estado_informacionBomberil = tbl_estadoBombero.id_estado;
+
+
+
+
+
+
+
+CREATE VIEW mostrarUnidades AS
+SELECT 
+tbl_unidad.nombre_unidad AS 'Codigo Unidad', 
+tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
+tbl_unidad.nChasis_unidad AS 'N° Chasis', 
+tbl_tipo_vehiculo.nombre_tipo_vehiculo AS 'Tipo Unidad',
+DATE_FORMAT(tbl_unidad.fechaInscripcion_unidad , '%d/%m/%Y') AS 'Fecha de Registro'
+FROM 
+tbl_unidad, tbl_entidadacargo, tbl_tipo_vehiculo
+WHERE 
+tbl_unidad.fk_tipo_vehiculo_unidad = tbl_tipo_vehiculo.id_tipo_vehiculo AND
+tbl_unidad.fk_entidadACargo = tbl_entidadacargo.id_entidadACargo;
+
+
+SELECT 
+tbl_unidad.nombre_unidad AS 'Codigo Unidad', 
+tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
+tbl_tipo_vehiculo.nombre_tipo_vehiculo AS 'Tipo Unidad', 
+tbl_tipodemantencion.nombre_tipoDeMantencion AS 'Tipo Mantencion', 
+DATE_FORMAT(tbl_mantencion.fecha_mantencion , '%d/%m/%Y')AS 'Fecha Mantencion',  
+tbl_mantencion.comentarios_mantencion AS 'Detalle Mantencion'
+FROM 
+tbl_unidad, 
+tbl_entidadacargo, 
+tbl_tipo_vehiculo,
+tbl_tipodemantencion, 
+tbl_mantencion
+WHERE
+tbl_mantencion.fk_tipo_mantencion = tbl_tipoDeMantencion.id_tipo_de_mantencion AND
+tbl_mantencion.fk_unidad = tbl_unidad.id_unidad AND
+tbl_unidad.fk_tipo_vehiculo_unidad = tbl_tipo_vehiculo.id_tipo_vehiculo AND
+tbl_unidad.fk_entidadACargo = tbl_entidadacargo.id_entidadACargo AND
+tbl_unidad.id_unidad = 1;
+
+
+
+
+
+
+
+
+
+
+SELECT 
+tbl_unidad.nombre_unidad AS 'Codigo Unidad', 
+tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
+tbl_tipo_vehiculo.nombre_tipo_vehiculo AS 'Tipo Unidad', 
+tbl_tipodemantencion.nombre_tipoDeMantencion AS 'Tipo Mantencion', 
+DATE_FORMAT(tbl_mantencion.fecha_mantencion , '%d/%m/%Y') AS 'Fecha Mantencion',
+tbl_mantencion.comentarios_mantencion AS 'Detalle Mantencion'
+FROM 
+tbl_unidad, 
+tbl_entidadacargo, 
+tbl_tipo_vehiculo,
+tbl_tipodemantencion, 
+tbl_mantencion
+WHERE
+tbl_mantencion.fk_tipo_mantencion = tbl_tipoDeMantencion.id_tipo_de_mantencion AND
+tbl_mantencion.fk_unidad = tbl_unidad.id_unidad AND
+tbl_unidad.fk_tipo_vehiculo_unidad = tbl_tipo_vehiculo.id_tipo_vehiculo AND
+tbl_unidad.fk_entidadACargo = tbl_entidadacargo.id_entidadACargo AND
+tbl_entidadacargo.id_entidadACargo = 2;
+
+SELECT 
+tbl_unidad.nombre_unidad AS 'Codigo Unidad', 
+tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
+tbl_tipo_vehiculo.nombre_tipo_vehiculo AS 'Tipo Unidad', 
+DATE_FORMAT(tbl_cargio_combustible.fecha_cargio  , '%d/%m/%Y') AS 'Fecha Cargo Combustible',
+tbl_cargio_combustible.cantidad_litros_cargio_combustible AS 'Litros', 
+tbl_cargio_combustible.responsable_cargio_combustible AS 'Responsable'
+FROM 
+tbl_unidad,
+tbl_entidadacargo, 
+tbl_tipo_vehiculo, 
+tbl_cargio_combustible
+WHERE
+tbl_unidad.fk_tipo_vehiculo_unidad = tbl_tipo_vehiculo.id_tipo_vehiculo AND
+tbl_unidad.fk_entidadACargo = tbl_entidadacargo.id_entidadACargo AND
+tbl_cargio_combustible.fk_unidad = tbl_unidad.id_unidad AND
+tbl_entidadacargo.id_entidadACargo = 3;
+
+
+
+SELECT 
+    tbl_unidad.nombre_unidad AS 'Codigo Unidad',
+    tbl_entidadacargo.nombre_entidadACargo AS 'Compañia',
+    tbl_tipo_vehiculo.nombre_tipo_vehiculo AS 'Tipo Unidad',
+    DATE_FORMAT(tbl_cargio_combustible.fecha_cargio,
+            '%d/%m/%Y') AS 'Fecha Cargo Combustible',
+    tbl_cargio_combustible.cantidad_litros_cargio_combustible AS 'Litros',
+    tbl_cargio_combustible.responsable_cargio_combustible AS 'Responsable'
+FROM
+    tbl_unidad,
+    tbl_entidadacargo,
+    tbl_tipo_vehiculo,
+    tbl_cargio_combustible
+WHERE
+    tbl_unidad.fk_tipo_vehiculo_unidad = tbl_tipo_vehiculo.id_tipo_vehiculo
+        AND tbl_unidad.fk_entidadACargo = tbl_entidadacargo.id_entidadACargo
+        AND tbl_cargio_combustible.fk_unidad = tbl_unidad.id_unidad
+        AND tbl_unidad.id_unidad = 1;
+
+------------------------------------------------------------------------------
+CREATE TABLE tbl_mostrarInventario(
+	id INT AUTO_INCREMENT,
+	material VARCHAR (100),
+	compania VARCHAR (100),
+	bodega VARCHAR (100),
+	cantidad VARCHAR (100),
+	marca VARCHAR (100),
+	descripcion VARCHAR (100),
+	estado VARCHAR (100),
+	PRIMARY KEY(id)
+);
+
+DELIMITER //
+CREATE PROCEDURE cargarDatosParaInventario()
+BEGIN
+	DELETE FROM tbl_mostrarInventario;
+    
+    INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado)
+	SELECT 
+	tbl_material_menor.id_material_menor AS 'ID',
+	tbl_material_menor.nombre_material_menor AS 'Material', 
+	tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
+	tbl_ubicacion_fisica.nombre_ubicacion_fisica AS 'Bodega', 
+	tbl_material_menor.cantidad_material_menor AS 'Cantidad', 
+	tbl_material_menor.fabricante_material_menor AS 'Marca', 
+	tbl_material_menor.detalle_material_menor AS 'Descripcion', 
+	tbl_estado_material_menor.nombre_estado_material_menor AS 'Estado'
+	FROM 
+	tbl_material_menor,
+	tbl_entidadacargo,
+	tbl_ubicacion_fisica, 
+	tbl_estado_material_menor
+	WHERE
+	tbl_material_menor.fk_estado_material_menor = tbl_estado_material_menor.id_estado_material_menor AND
+	tbl_material_menor.fk_entidad_a_cargo_material_menor = tbl_entidadACargo.id_entidadACargo AND
+	tbl_material_menor.fk_ubicacion_fisica_material_menor = tbl_ubicacion_fisica.id_ubicacion_fisica;
+    
+END //
+DELIMITER ;
+
+SELECT * FROM tbl_mostrarInventario WHERE 
+compania LIKE '1° Compañía' OR compania LIKE '2° Compañía' AND
+estado LIKE 'Operativo';
+
+----------------------------------------------------------------
+
+
+
+ 
+/*
+bodega LIKE '%Unidad B-0%' OR bodega LIKE '%Bodega Cuerpo%' OR bodega LIKE '%Cuartel cuerpo%' OR
+bodega LIKE '%Unidad B-1%' OR bodega LIKE '%Bodega Primera%' OR bodega LIKE '%Cuartel Primera%' OR 
+bodega LIKE '%Unidad B-2%' OR bodega LIKE '%Bodega Segunda%' OR bodega LIKE '%Cuartel Segunda%' OR 
+bodega LIKE '%Unidad B-3%' OR bodega LIKE '%Bodega Tercera%' OR bodega LIKE '%Cuartel Tercera%';
+*/

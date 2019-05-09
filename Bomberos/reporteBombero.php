@@ -166,7 +166,13 @@
       <div class="container">
 
       <div class="form-group" style="margin-left:50px;">
-
+		
+		<span><h5 style="font-weight:bold;">Todos Los Bomberos</h5></span>
+		
+		<form target="_blank" action="plantilla/plantillaListaBomberosPDF.php" method="post">
+            <input class="btn btn-default" type="submit" name="btnReporteBomberos" value="Generar Reporte" class="btn button-primary" style="width: 150px; height:30px;" style="margin-top: 400px;">
+        </form>
+        
         <span><h5 style="font-weight:bold;">Reporte Bomberos</h5></span>
 
         <form action="controlador/buscarInfoParaReporte.php" method="post">
@@ -178,7 +184,7 @@
         }
         ?>" placeholder="Buscar por nombre" style="height:30px;">
         <input class="btn btn-default" type="submit" name="btnInfoPersonal" value="Buscar" class="btn button-primary" style="width: 100px; height:30px;" style="margin-top: 400px;" onclick="porNombre()">
-      <!--  <button class="btn btn-default" name="btnBuscar" style="width: 100px; height:30px;" style="margin-top: 400px"> <a href="¬∑" style="text-decoration:none;color:black;">Buscar</a> </button> -->
+      <!--  <button class="btn btn-default" name="btnBuscar" style="width: 100px; height:30px;" style="margin-top: 400px"> <a href="∑" style="text-decoration:none;color:black;">Buscar</a> </button> -->
         </form>
 	
 		
@@ -207,16 +213,14 @@
                     <thead>
                       <tr>
                         <th>Nombre</th>
-                        <th>Compa√±√≠a</th>
+                        <th><?php echo utf8_encode("CompaÒia");?></th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-
                       if(isset($_SESSION["resultadosDeBusquedaDeBomberoByNombre"])){
                         // se hizo una busqueda
                         $listado=$_SESSION["resultadosDeBusquedaDeBomberoByNombre"];
-
                         foreach ($listado as $o => $objeto) {
                           ?>
                           <tr>
@@ -231,7 +235,6 @@
                               </td>
                           </tr>
                         <?php
-
                     }
                   }
                       ?>

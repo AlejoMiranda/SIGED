@@ -5,6 +5,11 @@ $d= new Data();
 
 $infoCargos=new Tbl_informacionDeCargos();
 
+echo 'Id Info Cargos = '.$_SESSION['idDeBomberoMasReciente'];
+echo 'Maerial Menor Asignado = '.$_REQUEST['cboMaterialesDisponibles'];
+echo 'Cantidad Material = '.$_REQUEST["cantidadDeMaterialesAsignados"];
+echo 'Id del bombero = '.$_SESSION['idDeBomberoMasReciente'];
+
 $infoCargos->setId_informacionDeCargos($_SESSION['idDeBomberoMasReciente']);
 $infoCargos->setFk_materialMenorAsignado_informacionDeCargos($_REQUEST['cboMaterialesDisponibles']);
 $infoCargos->setCantidadAsignada_informacionDeCargos($_REQUEST["cantidadDeMaterialesAsignados"]);
@@ -20,4 +25,5 @@ if(isset($_SESSION['seEstaModificandoUBombero'])){
 }else{
     header("location: ../CrearFicha.php");
 }
+
 ?>

@@ -79,16 +79,16 @@
         </ul>
         
         <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reporte <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="reporteBombero.php">Bombero</a></li>
-            <li><a href="reporteInventario.php">Inventario</a></li>
-            <li><a href="reporteUnidad.php">Unidad</a></li>
+       		<li class="dropdown">
+          		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Reporte <b class="caret"></b></a>
+          		<ul class="dropdown-menu">
+            		<li><a href="reporteBombero.php">Bombero</a></li>
+            		<li><a href="reporteInventario.php">Inventario</a></li>
+            		<li><a href="reporteUnidad.php">Unidad</a></li>
 
-          </ul>
-        </li>
-      </ul>
+          		</ul>
+        	</li>
+      	</ul>
 
       <br>
       <br>
@@ -162,8 +162,8 @@
 
       <div class="form-group" style="margin-left:50px;">
 
-        Sistema de bomberos<br>
-        "Primera Compa√±ia de Machali"
+        <h2  id="txt1Cabecera" ><?php echo utf8_encode("Cuerpo de Bomberos MachalÌ")?></h2>
+        <h4  id="txt2Cabecera" ><?php echo utf8_encode("Sistema de GestiÛn y Despacho - SIGED")?></h4>
 
       </div>
 

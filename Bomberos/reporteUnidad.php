@@ -171,28 +171,115 @@
       <div class="container">
 
       <div class="form-group" style="margin-left:50px;">
+      	
+      	<span><h3 style="font-weight:bold;">Reporte Unidades</h3></span>
+        <br>
+      
+      	<span><h5 style="font-weight:bold;">Todas Las Unidades</h5></span>
+		<br>
+		<form target="_blank" action="plantilla/plantillaListaUnidadesPDF.php" method="post">
+            <input class="btn btn-default" type="submit" name="btnReporteBomberos" value="Generar Reporte" class="btn button-primary" style="width: 150px; height:30px;" style="margin-top: 400px;">
+        </form>
+        
+        <br>
+        <br>
+        <br>
+		<span><h3 style="font-weight:bold;">Mantenciones de Unidades</h3></span>
+        <span><h5 style="font-weight:bold;">Por Unidad</h5></span>
+        <br>
+        
+        <form target="_blank" action="plantilla/plantillaUnidadByUnidadPDF.php" method="post">
+        	 <select name="cboUnidades" style="width: 180px;" >
+            	<?php
+                    $unidad = $data->readUnidadesVehiculos();
+                    foreach ($unidad as $u) {
+                        echo "<option value='".$u->getIdUnidad()."'>";                              
+                            echo $u->getNombreUnidad();
+                        echo"</option>";
+                        
+                    }
+                ?>
+        		</select>
+        		<br><br>
 
-        <span><h5 style="font-weight:bold;">Reporte Unidades</h5></span>
+             <input class="btn btn-default" type="submit" name="btnReporteUByFiltro" value="Generar Reporte de Unidad" class="btn button-primary" style="width: 220px; height:30px;" style="margin-top: 400px;">
+        </form>
+        <br>
+        
+        <span><h5 style="font-weight:bold;"><?php echo utf8_encode("Por Compañia"); ?></h5></span>
+        
+        <form target="_blank" action="plantilla/plantillaUnidadByCompania.php" method="post">
+        	 <select name="cbocompania" style="width:175px; height:30px;">
+                  <?php
+                      $compania = $data->readSoloCompanias();
+                      foreach ($compania as $c) {
+                        if(isset($companiaSeleccionada) && ($companiaSeleccionada==$c->getIdEntidadACargo())){
+                            echo "<option selected value='".$c->getIdEntidadACargo()."'>";
+                              echo utf8_encode($c->getNombreEntidadACargo());
+                          echo"</option>";
+                        }else{
+                          echo "<option value='".$c->getIdEntidadACargo()."'>";
+                              echo utf8_encode($c->getNombreEntidadACargo());
+                          echo"</option>";
+                        }
+                      }
+                  ?>
 
-        Unidad:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <select name="cboUnidades" style="width: 180px;" >
-            <?php
-                $unidad = $data->readUnidadesVehiculos();
-                foreach ($unidad as $u) {
-                    echo "<option value='".$u->getIdUnidad()."'>";
-                        echo $u->getNombreUnidad();
-                    echo"</option>";
-                }
-            ?>
-        </select>
-        <br><br>
-        Fecha Inicio:&nbsp;&nbsp;<input type="date" value="<?php echo date('Y-m-d'); ?>" name="txtfechainicio" style="width: 180px;">  /
-        Fecha Termino: <input type="date" value="<?php echo date('Y-m-d');?>" name="txtfechafinal" style="width: 180px;">
-        <br><br>
+                </select>
+        		<br><br>
 
+             <input class="btn btn-default" type="submit" name="btnReporteUByFiltro" value="Generar Reporte de Unidad" class="btn button-primary" style="width: 220px; height:30px;" style="margin-top: 400px;">
+        </form>
+        <br>
+        
+        <span><h3 style="font-weight:bold;">Reporte Carga Combustible</h3></span>
+       
+		<span><h5 style="font-weight:bold;">Por Unidad</h5></span>
+        <br>
+        
+        <form target="_blank" action="plantilla/plantillaCombustibleByUnidad.php" method="post">
+        	 <select name="cboUnidades2" style="width: 180px;" >
+            	<?php
+                    $unidad = $data->readUnidadesVehiculos();
+                    foreach ($unidad as $u) {
+                        echo "<option value='".$u->getIdUnidad()."'>";                              
+                            echo $u->getNombreUnidad();
+                        echo"</option>";
+                        
+                    }
+                ?>
+        		</select>
+        		<br><br>
 
-        <input type="submit" name="btnbuscar" value="Buscar Reporte" class="btn button-primary" style="width: 150px;"> <span ></span>
+             <input class="btn btn-default" type="submit" name="btnReporteUByFiltro" value="Generar Reporte de Unidad" class="btn button-primary" style="width: 220px; height:30px;" style="margin-top: 400px;">
+        </form>
+        <br>
+        
+        <span><h5 style="font-weight:bold;"><?php echo utf8_encode("Por Compañia"); ?></h5></span>
+        
+        <form target="_blank" action="plantilla/plantillaCombustibleByCompania.php" method="post">
+        	 <select name="cbocompania2" style="width:175px; height:30px;">
+                  <?php
+                      $compania = $data->readSoloCompanias();
+                      foreach ($compania as $c) {
+                        if(isset($companiaSeleccionada) && ($companiaSeleccionada==$c->getIdEntidadACargo())){
+                            echo "<option selected value='".$c->getIdEntidadACargo()."'>";
+                              echo utf8_encode($c->getNombreEntidadACargo());
+                          echo"</option>";
+                        }else{
+                          echo "<option value='".$c->getIdEntidadACargo()."'>";
+                              echo utf8_encode($c->getNombreEntidadACargo());
+                          echo"</option>";
+                        }
+                      }
+                  ?>
 
+                </select>
+        		<br><br>
+
+             <input class="btn btn-default" type="submit" name="btnReporteUByFiltro" value="Generar Reporte de Unidad" class="btn button-primary" style="width: 220px; height:30px;" style="margin-top: 400px;">
+        </form>
+        <br>
 
 
     <!--    Tipo Servicio:
@@ -208,38 +295,7 @@
       }*/
         ?>
       </select> -->
-        <br><br>
-
-
-        <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Tipo Servicio</th>
-                <th>Reponsable</th>
-                <th>Fecha</th>
-                <th>Maquinista</th>
-                <th>Observaciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
+        
      </div>
    </div>
  </div>

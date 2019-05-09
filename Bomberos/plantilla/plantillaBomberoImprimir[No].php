@@ -1,7 +1,7 @@
 <?php
 
-require_once ("model/Data.php");
-require_once ('lib/pdf/mpdf.php');
+require_once ("../model/Data.php");
+require_once ('../lib/pdf/mpdf.php');
 $data = new Data();
 
 session_start();
@@ -61,13 +61,13 @@ if (isset($_SESSION["resultadosDeBusquedaDeMaterialMenor"])) {
 ?>
 
 <!-- Cabecera del pfd-->
-<LINK REL=StyleSheet HREF="css/printStyle.css" TYPE="text/css" MEDIA=screen>
+<LINK REL=StyleSheet HREF="../css/printStyle.css" TYPE="text/css" MEDIA=screen>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
 
 
 <div>
 	<div>
-		<img id="imgCabecera" src="images/bomberos_chile_logo.jpg">
+		<img id="imgCabecera" src="../images/bomberos_chile_logo.jpg">
 		<h2  id="txt1Cabecera" >BOMBEROS DE CHILE</h2>
 		<h4  id="txt2Cabecera" >SISTEMA DE REGISTRO NACIONAL DE BOMBEROS</h4>
 		<h4  id="txt3Cabecera" >HOJA DE VIDA</h4>
@@ -79,7 +79,7 @@ if (isset($_SESSION["resultadosDeBusquedaDeMaterialMenor"])) {
 	<div class="titulo">
 		Información Personal
 	</div>
-		<img id="imgPerfil" src="images/avatar_opt.jpg">
+		<img id="imgPerfil" src="../images/avatar_opt.jpg">
 		
 	<div id="datosPersonales1">
 		<div class="title1">Rut</div>
@@ -140,8 +140,8 @@ if (isset($_SESSION["resultadosDeBusquedaDeMaterialMenor"])) {
 			<select class="inputStyle" name="cboEstadoCivil" disabled>
                     <?php
 
-                    require_once ("model/Data.php");
-                    require_once ("model/Tbl_EstadoCivil.php");
+                    require_once ("../model/Data.php");
+                    require_once ("../model/Tbl_EstadoCivil.php");
                     $d = new Data();
 
                     $estadosCiviles = $d->readEstadosCiviles();
@@ -250,8 +250,8 @@ if (isset($_SESSION["resultadosDeBusquedaDeMaterialMenor"])) {
 		<div class="resp2">
 			<select class="inputStyle" name="cboGenero" disabled>
                                   <?php
-                                require_once ("model/Data.php");
-                                require_once ("model/Tbl_Genero.php");
+                                require_once ("../model/Data.php");
+                                require_once ("../model/Tbl_Genero.php");
                                 $d = new Data();
             
                                 $generos = $d->readGeneros();
@@ -347,8 +347,8 @@ if (isset($_SESSION["resultadosDeBusquedaDeMaterialMenor"])) {
 			<div class="resp4">
     			<select class="inputStyle2" name="cboRegion" disabled>
                      <?php
-                    require_once ("model/Data.php");
-                    require_once ("model/Tbl_Region.php");
+                    require_once ("../model/Data.php");
+                    require_once ("../model/Tbl_Region.php");
                     $d = new Data();
 
                     $regiones = $d->readRegiones();
@@ -424,8 +424,8 @@ if (isset($_SESSION["resultadosDeBusquedaDeMaterialMenor"])) {
     			<select class="inputStyle2" name="cboCargo"
 		disabled>
                      <?php
-                    require_once ("model/Data.php");
-                    require_once ("model/Tbl_Cargo.php");
+                    require_once ("../model/Data.php");
+                    require_once ("../model/Tbl_Cargo.php");
                     $d = new Data();
 
                     $cargos = $d->readCargos();
@@ -482,8 +482,8 @@ if (isset($_SESSION["resultadosDeBusquedaDeMaterialMenor"])) {
     					<select class="inputStyle2" name="cboEstadoBombero"
 		disabled>
                      <?php
-                    require_once ("model/Data.php");
-                    require_once ("model/Tbl_EstadoBombero.php");
+                    require_once ("../model/Data.php");
+                    require_once ("../model/Tbl_EstadoBombero.php");
                     $d = new Data();
 
                     $estados = $d->readEstadosDeBomberos();
@@ -777,8 +777,8 @@ if (isset($_SESSION["resultadosDeBusquedaDeMaterialMenor"])) {
             	<div class="resp8">
                 	<select class="inputStyle2"  name="cboGrupoSanguineo" disabled>
                      <?php
-                    require_once ("model/Data.php");
-                    require_once ("model/Tbl_GrupoSanguineo.php");
+                    require_once ("../model/Data.php");
+                    require_once ("../model/Tbl_GrupoSanguineo.php");
                     $d = new Data();
 
                     $grupos = $d->readGruposSanguineos();
@@ -856,7 +856,7 @@ if (isset($_SESSION["resultadosDeBusquedaDeMaterialMenor"])) {
 	</div>
 
 
-	<table  cellspacing="1" cellpadding="4"   class="table">
+	<table   cellspacing="1" cellpadding="4"   class="table">
 		<thead>
 			<tr>
 				<th class="tableHead">Fecha</th>

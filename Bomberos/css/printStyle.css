@@ -4,33 +4,50 @@
 */
 
 #imgCabecera{
-	width: 100px;
-	height: 120px;
+	width: 80px;
+	height: 100px;
+	margin-top: -50px;
 	
 }
 
 #txt1Cabecera{
-	margin-top: -110px;
-	margin-left: 110px;
+	margin-top: -100px;
+	margin-left: 130px;
+	font: bold 200% sans-serif;
+	font-size: 35px;
 }
 
 #txt2Cabecera{
-	margin-top: -15px;
-	margin-left: 110px;
-	font: condensed 120% sans-serif;
-	font-size: 18px;
+	margin-top: 0px;
+	margin-left: 190px;
+	font: condensed 150% sans-serif;
+	font-size: 17px;
 }
 
 #txt3Cabecera{
-	margin-top: -15px;
-	margin-left: 110px;
-	font: condensed 120% sans-serif;
-	font-size: 18px;
+	margin-top: 50px;
+	margin-left: 0px;
+	font: condensed 150% sans-serif;
+	font-size: 15px;
+}
+
+#txt4Cabecera{
+	margin-top: -55px;
+	margin-left: 400px;
+	font: bold 150% sans-serif;
+	font-size: 14px;
+}
+
+#txt5Cabecera{
+	margin-top: -33px;
+	margin-left: 550px;
+	font: condensed 150% sans-serif;
+	font-size: 14px;
 }
 
 
 #salto{
-	margin-top: -15px;
+	margin-top: -95px;
 }
 
 .contenedor{
@@ -40,14 +57,14 @@
 
 .titulo{
 	background-color: #19DAF9;
-	border-bottom: 1px solid;	
+	border-bottom: 1px;	
 }
 
 
 .tableHead{
 	background-color: #42BACD;
 	padding: 2px;
-	border: solid 1px;
+	border: 1px solid;
 }
 
 .table{
@@ -56,7 +73,7 @@
 }
 
 .td{
-	border: solid 1px;
+	border: 1px solid;
 	padding: 5px;
 }
 
@@ -69,29 +86,26 @@
 
 #datosPersonales1{	
 	margin-top: -260px;
-	margin-left: 280px;
+	margin-left: 310px;
 }
 
 #datosPersonales2{	
-	margin-left: -264px;
-	margin-top: 13px;
+	margin-left: 34px;
+	margin-top: -220px;
 }
 
 #datosPersonales3{		
-	margin-left: -260px;
-	margin-top: 30px;
+	margin-left: 24px;
+	margin-top: 100px;
 	
 }
 
 
 .inputStyle{	
-	margin-top : -10px;
-	margin-left : 180px;
-	border:none; 
-	background-color: #FFFFFF;
+	margin-top : -2px;
+	margin-left : 0px;
 	font-size: 15px;
 	padding: 1px;
-	color: #000000;
 }
 
 .title1{
@@ -107,26 +121,27 @@
 }
 
 .resp1{
-	margin-top: -6px;
+	margin-top: -16px;
+	margin-left: 200px;
 }
 
 /*datos personales 2*/
 
 .title3{
-	/*margin-left: -264px;*/
+	margin-left: -15px;
 	margin-top: 2px;
 	font-weight: bold;
 }
 
 .title4{
-	margin-left: 84px;
-	margin-top: -21px;
+	margin-left: 64px;
+	margin-top: -18px;
 	
 }
 
 .resp2{
-	margin-left: -80px;
-	margin-top: -9px;
+	margin-left: 110px;
+	margin-top: -19px;
 }
 
 
@@ -138,14 +153,14 @@
 }
 
 .title6{
-	margin-left: 240px;
+	margin-left: 215px;
 	margin-top: -18px;	
 	padding-bottom: 2px;
 }
 
 .resp3{
-	margin-left: 110px;
-	margin-top: -13px;
+	margin-left: 260px;
+	margin-top: -20px;
 	padding-bottom: 2px;
 }
 
@@ -161,7 +176,9 @@
 }
 
 #informacionBomberil1{	
-	padding: 30px;
+	padding: 5px;
+	margin-top: 10px;
+	margin-left: 10px;
 }
 
 .title7{
@@ -169,20 +186,20 @@
 }
 
 .title8{
-	margin-left: 180px;
+	margin-left: 120px;
 	margin-top: -18px;	
 }
 
 .resp4{	
-	margin-left: 240px;
-	margin-top: -18px;	
+	margin-left: 150px;
+	margin-top: -35px;	
 }
 
 
 
 #informacionBomberil2{	
-	margin-top: -50px;
-	margin-left: 700px;
+	margin-top: -74px;
+	margin-left: 350px;
 }
 
 .title9{
@@ -191,12 +208,12 @@
 
 .title10{
 	margin-top: -20px;
-	margin-left: 150px;
+	margin-left: 90px;
 }
 
 .resp5{
-	margin-top: -16px;
-	margin-left: 180px;
+	margin-top: -33px;
+	margin-left: 120px;
 }
 
 
@@ -204,7 +221,8 @@
 
 #informacionPersonal{	
 	margin-top: 20px;
-	padding: 30px;
+	padding: 5px;
+	margin-left: 20px;
 }
 
 .title11{
@@ -213,27 +231,29 @@
 }
 
 .title12{
-	margin-left: 190px;
+	margin-left: 160px;
 	margin-top: -20px;
 	padding-top: 2px;
 }
 
 .resp6{
-	margin-left: 230px;
-	margin-top: -20px;
+	margin-left: 200px;
+	margin-top: -39px;
 	padding-top: 2px;
 }
 
 /*Info Medica*/
 
 #informacionMedica1{	
-	padding: 30px;
+	padding: 5px;
+	margin-left: 15px;
+	margin-top: 15px;
 }
 
 #informacionMedica2{
 	padding: 30px;
-	margin-top: -140px;
-	margin-left: 570px;
+	margin-top: -160px;
+	margin-left: 360px;
 }
 
 .title13{
@@ -243,14 +263,14 @@
 	}
 
 .title14{
-	margin-left: 220px;
-	margin-top: -20px;
+	margin-left: 180px;
+	margin-top: -22px;
 	padding-top: 4px;
 }
 
 .resp7{
-	margin-left: 300px;
-	margin-top: -20px;
+	margin-left: 220px;
+	margin-top: -41px;
 	padding-top: 4px;
 }
 
@@ -260,13 +280,13 @@
 }
 
 .title16{	
-	margin-left: 220px;
-	margin-top: -20px;
+	margin-left: 130px;
+	margin-top: -22px;
 	padding-top: 4px;
 }
 
 .resp8{
-	margin-left: 300px;
-	margin-top: -20px;
+	margin-left: 160px;
+	margin-top: -40px;
 	padding-top: 4px;
 }

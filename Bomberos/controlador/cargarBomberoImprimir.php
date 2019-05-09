@@ -31,7 +31,7 @@ $_SESSION["infoEntrenamientoEstandarSolicitada"] = $infoEntrenamientoEstandar;
 $_SESSION["infoHistoricaSolicitada"] = $infoHistorica;
 $_SESSION["infoCargosSolicitada"] = $infoCargos;
 
-header("location:../plantilla/plantillaBomberoImprimir.php ");
-
+//header("location:../plantilla/plantillaBomberoImprimir.php ");
+header("location:../plantilla/plantillaBomberoImprimirPDF.php ");
 ?>
 

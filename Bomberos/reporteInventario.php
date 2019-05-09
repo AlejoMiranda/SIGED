@@ -170,74 +170,48 @@
 
       <div class="form-group" style="margin-left:50px;">
 
-        <span><h5 style="font-weight:bold;">Reporte Unidades</h5></span>
-
-        Nombre: &nbsp;&nbsp;<input type="text"  name="txtnombre" style="width: 180px;">
-
-        Compa√±ia:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <select name="cboUnidades" style="width: 180px;" >
-            <?php
-                $unidad = $data->readUnidadesVehiculos();
-                foreach ($unidad as $u) {
-                    echo "<option value='".$u->getIdUnidad()."'>";
-                        echo $u->getNombreUnidad();
-                    echo"</option>";
-                }
-            ?>
-        </select>
-        <br><br>
-
-        Tipo Bodega:
-        <select name="cboxBodega" style="width: 180px;" >
-        </select>
-
-
-        <br><br>
-    <!--    Tipo Servicio:
-        <select  name="cboTiposDeServicios" style="width: 180px;">
-       <?php
-/*
-
-        $listado = $data->readTiposDeServicios();
-        foreach($listado as $o => $objeto){
-        ?>
-        <option value="<?php echo $objeto->getId_tipo_servicio(); ?>"><?php echo $objeto->getCodigo_tipo_servicio(); ?></option>
-        <?php
-      }*/
-        ?>
-      </select> -->
-
-        <input type="submit" name="btnbuscar" value="Buscar Reporte" class="btn button-primary" style="width: 150px;" onclick="msg()"> <span ></span>
-
-
-        <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Compa√±ia</th>
-                <th>Tipo bodega</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-
-              </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
-     </div>
+        <span><h3 style="font-weight:bold;">Reporte Inventario</h3></span>
+        
+        <form action="plantilla/plantillaInventarioByFiltro.php" method="post" >
+        	<span><h5 style="font-weight:bold;"><?php echo utf8_encode(" CompaÒia");?></h5></span>
+        	<input type="checkbox" id="chkComUno" name="chkComUno" value="Cuerpo de Bomberos de Machali"><?php echo utf8_encode(" Cuerpo de Bomberos de MachalÌ");?><br>
+        	<input type="checkbox" id="chkComDos" name="chkComDos"  value="1∞ CompaÒÌa"><?php echo utf8_encode(" 1∞ CompaÒÌa");?><br>
+        	<input type="checkbox" id="chkComTres" name="chkComTres"  value="2∞ CompaÒÌa"><?php echo utf8_encode(" 2∞ CompaÒÌa");?><br>
+        	<input type="checkbox" id="chkComCuatro" name="chkComCuatro"  value="3∞ CompaÒÌa"><?php echo utf8_encode(" 3∞ CompaÒÌa");?><br>
+        	<br>
+        	<span><h5 style="font-weight:bold;"><?php echo utf8_encode(" Estado");?></h5></span>
+        	<input type="checkbox" id="chkEsUno" name="chkEsUno"  value="Operativo"><?php echo utf8_encode(" Operativo");?><br>
+        	<input type="checkbox" id="chkEsDos" name="chkEsDos"  value="Almacenado"><?php echo utf8_encode(" Almacenado");?><br>
+        	<input type="checkbox" id="chkEsTres" name="chkEsTres"  value="En MantenciÛn"><?php echo utf8_encode(" En MantenciÛn");?><br>
+        	<input type="checkbox" id="chkEsCuatro" name="chkEsCuatro"  value="Caducado"><?php echo utf8_encode(" Caducado");?><br>
+        	<input type="checkbox" id="chkEsCinco" name="chkEsCinco"  value="Fuera de servicio"><?php echo utf8_encode(" Fuera de servicio");?><br>
+        	<input type="checkbox" id="chkEsSeis" name="chkEsSeis"  value="Dado de baja"><?php echo utf8_encode(" Dado de baja");?><br>
+        	<br>
+        	<span><h5 style="font-weight:bold;"><?php echo utf8_encode(" Bodega");?></h5></span>
+        	
+        	<input type="checkbox" id="chkBoUno" name="chkBoUno"  value="Unidad B-0"><?php echo utf8_encode(" Unidad B-0");?><br>
+        	<input type="checkbox" id="chkBoDos" name="chkBoDos"  value="Bodega Cuerpo"><?php echo utf8_encode(" Bodega Cuerpo");?><br>
+        	<input type="checkbox" id="chkBoTres" name="chkBoTres"  value="Cuartel cuerpo"><?php echo utf8_encode(" Cuartel cuerpo");?><br>
+        	
+        	<input type="checkbox" id="chkBoCuatro" name="chkBoCuatro" value="Unidad B-1"><?php echo utf8_encode(" Unidad B-1");?><br>
+        	<input type="checkbox" id="chkBoCinco" name="chkBoCinco" value="Bodega Primera"><?php echo utf8_encode(" Bodega Primera");?><br>
+        	<input type="checkbox" id="chkBoSeis" name="chkBoSeis" value="Cuartel Primera"><?php echo utf8_encode(" Cuartel Primera");?><br>
+        	
+        	<input type="checkbox" id="chkBoSiete" name="chkBoSiete" value="Unidad B-2"><?php echo utf8_encode(" Unidad B-2");?><br>
+        	<input type="checkbox" id="chkBoOcho" name="chkBoOcho" value="Bodega Segunda"><?php echo utf8_encode(" Almacenado");?><br>
+        	<input type="checkbox" id="chkBoNueve" name="chkBoNueve" value="Cuartel Segunda"><?php echo utf8_encode(" Cuartel Segunda");?><br>
+        	
+        	<input type="checkbox" id="chkBoDiez" name="chkBoDiez" value="Unidad B-3"><?php echo utf8_encode(" Unidad B-3");?><br>
+        	<input type="checkbox" id="chkBoOnce" name="chkBoOnce" value="Bodega Tercera"><?php echo utf8_encode(" Bodega Tercera");?><br>
+        	<input type="checkbox" id="chkBoDoce" name="chkBoDoce" value="Cuartel Tercera"><?php echo utf8_encode(" Cuartel Tercera");?><br>
+        	
+        	<br>
+        	
+        	<input class="btn btn-default" type="submit" name="btnGenerarReporte" value="Generar Reporte" class="btn button-primary" style="width: 150px; height:30px;" style="margin-top: 400px;">
+        
+        
+        </form>     
+        </div>
    </div>
  </div>
 </div>

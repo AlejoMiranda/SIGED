@@ -18,6 +18,7 @@ class Conexion{
             $this->pass,
             $this->bdName
         );
+        
         if (mysqli_connect_errno()) {
             printf("Error de conexión: %s\n", mysqli_connect_error());
             exit();
