@@ -192,7 +192,7 @@ if($_SESSION["usuarioIniciado"]!=null){
         <form id="formCrearMaterialMenor" action="controlador/CrearMaterialMenor.php" method="post">
 
           Nombre Material: &nbsp;&nbsp;&nbsp;&nbsp;
-          <input type="text" name="txtnombreMaterial" id="txtnombreMaterial" required style="width:575px;"><br><br>
+          <input type="text" name="txtnombreMaterial onlyLetter" id="txtnombreMaterial" required style="width:575px;"><br><br>
 
           Entidad a Cargo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
            <select name="cboEntidadACargo" id="cboEntidadACargo" onchange="actualizarComboBox()" style="width:230px;">
@@ -353,6 +353,23 @@ if($_SESSION["usuarioIniciado"]!=null){
                       //form.submit();
                   });
                   });
+
+                  $('.onlyNumber').keypress(function(tecla) {
+                    if (tecla.charCode < 48 || tecla.charCode > 57) return false;
+                  });
+
+                  $('.onlyLetter').keypress(function(tecla) {
+                    if ((tecla.charCode < 97 || tecla.charCode > 122) && (tecla.charCode < 65 || tecla.charCode > 90) && (tecla.charCode != 45)) return false;
+                  });
+
+                  $('.maxCarcateres').keypress('keyup change input paste').bind('keyup change input paste', function(tecla) {
+                    var $this = $(this);
+                    var val = $this.val();
+                    var valLength = val.length;
+                    var maxCount = $this.attr('maxlength');  
+                    if (valLength > maxCount ) {
+                      $this.val($this.val().substring(0, maxCount));
+                    }
 
 </script>
 <script src="javascript/borrarVariablesEnSesionAlCargarPagina.js"></script>

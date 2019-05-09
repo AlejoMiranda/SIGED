@@ -373,22 +373,22 @@ $( function() {
                         <img src="images/avatar_opt.jpg">
                       </div>
                       <form id="formPersonal" action="controlador/CrearInfoPersonal.php" method="post">
-                      Talla Chaqueta/Camisa : <input class="form-control" type="text" name="txtchaqueta" required>
-                      Talla Pantalón: <input class="form-control" type="text" name="txtpantalon" required>
-                      Talla buzo: <input class="form-control" type="text" name="txtbuzo" required>
-                      Talla Calzado: <input class="form-control" type="text" name="txtcalzado" required>
-                      Altura :<input class="form-control" type="text" name="txtaltura" required>
-                      Peso: <input class="form-control" type="text" name="txtpeso" required>
+                      Talla Chaqueta/Camisa : <input class="form-control onlyLetter maxCarcateres" type="text" name="txtchaqueta"  maxlength="2" required>
+                      Talla Pantalón: <input class="form-control onlyNumber maxCarcateres" type="text" name="txtpantalon" maxlength="2" required>
+                      Talla buzo: <input class="form-control" type="text" name="txtbuzo" maxlength="2" required>
+                      Talla Calzado: <input class="form-control onlyNumber" type="text" name="txtcalzado" maxlength="2" required>
+                      Altura :<input class="form-control onlyNumber" type="text" name="txtaltura" required>
+                      Peso: <input class="form-control onlyNumber" type="text" name="txtpeso" required>
                       Perteneció a Brigada Juvenil? <input class="form-control" type="text" name="txtbrigada" required>
-                      Instructor: <input class="form-control" type="text" name="txtinstructor" required>
+                      Instructor: <input class="form-control onlyLetter" type="text" name="txtinstructor" required>
 
                     </div>
 
                     <div class="col-md-5" style="margin-left: 50px;">
                       Rut:<input class="form-control" name="txtRut" type="text" id="txtRutACrear" tabindex="2" type="text" maxlength="9" onkeypress="return soloRUT(event)" onblur="checkRutGenerico(txtRutACrear.value, false, 2)" onfocus="limpiaPuntoGuion(2)" onpaste="return false" ondrag="return false" ondrop="return false" oncopy="return false" oncut="return false" autocomplete="off">
-                      Nombre: <input class="form-control" type="text" id="nombreDeBomberoACrear" name="txtNombre" required>
-                      Apellido Paterno: <input class="form-control" type="text" name="txtApePa" required>
-                      Apellido Materno: <input class="form-control" name="txtApeMa" required>
+                      Nombre: <input class="form-control onlyLetter" type="text" id="nombreDeBomberoACrear" name="txtNombre" required>
+                      Apellido Paterno: <input class="form-control onlyLetter" type="text" name="txtApePa" required>
+                      Apellido Materno: <input class="form-control onlyLetter" name="txtApeMa" required>
                       Fecha Nacimiento: <input class="form-control" name="txtFecha" type="date" required>
                       Estado Civil:
                       <select class="form-control" name="cboEstadoCivil">
@@ -407,7 +407,7 @@ $( function() {
                       ?>
                       </select>
                       Dirección: <input class="form-control" Type="text" name="txtDireccion" required>
-                      Teléfonos:  <input class="form-control" type="text" name="txtTelefonos" required>
+                      Teléfonos:  <input class="form-control onlyNumber" type="text" name="txtTelefonos" required>
                       Email: <input class="form-control" type="text" name="txtemail" required>
                       Genero:
                       <select class="form-control" name="cboGenero">
@@ -574,7 +574,7 @@ $( function() {
                     <br>
                    Nombre Empresa : <input class="form-control" type="text" name="txtnomempresa" required>
                    Dirección Empresa: <input class="form-control" type="text" name="txtdirecempresa" required>
-                   Teléfono Empresa: <input class="form-control" type="text" name="txttlfempresa" required>
+                   Teléfono Empresa: <input class="form-control onlyNumber" type="text" name="txttlfempresa" required>
                    Fecha Ingreso: <input class="form-control" type="date" name="txfingresoempresa" required>
 
                  </div>
@@ -585,7 +585,7 @@ $( function() {
 
                    Area/Depto de trabajo: <input class="form-control" type="text" name="txtareatrabajo" required>
                    AFP: <input class="form-control" type="text" name="txtafp" required>
-                   Profesión: <input class="form-control" name="txtprofesion" required>
+                   Profesión: <input class="form-control onlyLetter" name="txtprofesion" required>
                    <br>
                    <center> <input type="submit" id="btn_crearInfoLaboral" name="btnInfoLaboral" value="Guardar" class="btn button-primary" style="width: 150px;"> <span ></span>
                    </center>
@@ -626,12 +626,12 @@ $( function() {
                    }
                     ?>
                     <br>
-                   Prestación Médica : <input class="form-control" type="text" name="txtpresmedica" required>
-                   Alergias: <input class="form-control" type="text" name="txtalergias" required>
-                   Enfermedades Crónicas: <input class="form-control" type="text" name="txtenfermedadescronicas" required>
-                   Medicamentos Habituales: <input class="form-control" type="text" name="txtmedicamentosHabituales" required>
-                   Nombre del Contacto: <input class="form-control" type="text" name="txtnomContacto" required>
-                   Teléfono del Contacto : <input class="form-control" type="text" name="txttlfcontacto" required>
+                   Prestación Médica : <input class="form-control onlyLetter" type="text" name="txtpresmedica" required>
+                   Alergias: <input class="form-control onlyLetter" type="text" name="txtalergias" required>
+                   Enfermedades Crónicas: <input class="form-control onlyLetter" type="text" name="txtenfermedadescronicas" required>
+                   Medicamentos Habituales: <input class="form-control onlyLetter" type="text" name="txtmedicamentosHabituales" required>
+                   Nombre del Contacto: <input class="form-control onlyLetter" type="text" name="txtnomContacto" required>
+                   Teléfono del Contacto : <input class="form-control onlyLetter" type="text" name="txttlfcontacto" required>
 
                  </div>
 
@@ -711,7 +711,7 @@ $( function() {
                               }
                                ?>
                                <br>
-                              Nombre: <input class="form-control" type="text" name="txtnombreFamiliar" required>
+                              Nombre: <input class="form-control onlyLetter" type="text" name="txtnombreFamiliar" required>
                               Fecha de Nacimiento: <input class="form-control" type="date" name="txtfechafamiliar" required>
                               Parentesco:
                               <select class="form-control" name="cboParentesco2">
@@ -1355,6 +1355,23 @@ intenta crear al bombero, llamandolo por su nombre, pero el mensaje de exito sol
 
          });
        }
+
+    $('.onlyNumber').keypress(function(tecla) {
+      if (tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+
+    $('.onlyLetter').keypress(function(tecla) {
+      if ((tecla.charCode < 97 || tecla.charCode > 122) && (tecla.charCode < 65 || tecla.charCode > 90) && (tecla.charCode != 45)) return false;
+    });
+
+    $('.maxCarcateres').keypress('keyup change input paste').bind('keyup change input paste', function(tecla) {
+      var $this = $(this);
+      var val = $this.val();
+      var valLength = val.length;
+      var maxCount = $this.attr('maxlength');
+      if (valLength > maxCount ) {
+        $this.val($this.val().substring(0, maxCount));
+      }
        </script>
 
   </body>
