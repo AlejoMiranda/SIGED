@@ -65,6 +65,7 @@ class Data
         $this->c = new Conexion("SIGED_BD", "root", "");
     }
     
+    
     public function obtenerFecha(){
         date_default_timezone_set("Chile/Continental");
         setlocale(LC_TIME,"es_CL");
@@ -377,7 +378,7 @@ class Data
 
     public function crearInformacionCargos($infoCargos)
     {
-        $query = "INSERT INTO tbl_informacionDeCargos VALUES (NULL, " . $infoCargos->getFk_materialMenorAsignado_informacionDeCargos() . "," . $infoCargos->getCantidadAsignada_informacionDeCargos() . "," . $infoCargos->getFk_personal_informacionDeCargos() . ");";
+        $query = "INSERT INTO tbl_informacionDeCargos VALUES (NULL, " . $infoCargos->getFk_materialMenorAsignado_informacionDeCargos() . "," . $infoCargos->getCantidadAsignada_informacionDeCargos() . "," . $infoCargos->getFk_personal_informacionDeCargos() . "," . $infoCargos->getFechaEntrega() . ");";
 
         echo $query;
 
@@ -1099,7 +1100,8 @@ class Data
                     tbl_informacionpersonal.nombre_informacionPersonal AS 'Nombre', 
                     concat_ws(' ',tbl_informacionpersonal.apellido_paterno_informacionPersonal ,tbl_informacionpersonal.apellido_materno_informacionPersonal) AS 'Apellido',
                     tbl_informaciondecargos.cantidadAsignada_informacionDeCargos AS 'Cantidad', 
-                    tbl_material_menor.detalle_material_menor AS 'Descripcion'
+                    tbl_material_menor.detalle_material_menor AS 'Descripcion',
+                    DATE_FORMAT(tbl_informaciondecargos.fechaEntrega  , '%d/%m/%Y') AS 'Fecha'
                   FROM 
                     tbl_material_menor, 
                     tbl_entidadacargo,
@@ -1124,8 +1126,8 @@ class Data
             $apellido = $reg[3];
             $bombero = $nombre . " ". $apellido;
             $cantidad = $reg[4];
-            $fechaEntrega = "No Existe";
             $descripcion = $reg[5];
+            $fechaEntrega = $reg[6];
             
             $obj = new VistaCargoByCompania();
             
@@ -1133,8 +1135,8 @@ class Data
             $obj->setCompania($compania);
             $obj->setBombero($bombero);
             $obj->setCantidad($cantidad);
-            $obj->setFechaEntrega($fechaEntrega);
             $obj->setDescripcion($descripcion);
+            $obj->setFechaEntrega($fechaEntrega);
             
             $listado[] = $obj;
         }

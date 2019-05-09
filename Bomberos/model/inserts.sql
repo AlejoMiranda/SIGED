@@ -1149,7 +1149,8 @@ tbl_entidadacargo.nombre_entidadACargo AS 'Compañia',
 tbl_informacionpersonal.nombre_informacionPersonal AS 'Nombre', 
 concat_ws(" ",tbl_informacionpersonal.apellido_paterno_informacionPersonal ,tbl_informacionpersonal.apellido_materno_informacionPersonal) AS 'Apellido',
 tbl_informaciondecargos.cantidadAsignada_informacionDeCargos AS 'Cantidad', 
-tbl_material_menor.detalle_material_menor AS 'Descripcion'
+tbl_material_menor.detalle_material_menor AS 'Descripcion',
+DATE_FORMAT(tbl_informaciondecargos.fechaEntrega  , '%d/%m/%Y') AS 'Fecha'
 FROM 
 tbl_material_menor, 
 tbl_entidadacargo,

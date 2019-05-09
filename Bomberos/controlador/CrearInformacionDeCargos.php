@@ -14,6 +14,7 @@ $infoCargos->setId_informacionDeCargos($_SESSION['idDeBomberoMasReciente']);
 $infoCargos->setFk_materialMenorAsignado_informacionDeCargos($_REQUEST['cboMaterialesDisponibles']);
 $infoCargos->setCantidadAsignada_informacionDeCargos($_REQUEST["cantidadDeMaterialesAsignados"]);
 $infoCargos->setFk_personal_informacionDeCargos($_SESSION['idDeBomberoMasReciente']);
+$infoCargos->setFechaEntrega($_SESSION['txtFechaEntrega']);
 
 $d->crearInformacionCargos($infoCargos);
 $cantidadNueva=($d->getStockDeMaterial($_REQUEST['cboMaterialesDisponibles']))-($_REQUEST["cantidadDeMaterialesAsignados"]);

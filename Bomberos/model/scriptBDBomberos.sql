@@ -449,6 +449,7 @@ id_informacionDeCargos INT AUTO_INCREMENT,
 fk_materialMenorAsignado_informacionDeCargos INT,
 cantidadAsignada_informacionDeCargos INT,
 fk_personal_informacionDeCargos INT,
+fechaEntrega DATE,
 FOREIGN KEY (fk_materialMenorAsignado_informacionDeCargos) REFERENCES tbl_material_menor (id_material_menor),
 FOREIGN KEY (fk_personal_informacionDeCargos) REFERENCES tbl_informacionPersonal (id_informacionPersonal),
 PRIMARY KEY (id_informacionDeCargos)

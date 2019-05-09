@@ -1479,7 +1479,8 @@ if (isset($_SESSION["resultadosDeBusquedaDeMaterialMenor"])) {
 															name="cantidadDeMaterialesAsignados" min="1" max="10">
 													</div>
 													<br>
-
+													Fecha Entrega: <input style="margin-left: -80px;" type="date" class="form-control" name="txtFechaEntrega" 
+												value="<?php date_default_timezone_set("Chile/Continental"); echo date("Y-m-d");?>" required>
 												</div>
 											</div>
 										</div>
