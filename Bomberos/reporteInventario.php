@@ -172,7 +172,7 @@
 
         <span><h3 style="font-weight:bold;">Reporte Inventario</h3></span>
         
-        <form target="_blank"  action="plantilla/plantillaInventarioByFiltro.php" method="post" >
+        <form target="_blank"  action="controlador/CargarTablaDeInventario.php" method="post" >
         	<span><h5 style="font-weight:bold;"><?php echo utf8_encode(" Compañia");?></h5></span>
         	<input type="checkbox" id="chkComUno" name="chkComUno" value="Cuerpo de Bomberos de Machali"><?php echo utf8_encode(" Cuerpo de Bomberos de Machalí");?><br>
         	<input type="checkbox" id="chkComDos" name="chkComDos"  value="1° Compañía"><?php echo utf8_encode(" 1° Compañía");?><br>

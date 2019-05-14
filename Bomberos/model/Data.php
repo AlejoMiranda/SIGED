@@ -1058,15 +1058,31 @@ class Data
         $this->c->desconectar();
     }
     
-    public function getInventarioByFiltro($filtro)
-    {   
+    
+    public function llenarDatosInventario($filtro1, $filtro2, $filtro3){
         $this->c->conectar();
-        $query = "SELECT * FROM tbl_mostrarInventario".$filtro;
+        
+        $filtroUno = '"'.$filtro1.'"';
+        $filtroDos= '"'.$filtro2.'"';
+        $filtroTres = '"'.$filtro3.'"';
+        
+        $query = "CALL cargarDatosInventario(".$filtroUno.", ".$filtroDos.", ".$filtroTres.")";
+        
+        $this->c->ejecutar($query);
+        $this->c->desconectar();
+    }
+    
+    public function getDatosDeInventario(){
+        
+        $this->c->conectar();
+        
+        $query = "SELECT * FROM tbl_mostrarInventario";
         
         $rs = $this->c->ejecutar($query);
         $listado = array();
         
         while ($reg = $rs->fetch_array()) {
+            
             $material = $reg[1];
             $compania = $reg[2];
             $bodega = $reg[3];
@@ -1084,12 +1100,14 @@ class Data
             $obj->setMarca($marca);
             $obj->setDescripcion($descripcion);
             $obj->setEstado($estado);
+            
             $listado[] = $obj;
         }
         $this->c->desconectar();
         return $listado;
-        
     }
+    
+    
     
     public function getCargosParaReporteByCompania($nomCompania)
     {

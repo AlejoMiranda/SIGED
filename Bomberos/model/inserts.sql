@@ -1096,12 +1096,272 @@ CREATE TABLE tbl_mostrarInventario(
 	PRIMARY KEY(id)
 );
 
-DELIMITER //
-CREATE PROCEDURE cargarDatosParaInventario()
-BEGIN
-	DELETE FROM tbl_mostrarInventario;
+		CREATE TABLE tempTable1 (
+			id int,
+            material VARCHAR(250),
+            compania VARCHAR(250),
+            bodega VARCHAR(250),
+            cantidad int,
+            marca VARCHAR(250),
+            descripcion VARCHAR(250),
+            estado VARCHAR(250),
+            PRIMARY KEY (id)
+		);
+        
+	CREATE TABLE tempTable2 (
+			id int,
+            material VARCHAR(250),
+            compania VARCHAR(250),
+            bodega VARCHAR(250),
+            cantidad int,
+            marca VARCHAR(250),
+            descripcion VARCHAR(250),
+            estado VARCHAR(250),
+            PRIMARY KEY (id)
+		);
+        
+	CREATE TABLE tempTable3 (
+			id int,
+            material VARCHAR(250),
+            compania VARCHAR(250),
+            bodega VARCHAR(250),
+            cantidad int,
+            marca VARCHAR(250),
+            descripcion VARCHAR(250),
+            estado VARCHAR(250),
+            PRIMARY KEY (id)
+		);
+        
+	CREATE TABLE tempTable4 (
+			id int,
+            material VARCHAR(250),
+            compania VARCHAR(250),
+            bodega VARCHAR(250),
+            cantidad int,
+            marca VARCHAR(250),
+            descripcion VARCHAR(250),
+            estado VARCHAR(250),
+            PRIMARY KEY (id)
+		);
+        
+	
     
-    INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado)
+-- DROP PROCEDURE crearTablas;
+    --
+
+
+DELIMITER //
+CREATE PROCEDURE cargarDatosInventario(IN consultaUno VARCHAR(250), IN consultaDos VARCHAR(250), IN consultaTres VARCHAR(250))
+BEGIN
+    
+	DELETE FROM tbl_mostrarInventario;  
+    DELETE FROM tempTable1;
+    DELETE FROM tempTable2;
+    DELETE FROM tempTable3;
+    DELETE FROM tempTable4;   
+   
+    
+    -- 	IF DEL PRIMER FILTRO
+	IF (consultaUno != "nada") THEN
+		SELECT "ENTRE AL IF 1";
+        INSERT INTO tempTable1 (id, material, compania, bodega, cantidad, marca, descripcion, estado)
+			SELECT 
+				tbl_material_menor.id_material_menor AS 'ID',
+				tbl_material_menor.nombre_material_menor AS 'Material', 
+				tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
+				tbl_ubicacion_fisica.nombre_ubicacion_fisica AS 'Bodega', 
+				tbl_material_menor.cantidad_material_menor AS 'Cantidad', 
+				tbl_material_menor.fabricante_material_menor AS 'Marca', 
+				tbl_material_menor.detalle_material_menor AS 'Descripcion', 
+				tbl_estado_material_menor.nombre_estado_material_menor AS 'Estado'
+			FROM 
+				tbl_material_menor,
+				tbl_entidadacargo,
+				tbl_ubicacion_fisica, 
+				tbl_estado_material_menor
+			WHERE
+				tbl_material_menor.fk_estado_material_menor = tbl_estado_material_menor.id_estado_material_menor AND
+				tbl_material_menor.fk_entidad_a_cargo_material_menor = tbl_entidadACargo.id_entidadACargo AND
+				tbl_material_menor.fk_ubicacion_fisica_material_menor = tbl_ubicacion_fisica.id_ubicacion_fisica;
+            
+            -- llenamos la tabla con los filtros de estado
+            SET @query1 = CONCAT("INSERT INTO tempTable2 (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable1 WHERE ", consultaUno);
+			PREPARE stmt FROM @query1;
+			EXECUTE stmt;		
+            
+            INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable2;
+			
+    END IF;
+    -- FIN IF DEL PRIMER FILTRO
+    
+    
+    -- 	IF DEL SEGUNDO FILTRO
+    IF  (consultaUno != "nada" AND consultaDos != "nada") THEN
+			SELECT "consulta1 y consulta2 vienen con datos";
+            SET @query2 = CONCAT("INSERT INTO tempTable3 (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable2 WHERE ", consultaDos);
+			PREPARE stmt2 FROM @query2;
+			EXECUTE stmt2;
+            
+            DELETE FROM tbl_mostrarInventario;
+            INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado) 
+            SELECT * FROM tempTable3;
+	END IF;	
+    
+    IF (consultaUno = "nada" AND consultaDos != "nada") THEN
+    
+			SELECT "consulta 1 vacia y consulta2 con query";
+			INSERT INTO tempTable1 (id, material, compania, bodega, cantidad, marca, descripcion, estado)
+			SELECT 
+				tbl_material_menor.id_material_menor AS 'ID',
+				tbl_material_menor.nombre_material_menor AS 'Material', 
+				tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
+				tbl_ubicacion_fisica.nombre_ubicacion_fisica AS 'Bodega', 
+				tbl_material_menor.cantidad_material_menor AS 'Cantidad', 
+				tbl_material_menor.fabricante_material_menor AS 'Marca', 
+				tbl_material_menor.detalle_material_menor AS 'Descripcion', 
+				tbl_estado_material_menor.nombre_estado_material_menor AS 'Estado'
+			FROM 
+				tbl_material_menor,
+				tbl_entidadacargo,
+				tbl_ubicacion_fisica, 
+				tbl_estado_material_menor
+			WHERE
+				tbl_material_menor.fk_estado_material_menor = tbl_estado_material_menor.id_estado_material_menor AND
+				tbl_material_menor.fk_entidad_a_cargo_material_menor = tbl_entidadACargo.id_entidadACargo AND
+				tbl_material_menor.fk_ubicacion_fisica_material_menor = tbl_ubicacion_fisica.id_ubicacion_fisica;
+			
+             -- llenamos la tabla con los filtros
+            SET @query1 = CONCAT("INSERT INTO tempTable2 (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable1 WHERE ", consultaDos);
+			PREPARE stmt FROM @query1;
+			EXECUTE stmt;		
+            
+            INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable2;
+	   
+    END IF;
+    -- 	FIN DEL IF DEL SEGUNDO FILTRO
+    
+    -- IF DEL TERCER FILTRO
+    IF (consultaUno != "nada" AND consultaDos != "nada" AND consultaTres != "nada") THEN
+			
+            SELECT "consulta 1, consulta2, consulta 3 con query";
+            
+            SET @query3 = CONCAT("INSERT INTO tempTable4 (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable3 WHERE ", consultaTres);
+			PREPARE stmt3 FROM @query3;
+			EXECUTE stmt3;
+            
+            DELETE FROM tbl_mostrarInventario;
+            INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado) 
+            SELECT * FROM tempTable4;
+	END IF;       
+    
+    -- si los dos primeros viene nulos y el tercero no
+    IF (consultaUno = "nada" AND consultaDos = "nada" AND consultaTres != "nada") THEN
+			
+            SELECT "consulta 1, consulta2 NULOS y consulta 3 con query";
+            
+            
+			INSERT INTO tempTable1 (id, material, compania, bodega, cantidad, marca, descripcion, estado)
+			SELECT 
+				tbl_material_menor.id_material_menor AS 'ID',
+				tbl_material_menor.nombre_material_menor AS 'Material', 
+				tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
+				tbl_ubicacion_fisica.nombre_ubicacion_fisica AS 'Bodega', 
+				tbl_material_menor.cantidad_material_menor AS 'Cantidad', 
+				tbl_material_menor.fabricante_material_menor AS 'Marca', 
+				tbl_material_menor.detalle_material_menor AS 'Descripcion', 
+				tbl_estado_material_menor.nombre_estado_material_menor AS 'Estado'
+			FROM 
+				tbl_material_menor,
+				tbl_entidadacargo,
+				tbl_ubicacion_fisica, 
+				tbl_estado_material_menor
+			WHERE
+				tbl_material_menor.fk_estado_material_menor = tbl_estado_material_menor.id_estado_material_menor AND
+				tbl_material_menor.fk_entidad_a_cargo_material_menor = tbl_entidadACargo.id_entidadACargo AND
+				tbl_material_menor.fk_ubicacion_fisica_material_menor = tbl_ubicacion_fisica.id_ubicacion_fisica;
+			
+             -- llenamos la tabla con los filtros
+            SET @query1 = CONCAT("INSERT INTO tempTable2 (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable1 WHERE ", consultaTres);
+			PREPARE stmt FROM @query1;
+			EXECUTE stmt;		
+            
+            INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable2;
+	END IF;
+    
+    -- si el primero viene con datos, el segundo sin, y el tercero con
+    IF (consultaUno != "nada" AND consultaDos = "nada" AND consultaTres != "nada") THEN
+    
+			SELECT "consulta 1 CON DATOS , consulta2 SIN DATOS , consulta 3 con query";
+    
+            SET @query3 = CONCAT("INSERT INTO tempTable3 (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable2 WHERE ", consultaTres);
+			PREPARE stmt3 FROM @query3;
+			EXECUTE stmt3;
+            
+            DELETE FROM tbl_mostrarInventario;
+            INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado) 
+            SELECT * FROM tempTable3;
+    END IF;
+    
+    -- si el primer viene sin, y el segundo con
+    IF (consultaUno = "nada" AND consultaDos != "nada" AND consultaTres != "nada") THEN
+			
+            SELECT "consulta 1 SIN y consulta2-consulta 3 con query";
+            
+			SET @query3 = CONCAT("INSERT INTO tempTable3 (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable2 WHERE ", consultaTres);
+			PREPARE stmt3 FROM @query3;
+			EXECUTE stmt3;
+            
+            DELETE FROM tbl_mostrarInventario;
+            INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado) 
+            SELECT * FROM tempTable3;
+    END IF;
+    
+    IF (consultaUno = "nada" AND consultaDos = "nada" AND consultaTres = "nada") THEN
+			            
+			INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado)
+			SELECT 
+				tbl_material_menor.id_material_menor AS 'ID',
+				tbl_material_menor.nombre_material_menor AS 'Material', 
+				tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
+				tbl_ubicacion_fisica.nombre_ubicacion_fisica AS 'Bodega', 
+				tbl_material_menor.cantidad_material_menor AS 'Cantidad', 
+				tbl_material_menor.fabricante_material_menor AS 'Marca', 
+				tbl_material_menor.detalle_material_menor AS 'Descripcion', 
+				tbl_estado_material_menor.nombre_estado_material_menor AS 'Estado'
+			FROM 
+				tbl_material_menor,
+				tbl_entidadacargo,
+				tbl_ubicacion_fisica, 
+				tbl_estado_material_menor
+			WHERE
+				tbl_material_menor.fk_estado_material_menor = tbl_estado_material_menor.id_estado_material_menor AND
+				tbl_material_menor.fk_entidad_a_cargo_material_menor = tbl_entidadACargo.id_entidadACargo AND
+				tbl_material_menor.fk_ubicacion_fisica_material_menor = tbl_ubicacion_fisica.id_ubicacion_fisica;
+    END IF;
+    
+    
+    -- FIN DEL IF DEL TERCER FILTRO
+    
+END //
+DELIMITER ;
+
+-- DROP PROCEDURE cargarDatosInventario;
+CALL cargarDatosInventario("estado LIKE 'Operativo' OR estado LIKE 'caducado'", " compania LIKE '1° Compañia'", "nada");
+SELECT * FROM tbl_mostrarInventario;
+
+
+DELETE FROM tbl_mostrarInventario;
+SELECT * FROM tbl_mostrarInventario;
+SELECT * FROM test;
+
+----------------------------------------------------------------
+
+    
+    
+    
+-----------------------------------------------------------------
+
+INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado)
 	SELECT 
 	tbl_material_menor.id_material_menor AS 'ID',
 	tbl_material_menor.nombre_material_menor AS 'Material', 
@@ -1121,16 +1381,7 @@ BEGIN
 	tbl_material_menor.fk_entidad_a_cargo_material_menor = tbl_entidadACargo.id_entidadACargo AND
 	tbl_material_menor.fk_ubicacion_fisica_material_menor = tbl_ubicacion_fisica.id_ubicacion_fisica;
     
-END //
-DELIMITER ;
-
-SELECT * FROM tbl_mostrarInventario WHERE 
-compania LIKE '1° Compañía' OR compania LIKE '2° Compañía' AND
-estado LIKE 'Operativo';
-
 ----------------------------------------------------------------
-
-
 
  
 /*
@@ -1163,3 +1414,29 @@ AND tbl_informaciondecargos.fk_personal_informacionDeCargos = tbl_informacionPer
 AND tbl_informacionpersonal.id_informacionPersonal = tbl_informacionbomberil.fk_informacion_personal__informacionBomberil
 AND tbl_informacionbomberil.fk_id_entidadACargo_informacionBomberil = tbl_entidadACargo.id_entidadACargo
 AND tbl_entidadacargo.nombre_entidadACargo LIKE '';
+
+
+--------------------------------------------------------
+-- PRUEBAS PARA PROCEDIMIENTOS
+--------------------------------------------------------
+
+DELIMITER //
+CREATE PROCEDURE cargarDatos(IN filtro1 VARCHAR(250), IN filtro2 VARCHAR(250), IN filtro3 VARCHAR(250))
+BEGIN
+    
+	DELETE FROM tbl_mostrarInventario;  
+    DELETE FROM tempTable1;
+    DELETE FROM tempTable2;
+    DELETE FROM tempTable3;
+    DELETE FROM tempTable4;   
+   
+   INSERT INTO test VALUES (4, filtro1 , filtro2 ,filtro3);
+    
+END //
+DELIMITER ;
+
+-- DROP PROCEDURE cargarDatos;
+CALL cargarDatos("estado LIKE Operativo OR estado LIKE caducado", " compania LIKE 1° Compañia", "nada");
+CALL cargarDatos("compania LIKE 'Cuerpo de Bomberos de Machali'", estado LIKE 'Operativo', bodega LIKE 'Bodega Cuerpo');
+SELECT * FROM test;
+delete from test;
