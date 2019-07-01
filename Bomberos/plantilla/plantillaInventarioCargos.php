@@ -5,20 +5,19 @@ require ('../lib/pdf/mpdf.php');
 $data = new Data();
 
 $idCompania = $_POST['cboCompania'];
-$nombreCompania = "";
-
-if($idCompania == 1){
-    $nombreCompania = "Cuerpo de Bomberos de Machali";
-}else if($idCompania == 2){
-    $nombreCompania = "1° Compañía";
-}else if($idCompania == 3){
-    $nombreCompania = "2° Compañía";
-}else if($idCompania == 4){
-    $nombreCompania = "3° Compañía";
-}
 
 
-$cargos = $data->getCargosParaReporteByCompania($nombreCompania);
+$fechaDesde = $_POST['txtFechaDesde'];
+$fechaHasta = $_POST['txtFechaHasta'];
+
+$fechaDesde = str_replace ( "-" , "/" , $fechaDesde);
+$fechaHasta = str_replace ( "-", "/" , $fechaHasta);
+
+
+
+$cargos = $data->getCargosParaReporteByCompania($idCompania, $fechaDesde, $fechaHasta);
+
+echo 'QUERY : '.$cargos;
 
 $fecha = $data->obtenerFecha();
 
@@ -87,7 +86,7 @@ $mpdf = new mPDF('c', 'A4');
 $stylesheet = file_get_contents('../css/printStyle.css');
 $html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
 
-$mpdf->SetTitle('Cargo By Compañia');
+$mpdf->SetTitle('Cargo By Compaï¿½ia');
 $mpdf->writeHTML($stylesheet, 1);
 
 $mpdf->writeHTML($html, 2);

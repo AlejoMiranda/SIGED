@@ -4,10 +4,18 @@ require ('../lib/pdf/mpdf.php');
 
 $data = new Data();
 
-$inventarios = $data->getDatosDeInventario();
+$compania = $_POST['cbo_Compania'];
+$estado =$_POST['cbo_Estado'];
+$bodega = $_POST['cbo_unidadFisica'];
 
+
+$inventarios = "";
+$inventarios = $data->llenarDatosInventario($compania,$estado,$bodega);
 
 $fecha = $data->obtenerFecha();
+
+echo $inventarios;
+
 
 $html='
     

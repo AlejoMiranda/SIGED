@@ -1,57 +1,57 @@
 <?php
-require_once ("Conexion.php");
-require_once ("Tbl_Usuario.php");
-require_once ("Tbl_EstadoUnidad.php");
-require_once ("Tbl_UnidadMedida.php");
-require_once ("Tbl_TipoBodega.php");
-require_once ("Tbl_UbicacionFisica.php");
-require_once ("Tbl_MaterialMenor.php");
-require_once ("Tbl_TipoVehiculo.php");
-require_once ("Tbl_TipoUsuario.php");
-require_once ("Tbl_EntidadACargo.php");
-require_once ("Tbl_Estado.php");
-require_once ("Tbl_EstadoBombero.php");
-require_once ("Tbl_Genero.php");
-require_once ("Tbl_EstadoCivil.php");
-require_once ("Tbl_tipoMantencion.php");
-require_once ("Tbl_tipoCombustible.php");
-require_once ("Tbl_Unidad.php");
-require_once ("Tbl_tipo_servicio.php");
-require_once ("Tbl_InfoPersonal.php");
-require_once ("Vista_BusquedaBombero.php");
-require_once ("Tbl_Medida.php");
-require_once ("Tbl_InfoBomberil.php");
-require_once ("Tbl_InfoLaboral.php");
-require_once ("Tbl_InfoMedica1.php");
-require_once ("Tbl_InfoMedica2.php");
-require_once ("Tbl_InfoFamiliar.php");
-require_once ("Tbl_InfoAcademica.php");
-require_once ("Tbl_EntrenamientoEstandar.php");
-require_once ("Tbl_InfoHistorica.php");
-require_once ("Tbl_Mantencion.php");
-require_once ("Tbl_carguiCombustible.php");
-require_once ("Tbl_MaterialMenor.php");
-require_once ("Vista_BuscarMaterialMenor.php");
-require_once ("VistaBusquedaDeUnidad.php");
-require_once ("Tbl_EstadoMaterialMenor.php");
-require_once ("Tbl_informacionDeCargos.php");
-require_once ("Tbl_MaterialMenor.php");
-require_once ("Tbl_sector.php");
-require_once ("Tbl_oficial.php");
-require_once ("Tbl_estadoOficial.php");
-require_once ("Tbl_servicio.php");
-require_once ("Tbl_servicio_unidad.php");
-require_once ("ServicioYSector.php");
-require_once ("Tbl_entidad_exterior.php");
-require_once ("Tbl_apoyo.php");
-require_once ("Tbl_Parentesco.php");
-require_once ("OBACConductorNPersonal.php");
-require_once ("VistaBomberoReporte.php");
-require_once ("VistaUnidadReporte.php");
-require_once ("VistaUnidadByFiltro.php");
-require_once ("VistaCombustibleReporte.php");
-require_once ("VistaInventarioReporte.php");
-require_once ("VistaCargoByCompania.php");
+require_once("Conexion.php");
+require_once("Tbl_Usuario.php");
+require_once("Tbl_EstadoUnidad.php");
+require_once("Tbl_UnidadMedida.php");
+require_once("Tbl_TipoBodega.php");
+require_once("Tbl_UbicacionFisica.php");
+require_once("Tbl_MaterialMenor.php");
+require_once("Tbl_TipoVehiculo.php");
+require_once("Tbl_TipoUsuario.php");
+require_once("Tbl_EntidadACargo.php");
+require_once("Tbl_Estado.php");
+require_once("Tbl_EstadoBombero.php");
+require_once("Tbl_Genero.php");
+require_once("Tbl_EstadoCivil.php");
+require_once("Tbl_tipoMantencion.php");
+require_once("Tbl_tipoCombustible.php");
+require_once("Tbl_Unidad.php");
+require_once("Tbl_tipo_servicio.php");
+require_once("Tbl_InfoPersonal.php");
+require_once("Vista_BusquedaBombero.php");
+require_once("Tbl_Medida.php");
+require_once("Tbl_InfoBomberil.php");
+require_once("Tbl_InfoLaboral.php");
+require_once("Tbl_InfoMedica1.php");
+require_once("Tbl_InfoMedica2.php");
+require_once("Tbl_InfoFamiliar.php");
+require_once("Tbl_InfoAcademica.php");
+require_once("Tbl_EntrenamientoEstandar.php");
+require_once("Tbl_InfoHistorica.php");
+require_once("Tbl_Mantencion.php");
+require_once("Tbl_carguiCombustible.php");
+require_once("Tbl_MaterialMenor.php");
+require_once("Vista_BuscarMaterialMenor.php");
+require_once("VistaBusquedaDeUnidad.php");
+require_once("Tbl_EstadoMaterialMenor.php");
+require_once("Tbl_informacionDeCargos.php");
+require_once("Tbl_MaterialMenor.php");
+require_once("Tbl_sector.php");
+require_once("Tbl_oficial.php");
+require_once("Tbl_estadoOficial.php");
+require_once("Tbl_servicio.php");
+require_once("Tbl_servicio_unidad.php");
+require_once("ServicioYSector.php");
+require_once("Tbl_entidad_exterior.php");
+require_once("Tbl_apoyo.php");
+require_once("Tbl_Parentesco.php");
+require_once("OBACConductorNPersonal.php");
+require_once("VistaBomberoReporte.php");
+require_once("VistaUnidadReporte.php");
+require_once("VistaUnidadByFiltro.php");
+require_once("VistaCombustibleReporte.php");
+require_once("VistaInventarioReporte.php");
+require_once("VistaCargoByCompania.php");
 
 
 
@@ -64,18 +64,19 @@ class Data
     {
         $this->c = new Conexion("SIGED_BD", "root", "");
     }
-    
-    
-    public function obtenerFecha(){
+
+
+    public function obtenerFecha()
+    {
         date_default_timezone_set("Chile/Continental");
-        setlocale(LC_TIME,"es_CL");
-        
+        setlocale(LC_TIME, "es_CL");
+
         $dia = date("d");
         $mesNum = date("M");
         $mesLetra = "";
-        $año = date("Y");
-        
-        switch ($mesNum){
+        $aï¿½o = date("Y");
+
+        switch ($mesNum) {
             case "Jan":
                 $mesLetra = "Enero";
                 break;
@@ -111,13 +112,12 @@ class Data
                 break;
             case "Dic":
                 $mesLetra = "Diciembre";
-                break;                
+                break;
         }
-        
-        return $dia . ' de '.$mesLetra. ' '.$año; 
-        
+
+        return $dia . ' de ' . $mesLetra . ' ' . $aï¿½o;
     }
-    
+
     public function crearUsuario($usuario)
     {
         $insert = "insert into tbl_usuario
@@ -856,12 +856,12 @@ class Data
         return $listado;
     }
 
-    public function getUnidadesParaReporteByUnidad($idUnidad)
+    public function getUnidadesParaReporteByUnidad($idUnidad, $fechaDesde, $fechaHasta)
     {
         $this->c->conectar();
         $query = "SELECT
                     tbl_unidad.nombre_unidad AS 'Codigo Unidad',
-                    tbl_entidadacargo.nombre_entidadACargo AS 'Compañia',
+                    tbl_entidadacargo.nombre_entidadACargo AS 'Compaï¿½ia',
                     tbl_tipo_vehiculo.nombre_tipo_vehiculo AS 'Tipo Unidad',
                     tbl_tipodemantencion.nombre_tipoDeMantencion AS 'Tipo Mantencion',
                     DATE_FORMAT(tbl_mantencion.fecha_mantencion , '%d/%m/%Y') AS 'Fecha Mantencion',
@@ -877,7 +877,8 @@ class Data
                     tbl_mantencion.fk_unidad = tbl_unidad.id_unidad AND
                     tbl_unidad.fk_tipo_vehiculo_unidad = tbl_tipo_vehiculo.id_tipo_vehiculo AND
                     tbl_unidad.fk_entidadACargo = tbl_entidadacargo.id_entidadACargo AND
-                    tbl_unidad.id_unidad=" . $idUnidad . ";";
+                    tbl_unidad.id_unidad=" . $idUnidad . " AND tbl_mantencion.fecha_mantencion BETWEEN '$fechaDesde' AND '$fechaHasta'
+                    ORDER BY tbl_mantencion.fecha_mantencion ASC;";
 
         $rs = $this->c->ejecutar($query);
         $listado = array();
@@ -903,13 +904,13 @@ class Data
         $this->c->desconectar();
         return $listado;
     }
-    
-    public function getUnidadesParaReporteByCompania($idCompania)
+
+    public function getUnidadesParaReporteByCompania($idCompania, $fechaDesde, $fechaHasta)
     {
         $this->c->conectar();
         $query = "SELECT 
                     tbl_unidad.nombre_unidad AS 'Codigo Unidad', 
-                    tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
+                    tbl_entidadacargo.nombre_entidadACargo AS 'Compaï¿½ia', 
                     tbl_tipo_vehiculo.nombre_tipo_vehiculo AS 'Tipo Unidad', 
                     tbl_tipodemantencion.nombre_tipoDeMantencion AS 'Tipo Mantencion', 
                     DATE_FORMAT(tbl_mantencion.fecha_mantencion , '%d/%m/%Y') AS 'Fecha Mantencion',
@@ -925,13 +926,14 @@ class Data
                     tbl_mantencion.fk_unidad = tbl_unidad.id_unidad AND
                     tbl_unidad.fk_tipo_vehiculo_unidad = tbl_tipo_vehiculo.id_tipo_vehiculo AND
                     tbl_unidad.fk_entidadACargo = tbl_entidadacargo.id_entidadACargo AND
-                    tbl_entidadacargo.id_entidadACargo = " . $idCompania . ";";
-        
+                    tbl_entidadacargo.id_entidadACargo = '$idCompania' AND tbl_mantencion.fecha_mantencion BETWEEN '$fechaDesde' AND '$fechaHasta'
+                    ORDER BY tbl_mantencion.fecha_mantencion ASC;";
+
         echo $query;
-        
+
         $rs = $this->c->ejecutar($query);
         $listado = array();
-        
+
         while ($reg = $rs->fetch_array()) {
             $codigoUnidad = $reg[0];
             $compania = $reg[1];
@@ -939,9 +941,9 @@ class Data
             $tipoMantencion = $reg[3];
             $fechaMantencion = $reg[4];
             $detalleMantencion = $reg[5];
-            
+
             $obj = new VistaUnidadByFiltro();
-            
+
             $obj->setCodigoUnidad($codigoUnidad);
             $obj->setCompania($compania);
             $obj->setTipoUnidad($tipoUnidad);
@@ -953,13 +955,13 @@ class Data
         $this->c->desconectar();
         return $listado;
     }
-    
-    public function getUnidadesCombustibleParaReporteByUnidad($idUnidad)
+
+    public function getUnidadesCombustibleParaReporteByUnidad($idUnidad, $fechaDesde, $fechaHasta)
     {
         $this->c->conectar();
         $query = "SELECT 
                     tbl_unidad.nombre_unidad AS 'Codigo Unidad', 
-                    tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
+                    tbl_entidadacargo.nombre_entidadACargo AS 'Compaï¿½ia', 
                     tbl_tipo_vehiculo.nombre_tipo_vehiculo AS 'Tipo Unidad', 
                     DATE_FORMAT(tbl_cargio_combustible.fecha_cargio  , '%d/%m/%Y') AS 'Fecha Cargo Combustible',
                     tbl_cargio_combustible.cantidad_litros_cargio_combustible AS 'Litros', 
@@ -973,13 +975,14 @@ class Data
                     tbl_unidad.fk_tipo_vehiculo_unidad = tbl_tipo_vehiculo.id_tipo_vehiculo AND
                     tbl_unidad.fk_entidadACargo = tbl_entidadacargo.id_entidadACargo AND
                     tbl_cargio_combustible.fk_unidad = tbl_unidad.id_unidad AND
-                    tbl_unidad.id_unidad = " . $idUnidad . ";";
-        
+                    tbl_unidad.id_unidad = '$idUnidad'  AND tbl_cargio_combustible.fecha_cargio BETWEEN '$fechaDesde' AND '$fechaHasta'
+                    ORDER BY tbl_cargio_combustible.fecha_cargio ASC;";
+
         echo $query;
-        
+
         $rs = $this->c->ejecutar($query);
         $listado = array();
-        
+
         while ($reg = $rs->fetch_array()) {
             $codigoUnidad = $reg[0];
             $compania = $reg[1];
@@ -987,9 +990,9 @@ class Data
             $fechaCargo = $reg[3];
             $litros = $reg[4];
             $responsable = $reg[5];
-            
+
             $obj = new VistaCombustibleReporte();
-            
+
             $obj->setCodigoUnidad($codigoUnidad);
             $obj->setCompania($compania);
             $obj->setTipoUnidad($tipoUnidad);
@@ -1001,13 +1004,13 @@ class Data
         $this->c->desconectar();
         return $listado;
     }
-    
-    public function getUnidadesCombustibleParaReporteByCompania($idCompania)
+
+    public function getUnidadesCombustibleParaReporteByCompania($idCompania, $fechaDesde, $fechaHasta)
     {
         $this->c->conectar();
         $query = "SELECT 
                     tbl_unidad.nombre_unidad AS 'Codigo Unidad', 
-                    tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
+                    tbl_entidadacargo.nombre_entidadACargo AS 'Compaï¿½ia', 
                     tbl_tipo_vehiculo.nombre_tipo_vehiculo AS 'Tipo Unidad', 
                     DATE_FORMAT(tbl_cargio_combustible.fecha_cargio  , '%d/%m/%Y') AS 'Fecha Cargo Combustible',
                     tbl_cargio_combustible.cantidad_litros_cargio_combustible AS 'Litros', 
@@ -1021,13 +1024,14 @@ class Data
                     tbl_unidad.fk_tipo_vehiculo_unidad = tbl_tipo_vehiculo.id_tipo_vehiculo AND
                     tbl_unidad.fk_entidadACargo = tbl_entidadacargo.id_entidadACargo AND
                     tbl_cargio_combustible.fk_unidad = tbl_unidad.id_unidad AND
-                    tbl_entidadacargo.id_entidadACargo = " . $idCompania . ";";
-        
+                    tbl_entidadacargo.id_entidadACargo = '$idCompania'AND tbl_cargio_combustible.fecha_cargio BETWEEN '$fechaDesde' AND '$fechaHasta'
+                    ORDER BY tbl_unidad.nombre_unidad, tbl_cargio_combustible.fecha_cargio ASC;";
+
         echo $query;
-        
+
         $rs = $this->c->ejecutar($query);
         $listado = array();
-        
+
         while ($reg = $rs->fetch_array()) {
             $codigoUnidad = $reg[0];
             $compania = $reg[1];
@@ -1035,9 +1039,9 @@ class Data
             $fechaCargo = $reg[3];
             $litros = $reg[4];
             $responsable = $reg[5];
-            
+
             $obj = new VistaCombustibleReporte();
-            
+
             $obj->setCodigoUnidad($codigoUnidad);
             $obj->setCompania($compania);
             $obj->setTipoUnidad($tipoUnidad);
@@ -1049,40 +1053,54 @@ class Data
         $this->c->desconectar();
         return $listado;
     }
-    
-    public function llenarTablaParaInventario(){
+
+    public function llenarTablaParaInventario()
+    {
         $this->c->conectar();
         $query = "CALL cargarDatosParaInventario();";
-        
+
         $this->c->ejecutar($query);
         $this->c->desconectar();
     }
-    
-    
-    public function llenarDatosInventario($filtro1, $filtro2, $filtro3){
+
+
+    public function llenarDatosInventario($compania, $estado, $bodega)
+    {
         $this->c->conectar();
-        
-        $filtroUno = '"'.$filtro1.'"';
-        $filtroDos= '"'.$filtro2.'"';
-        $filtroTres = '"'.$filtro3.'"';
-        
-        $query = "CALL cargarDatosInventario(".$filtroUno.", ".$filtroDos.", ".$filtroTres.")";
-        
-        $this->c->ejecutar($query);
-        $this->c->desconectar();
-    }
-    
-    public function getDatosDeInventario(){
-        
-        $this->c->conectar();
-        
-        $query = "SELECT * FROM tbl_mostrarInventario";
-        
+
+        //$filtroUno = '"'.$filtro1.'"';
+        //$filtroDos= '"'.$filtro2.'"';
+        //$filtroTres = '"'.$filtro3.'"';
+
+        $query = "SELECT 
+                    tbl_material_menor.id_material_menor AS 'ID',
+                    tbl_material_menor.nombre_material_menor AS 'Material', 
+                    tbl_entidadacargo.nombre_entidadACargo AS 'CompaÃ±ia', 
+                    tbl_ubicacion_fisica.nombre_ubicacion_fisica AS 'Bodega', 
+                    tbl_material_menor.cantidad_material_menor AS 'Cantidad', 
+                    tbl_material_menor.fabricante_material_menor AS 'Marca', 
+                    tbl_material_menor.detalle_material_menor AS 'Descripcion', 
+                    tbl_estado_material_menor.nombre_estado_material_menor AS 'Estado'
+                FROM 
+                    tbl_material_menor,
+                    tbl_entidadacargo,
+                    tbl_ubicacion_fisica, 
+                    tbl_estado_material_menor
+                WHERE
+                    tbl_material_menor.fk_estado_material_menor = tbl_estado_material_menor.id_estado_material_menor AND
+                    tbl_material_menor.fk_entidad_a_cargo_material_menor = tbl_entidadACargo.id_entidadACargo AND
+                    tbl_material_menor.fk_ubicacion_fisica_material_menor = tbl_ubicacion_fisica.id_ubicacion_fisica
+                    AND tbl_entidadacargo.id_entidadACargo = $compania
+                    AND tbl_estado_material_menor.id_estado_material_menor = $estado
+                    AND tbl_ubicacion_fisica.id_ubicacion_fisica = $bodega";
+
+        //$query = "CALL cargarDatosInventario(".$filtroUno.", ".$filtroDos.", ".$filtroTres.")";
+
         $rs = $this->c->ejecutar($query);
         $listado = array();
-        
+
         while ($reg = $rs->fetch_array()) {
-            
+
             $material = $reg[1];
             $compania = $reg[2];
             $bodega = $reg[3];
@@ -1090,9 +1108,9 @@ class Data
             $marca = $reg[5];
             $descripcion = $reg[6];
             $estado = $reg[7];
-            
+
             $obj = new VistaInventarioReporte();
-            
+
             $obj->setMaterial($material);
             $obj->setCompania($compania);
             $obj->setBodega($bodega);
@@ -1100,21 +1118,57 @@ class Data
             $obj->setMarca($marca);
             $obj->setDescripcion($descripcion);
             $obj->setEstado($estado);
-            
+
             $listado[] = $obj;
         }
         $this->c->desconectar();
         return $listado;
     }
-    
-    
-    
-    public function getCargosParaReporteByCompania($nomCompania)
+
+    public function getDatosDeInventario()
+    {
+
+        $this->c->conectar();
+
+        $query = "SELECT * FROM tbl_mostrarInventario";
+
+        $rs = $this->c->ejecutar($query);
+        $listado = array();
+
+        while ($reg = $rs->fetch_array()) {
+
+            $material = $reg[1];
+            $compania = $reg[2];
+            $bodega = $reg[3];
+            $cantidad = $reg[4];
+            $marca = $reg[5];
+            $descripcion = $reg[6];
+            $estado = $reg[7];
+
+            $obj = new VistaInventarioReporte();
+
+            $obj->setMaterial($material);
+            $obj->setCompania($compania);
+            $obj->setBodega($bodega);
+            $obj->setCantidad($cantidad);
+            $obj->setMarca($marca);
+            $obj->setDescripcion($descripcion);
+            $obj->setEstado($estado);
+
+            $listado[] = $obj;
+        }
+        $this->c->desconectar();
+        return $listado;
+    }
+
+
+
+    public function getCargosParaReporteByCompania($idCompania, $fechaDesde, $fechaHasta)
     {
         $this->c->conectar();
         $query = "SELECT 
                     tbl_material_menor.nombre_material_menor AS 'Material', 
-                    tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
+                    tbl_entidadacargo.nombre_entidadACargo AS 'Compaï¿½ia', 
                     tbl_informacionpersonal.nombre_informacionPersonal AS 'Nombre', 
                     concat_ws(' ',tbl_informacionpersonal.apellido_paterno_informacionPersonal ,tbl_informacionpersonal.apellido_materno_informacionPersonal) AS 'Apellido',
                     tbl_informaciondecargos.cantidadAsignada_informacionDeCargos AS 'Cantidad', 
@@ -1131,39 +1185,41 @@ class Data
                     AND tbl_informaciondecargos.fk_personal_informacionDeCargos = tbl_informacionPersonal.id_informacionPersonal
                     AND tbl_informacionpersonal.id_informacionPersonal = tbl_informacionbomberil.fk_informacion_personal__informacionBomberil
                     AND tbl_informacionbomberil.fk_id_entidadACargo_informacionBomberil = tbl_entidadACargo.id_entidadACargo
-                  AND tbl_entidadacargo.nombre_entidadACargo LIKE '$nomCompania'";
-        
+                    AND tbl_entidadacargo.id_entidadACargo = $idCompania
+                    AND tbl_informaciondecargos.fechaEntrega BETWEEN '$fechaDesde' AND '$fechaHasta'
+                  ORDER BY tbl_informacionpersonal.nombre_informacionPersonal, tbl_informaciondecargos.fechaEntrega ASC;";
+
         $rs = $this->c->ejecutar($query);
         $listado = array();
-        
+
         while ($reg = $rs->fetch_array()) {
-            
+
             $material = $reg[0];
             $compania = $reg[1];
             $nombre = $reg[2];
             $apellido = $reg[3];
-            $bombero = $nombre . " ". $apellido;
+            $bombero = $nombre . " " . $apellido;
             $cantidad = $reg[4];
             $descripcion = $reg[5];
             $fechaEntrega = $reg[6];
-            
+
             $obj = new VistaCargoByCompania();
-            
+
             $obj->setMaterial($material);
             $obj->setCompania($compania);
             $obj->setBombero($bombero);
             $obj->setCantidad($cantidad);
             $obj->setDescripcion($descripcion);
             $obj->setFechaEntrega($fechaEntrega);
-            
+
             $listado[] = $obj;
         }
         $this->c->desconectar();
         return $listado;
     }
 
-        
-    
+
+
     public function getIdBomberoMasReciente()
     {
         $this->c->conectar();
@@ -4408,4 +4464,3 @@ ORDER BY id_servicio DESC LIMIT 20;";
         return $obj;
     }
 }
-?>

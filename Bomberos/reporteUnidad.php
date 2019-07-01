@@ -200,7 +200,15 @@
                     }
                 ?>
         		</select>
-        		<br><br>
+            <br>
+            <br>
+            
+            Fecha: 
+              <input style="margin-left: 0px; width: 150px;" type="date" class="form-control" name="txtFechaDesde" value="<?php date_default_timezone_set("Chile/Continental"); echo date('Y-m-d', strtotime('yesterday')); ?>" required>
+              <br>
+              <input style="margin-left: 0px; width: 150px;" type="date" class="form-control" name="txtFechaHasta" value="<?php date_default_timezone_set("Chile/Continental"); echo date("Y-m-d"); ?>" required>
+            <br>
+            <br>
 
              <input class="btn btn-default" type="submit" name="btnReporteUByFiltro" value="Generar Reporte de Unidad" class="btn button-primary" style="width: 220px; height:30px;" style="margin-top: 400px;">
         </form>
@@ -226,7 +234,14 @@
                   ?>
 
                 </select>
-        		<br><br>
+            <br>
+            <br>
+            Fecha: 
+              <input style="margin-left: 0px; width: 150px;" type="date" class="form-control" name="txtFechaDesde" value="<?php date_default_timezone_set("Chile/Continental"); echo date('Y-m-d', strtotime('yesterday')); ?>" required>
+              <br>
+              <input style="margin-left: 0px; width: 150px;" type="date" class="form-control" name="txtFechaHasta" value="<?php date_default_timezone_set("Chile/Continental"); echo date("Y-m-d"); ?>" required>
+            <br>
+            <br>
 
              <input class="btn btn-default" type="submit" name="btnReporteUByFiltro" value="Generar Reporte de Unidad" class="btn button-primary" style="width: 220px; height:30px;" style="margin-top: 400px;">
         </form>
@@ -249,7 +264,14 @@
                     }
                 ?>
         		</select>
-        		<br><br>
+            <br>
+            <br>
+            Fecha: 
+              <input style="margin-left: 0px; width: 150px;" type="date" class="form-control" name="txtFechaDesde" value="<?php date_default_timezone_set("Chile/Continental"); echo date('Y-m-d', strtotime('yesterday')); ?>" required>
+              <br>
+              <input style="margin-left: 0px; width: 150px;" type="date" class="form-control" name="txtFechaHasta" value="<?php date_default_timezone_set("Chile/Continental"); echo date("Y-m-d"); ?>" required>
+            <br>
+            <br>
 
              <input class="btn btn-default" type="submit" name="btnReporteUByFiltro" value="Generar Reporte de Unidad" class="btn button-primary" style="width: 220px; height:30px;" style="margin-top: 400px;">
         </form>
@@ -275,7 +297,14 @@
                   ?>
 
                 </select>
-        		<br><br>
+            <br>
+            <br>
+            Fecha: 
+              <input style="margin-left: 0px; width: 150px;" type="date" class="form-control" name="txtFechaDesde" value="<?php date_default_timezone_set("Chile/Continental"); echo date('Y-m-d', strtotime('yesterday')); ?>" required>
+              <br>
+              <input style="margin-left: 0px; width: 150px;" type="date" class="form-control" name="txtFechaHasta" value="<?php date_default_timezone_set("Chile/Continental"); echo date("Y-m-d"); ?>" required>
+            <br>
+            <br>
 
              <input class="btn btn-default" type="submit" name="btnReporteUByFiltro" value="Generar Reporte de Unidad" class="btn button-primary" style="width: 220px; height:30px;" style="margin-top: 400px;">
         </form>

@@ -6,8 +6,14 @@ $data = new Data();
 
 $idCompania = $_POST['cbocompania2'];
 
+$fechaDesde = $_POST['txtFechaDesde'];
+$fechaHasta = $_POST['txtFechaHasta'];
 
-$unidades = $data->getUnidadesCombustibleParaReporteByCompania($idCompania);
+$fechaDesde = str_replace ( "-" , "/" , $fechaDesde);
+$fechaHasta = str_replace ( "-", "/" , $fechaHasta);
+
+
+$unidades = $data->getUnidadesCombustibleParaReporteByCompania($idCompania, $fechaDesde, $fechaHasta);
 
 $fecha = $data->obtenerFecha();
 

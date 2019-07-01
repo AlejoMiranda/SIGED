@@ -2,20 +2,37 @@
 require_once ("../model/Data.php");
 require ('../lib/pdf/mpdf.php');
 
-$data = new Data();
+//$data = new Data();
+
+$compania = $_POST['cbo_Compania'];
+$estado =$_POST['cbo_Estado'];
+$bodega = $_POST['cbo_unidadFisica'];
+
+
+
+// DATOS INVENTARIO
+$data->llenarDatosInventario($cadenaUno,$cadenaDos,$cadenaTres);
+// DATOS INVENTARIO
+
+header("location: ../plantilla/plantillaInventarioByFiltro.php");
+
+
+/*
+
+HECHO CON CHECKBOX
 
 $cadenaUno = "";
 $cadenaDos = "";
 $cadenaTres = "";
 
-$ordenConsultaUno = 1; // usamos esta varibale para saber si agregar el where o no A LA COMPAÑIA;
-$ordenConsultaDos = 1; // usamos esta varibale para saber si agregar el where o no A LA COMPAÑIA Y ESTADO;
-$ordenConsultaTres = 1; // usamos esta varibale para saber si agregar el where o no A LA COMPAÑIA, ESTADO Y BODEGA;
+$ordenConsultaUno = 1; // usamos esta varibale para saber si agregar el where o no A LA COMPAï¿½IA;
+$ordenConsultaDos = 1; // usamos esta varibale para saber si agregar el where o no A LA COMPAï¿½IA Y ESTADO;
+$ordenConsultaTres = 1; // usamos esta varibale para saber si agregar el where o no A LA COMPAï¿½IA, ESTADO Y BODEGA;
 
 // tenemos que reconocer cual es el primer valor que se agregara a la consulta
 
 
-//compañias
+//compaï¿½ias
 //-------------------------------------------
 
 if ($_POST['chkComUno']) {
@@ -29,31 +46,31 @@ if ($_POST['chkComUno']) {
 
 if ($_POST['chkComDos']) {
     if($ordenConsultaUno == 1){
-        $cadenaUno = $cadenaUno .= " compania LIKE '1° Compañía'";
+        $cadenaUno = $cadenaUno .= " compania LIKE '1ï¿½ Compaï¿½ï¿½a'";
         $ordenConsultaUno = 2;
     }else{
-        $cadenaUno = $cadenaUno .= " OR compania LIKE '1° Compañía'";
+        $cadenaUno = $cadenaUno .= " OR compania LIKE '1ï¿½ Compaï¿½ï¿½a'";
     }
 }
 
 if ($_POST['chkComTres']) {
     if($ordenConsultaUno == 1){
-        $cadenaUno = $cadenaUno .= " compania LIKE '2° Compañía'";
+        $cadenaUno = $cadenaUno .= " compania LIKE '2ï¿½ Compaï¿½ï¿½a'";
         $ordenConsultaUno = 2;
     }else{
-        $cadenaUno = $cadenaUno .= " OR compania LIKE '2° Compañía'";
+        $cadenaUno = $cadenaUno .= " OR compania LIKE '2ï¿½ Compaï¿½ï¿½a'";
     }
 }
 
 if ($_POST['chkComCuatro']) {
     if($ordenConsultaUno == 1){
-        $cadenaUno = $cadenaUno .= " compania LIKE '3° Compañía'";
+        $cadenaUno = $cadenaUno .= " compania LIKE '3ï¿½ Compaï¿½ï¿½a'";
         $ordenConsultaUno = 2;
     }else{
-        $cadenaUno = $cadenaUno .= " OR compania LIKE '3° Compañía'";
+        $cadenaUno = $cadenaUno .= " OR compania LIKE '3ï¿½ Compaï¿½ï¿½a'";
     }
 }
-// compañias
+// compaï¿½ias
 //-----------------------------------------
 
 
@@ -80,10 +97,10 @@ if ($_POST['chkEsDos']) {
 
 if ($_POST['chkEsTres']) {
     if($ordenConsultaDos == 1){
-        $cadenaDos = $cadenaDos .= " estado LIKE 'En Mantención'";
+        $cadenaDos = $cadenaDos .= " estado LIKE 'En Mantenciï¿½n'";
         $ordenConsultaDos = 2;
     }else{
-        $cadenaDos = $cadenaDos .= " OR estado LIKE 'En Mantención'";
+        $cadenaDos = $cadenaDos .= " OR estado LIKE 'En Mantenciï¿½n'";
     }
 }
 
@@ -245,10 +262,5 @@ if($cadenaTres == ""){
     $cadenaTres = "nada";
 }
 
-
-// DATOS INVENTARIO
-$data->llenarDatosInventario($cadenaUno,$cadenaDos,$cadenaTres);
-// DATOS INVENTARIO
-
-header("location: ../plantilla/plantillaInventarioByFiltro.php");
+*/
 ?>
