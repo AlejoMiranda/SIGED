@@ -162,8 +162,8 @@
 
       <div class="form-group" style="margin-left:50px;">
 
-        <h2  id="txt1Cabecera" ><?php echo utf8_encode("Cuerpo de Bomberos Machalí")?></h2>
-        <h4  id="txt2Cabecera" ><?php echo utf8_encode("Sistema de Gestión y Despacho - SIGED")?></h4>
+        <h2  id="txt1Cabecera" ><?php echo utf8_encode("Cuerpo de Bomberos MachalÃ­")?></h2>
+        <h4  id="txt2Cabecera" ><?php echo utf8_encode("Sistema de GestiÃ³n y Despacho - SIGED")?></h4>
 
       </div>
 
