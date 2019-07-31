@@ -19,6 +19,7 @@ foreach ($arrayDeEmergencias as $ae => $emer) {
   $momento6_8=$emer->getMomento6_8();
   $momento6_9=$emer->getMomento6_9();
   $momento6_10=$emer->getMomento6_10();
+  $detalleEmergencia=$emer->getDetalleEmergencia();
 
   if($momento6_0==null){
     $momento6_0="";
@@ -74,7 +75,8 @@ foreach ($arrayDeEmergencias as $ae => $emer) {
                                     "momento6_0"=> $momento6_0,
                                      "momento6_3"=> $momento6_3,
                                      "momento6_7"=> $momento6_7, "momento6_8"=> $momento6_8,
-                                     "momento6_9"=> $momento6_9, "momento6_10"=> $momento6_10);
+                                     "momento6_9"=> $momento6_9, "momento6_10"=> $momento6_10,
+                                     "detalle"=> $detalleEmergencia);
 
 
   $obj=json_encode($arrayRepresentativoDelObjeto);

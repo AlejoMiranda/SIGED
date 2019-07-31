@@ -2326,6 +2326,37 @@ ORDER BY id_servicio DESC LIMIT 5;";
         $this->c->desconectar();
         return $listado;
     }
+    
+    public function getServicios()
+    {
+        $this->c->conectar();
+        $query = "SELECT tbl_servicio.id_servicio, tbl_servicio.nombre_servicio, tbl_servicio.rut_servicio, tbl_servicio.telefono_servicio,
+tbl_servicio.direccion_servicio, tbl_servicio.esquina1_servicio,
+tbl_servicio.esquina2_servicio, tbl_servicio.fk_sector, tbl_servicio.fk_tipoDeServicio, tbl_servicio.detalles_servicio,
+tbl_servicio.fecha_servicio FROM tbl_servicio,tbl_servicio_unidad
+WHERE tbl_servicio_unidad.fk_servicio=tbl_servicio.id_servicio AND tbl_servicio_unidad.emergenciaActiva = 0  GROUP BY tbl_servicio.id_servicio
+ORDER BY tbl_servicio.fecha_servicio DESC";
+        $rs = $this->c->ejecutar($query);
+        $listado = array();
+        while ($reg = $rs->fetch_array()) {
+            $servicio = new Tbl_servicio();
+            $servicio->setId_servicio($reg[0]);
+            $servicio->setNombre_servicio($reg[1]);
+            $servicio->setRut_servicio($reg[2]);
+            $servicio->setTelefono_servicio($reg[3]);
+            $servicio->setDireccion_servicio($reg[4]);
+            $servicio->setEsquina1_servicio($reg[5]);
+            $servicio->setEsquina2_servicio($reg[6]);
+            $servicio->setFk_sector($reg[7]);
+            $servicio->setFk_tipoDeServicio($reg[8]);
+            $servicio->setDetalles_servicio($reg[9]);
+            $servicio->setFecha_servicio($reg[10]);
+            
+            $listado[] = $servicio;
+        }
+        $this->c->desconectar();
+        return $listado;
+    }
 
     public function verDetallesDeServicioPorId($id)
     {
@@ -2351,6 +2382,55 @@ tbl_servicio.esquina1_servicio,tbl_servicio.esquina2_servicio,tbl_sector.nombre_
         }
         $this->c->desconectar();
         return $servicio;
+    }
+    
+    public function detallesDeServicioPorIdReporte($id)
+    {
+        $this->c->conectar();
+        $query = "SELECT 
+                    tbl_servicio.id_servicio, 
+                    tbl_servicio.nombre_servicio, 
+                    tbl_servicio.rut_servicio, 
+                    tbl_servicio.telefono_servicio, 
+                    tbl_servicio.direccion_servicio, 
+                    tbl_servicio.esquina1_servicio, 
+                    tbl_servicio.esquina2_servicio, 
+                    tbl_sector.nombre_sector, 
+                    tbl_tipo_servicio.nombre_tipo_servicio, 
+                    tbl_servicio.detalles_servicio, 
+                    tbl_servicio.fecha_servicio 
+                    
+                  FROM 
+                    tbl_servicio,tbl_servicio_unidad,tbl_sector, tbl_tipo_servicio 
+                    
+                  WHERE 
+                    
+                    tbl_servicio_unidad.fk_servicio = tbl_servicio.id_servicio AND
+                    tbl_servicio.fk_sector = tbl_sector.id_sector AND
+                    tbl_servicio.fk_tipoDeServicio = tbl_tipo_servicio.id_tipo_servicio AND tbl_servicio_unidad.emergenciaActiva = 0 AND
+                    tbl_servicio.id_servicio = ".$id." LIMIT 1";
+        
+        
+        $rs = $this->c->ejecutar($query);
+        
+        while ($reg = $rs->fetch_array()) {
+            $servicio = new Tbl_servicio();
+            $servicio->setId_servicio($reg[0]);
+            $servicio->setNombre_servicio($reg[1]);
+            $servicio->setRut_servicio($reg[2]);
+            $servicio->setTelefono_servicio($reg[3]);
+            $servicio->setDireccion_servicio($reg[4]);
+            $servicio->setEsquina1_servicio($reg[5]);
+            $servicio->setEsquina2_servicio($reg[6]);
+            $servicio->setFk_sector($reg[7]);
+            $servicio->setFk_tipoDeServicio($reg[8]);
+            $servicio->setDetalles_servicio($reg[9]);
+            $servicio->setFecha_servicio($reg[10]);
+            
+            $listado[] = $servicio;
+        }
+        $this->c->desconectar();
+        return $listado;
     }
 
     public function verNombreDeServicioPorId($id)
@@ -2498,6 +2578,7 @@ tbl_servicio.esquina1_servicio,tbl_servicio.esquina2_servicio,tbl_sector.nombre_
             $obj->setMomento6_9($reg[10]);
             $obj->setMomento6_10($reg[11]);
             $obj->setEmergenciaActiva($reg[12]);
+            $obj->setDetalleEmergencia($reg[13]);
 
             $listado[] = $obj;
         }
@@ -4252,6 +4333,14 @@ tbl_servicio.esquina1_servicio,tbl_servicio.esquina2_servicio,tbl_sector.nombre_
     {
         $this->c->conectar();
         $query = "INSERT INTO  tbl_apoyo VALUES (NULL," . $fkEntidadExterior . ",'" . $responsable . "', '" . $ppuu . "');";
+        $this->c->ejecutar($query);
+        $this->c->desconectar();
+    }
+    
+    public function agregarDetalle($idServicio, $detalle)
+    {
+        $this->c->conectar();
+        $query = "UPDATE tbl_servicio_unidad SET detalleEmergencia = '".$detalle."' WHERE fk_servicio = " . $idServicio . ";";
         $this->c->ejecutar($query);
         $this->c->desconectar();
     }

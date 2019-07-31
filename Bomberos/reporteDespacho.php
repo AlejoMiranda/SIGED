@@ -8,15 +8,22 @@
     if(isset($_SESSION["resultadosDeBusquedaDeBomberos"])){
       unset($_SESSION["resultadosDeBusquedaDeBomberos"]);
     }
-
+    /*
     if(isset($_SESSION["resultadosDeBusquedaDeUnidad"])){
       unset($_SESSION["resultadosDeBusquedaDeUnidad"]);
+    }*/
+    
+    if(isset($_SESSION["resultadosDeBusquedaDeBomberoByNombre"])){
+        unset($_SESSION["resultadosDeBusquedaDeBomberoByNombre"]);
     }
 
+    if(isset($_SESSION["resultadosDeBusquedaDeMaterialMenor"])){
+      unset($_SESSION["resultadosDeBusquedaDeMaterialMenor"]);
+    }
 
     if($_SESSION["usuarioIniciado"]!=null){
       $u=$_SESSION["usuarioIniciado"];
-      if($data->verificarSiUsuarioTienePermiso($u,18)==0){
+      if($data->verificarSiUsuarioTienePermiso($u,12)==0){
         header("location: paginaError.php");
       }
     }
@@ -25,7 +32,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Mantenedor</title>
+    <title>Reporte Despacho</title>
 
 
     <link rel ="stylesheet" href="css/style.css" type="text/css">
@@ -36,7 +43,6 @@
 
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
    <script src="js/bootstrap.js"></script>
-
 
   </head>
 
@@ -167,97 +173,75 @@
       <div class="container">
 
       <div class="form-group" style="margin-left:50px;">
-		
-		<span><h5 style="font-weight:bold;">Todos Los Bomberos</h5></span>
-		
-		<form target="_blank" action="plantilla/plantillaListaBomberosPDF.php" method="post">
-            <input class="btn btn-default" type="submit" name="btnReporteBomberos" value="Generar Reporte" class="btn button-primary" style="width: 150px; height:30px;" style="margin-top: 400px;">
-        </form>
+      	
+      	<span><h3 style="font-weight:bold;">Reporte Despachos</h3></span>
+        <br>
+        <br>
         
-        <span><h5 style="font-weight:bold;">Reporte Bomberos</h5></span>
+        <div id="cuadro3" style="height: 334px;margin-top:10px;">
+      		<div class="jumbotron"  style="height: 330px;border-radius: 70px 70px 70px 70px;">
+        		<div class="container" style="height: 330px;">
+          		<center style="margin-top:-30px;font-weight:bold;">Servicios</center><br>
+        			<div class="form-group" style="margin-left:0px;Margin-top:-7px;">
+          				<?php
+                            $servicios=$data->getServicios();
+                        ?>
 
-        <form action="controlador/buscarInfoParaReporte.php" method="post">
+                          <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th>Fecha</th>
+                                  <th>Servicio</th>
+                                  <th>Unidades</th>
+                                  <th>Detalles</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <?php
+                                foreach ($servicios as $s => $servicio) {?>
+                                  <tr>
+                                    <td><?php
+                                    $fechaSinConvertir =  $servicio->getFecha_servicio();
+                                    $fechaConvertida = date("d-m-Y", strtotime($fechaSinConvertir));
+                                    echo $fechaConvertida;
+                                    ?>
+                                    </td>
+                                    <td><?php echo utf8_encode($data->verNombreDeServicioPorId($servicio->getFk_tipoDeServicio()));?></td>
+                                    <td><?php
+                                    $unidades=$data->getUnidadesInvolucradasEnServicio($servicio->getId_servicio());
+                                    foreach ($unidades as $u => $unidad) {
+                                      echo $unidad." ";
+                                    }
+                                    ?>
+                                    </td>
+                                    <td>
+                                    	<form target="_blank" action="plantilla/plantillaDatosEmergencia.php" method="post">
+                                    		<?php echo '<input type="hidden" name="idServicio" value="'.$servicio->getId_servicio().'">';?>
+                                    		<input type="submit" name="btn_generarReporte" value="Generar Reporte">
+                                    		
+                                    	</form>
+                                    </td>
+                                  </tr>
+                              <?php
+                                }
+                                ?>
+                
+                
+                              </tbody>
+                              </table>
+                
+                
+                        </div>
+              	 	</div>
+            	</div>
+   			</div>
         
-        <form>
-        <input type="text" name="txtBuscar" value="<?php
-        if(isset($nombreSeleccionado)){
-          echo utf8_encode($nombreSeleccionado);
-        }
-        ?>" placeholder="Buscar por nombre" style="height:30px;">
-        <input class="btn btn-default" type="submit" name="btnInfoPersonal" value="Buscar" class="btn button-primary" style="width: 100px; height:30px;" style="margin-top: 400px;" onclick="porNombre()">
-      <!--  <button class="btn btn-default" name="btnBuscar" style="width: 100px; height:30px;" style="margin-top: 400px"> <a href="·" style="text-decoration:none;color:black;">Buscar</a> </button> -->
-        </form>
-	
-		
-		<?php
-              if(isset($_SESSION["resultadosDeBusquedaDeBomberoByNombre"])){
-                $resultadosDeBusquedaHecha=$_SESSION["resultadosDeBusquedaDeBomberoByNombre"];
-                if(count($resultadosDeBusquedaHecha)>1){?>
-                  <br>
-                  Mostrando <?php echo count($resultadosDeBusquedaHecha);?> resultados
-                  <br>
-              <?php  }else if(count($resultadosDeBusquedaHecha)==1){  ?>
-              <br>
-              Mostrando <?php echo count($resultadosDeBusquedaHecha);?> resultado
-              <br>
-            <?php }else if(count($resultadosDeBusquedaHecha)==0){  ?>
-              <br>
-              No hay resultados
-              <br>
-            <?php
-            }
-            }
-             ?>
-             
-             
-        <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>Nombre</th>
-                        <th><?php echo utf8_encode("Compañia");?></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      if(isset($_SESSION["resultadosDeBusquedaDeBomberoByNombre"])){
-                        // se hizo una busqueda
-                        $listado=$_SESSION["resultadosDeBusquedaDeBomberoByNombre"];
-                        foreach ($listado as $o => $objeto) {
-                          ?>
-                          <tr>
-                            <td><?php echo $objeto->getNombre();?></td>
-                            <td><?php echo utf8_encode($objeto->getCompania());?></td>
-                            <td>
-                              <form target="_blank" action="controlador/CargarBomberoImprimir.php" method="post">
-                                <input type="hidden" id="idBomberoReporte" name="idBomberoReporte" value="<?php echo $objeto->getIdInfoPersonal();?>">
-
-                              <input type="submit" value="Ver Reporte Personal">
-                            </form>
-                              </td>
-                          </tr>
-                        <?php
-                    }
-                  }
-                      ?>
-
-
-
-
-                    </tbody>
-                  </table>
-
-
-
-
-
-
-
-
-
      </div>
    </div>
  </div>
 </div>
-</div>
-</body>
+
+<script src="javascript/borrarVariablesEnSesionAlCargarPagina.js"></script>
+
+  </body>
 </html>

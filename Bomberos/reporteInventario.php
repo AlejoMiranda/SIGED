@@ -135,6 +135,8 @@ if ($_SESSION["usuarioIniciado"] != null) {
             <li><a href="reporteBombero.php">Bombero</a></li>
             <li><a href="reporteInventario.php">Inventario</a></li>
             <li><a href="reporteUnidad.php">Unidad</a></li>
+            <li><a href="reporteDespacho.php">Despacho</a></li>
+            
 
           </ul>
         </li>

@@ -116,6 +116,20 @@
             </ul>
           </li>
         </ul>
+        
+        <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reporte <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="reporteBombero.php">Bombero</a></li>
+            <li><a href="reporteInventario.php">Inventario</a></li>
+            <li><a href="reporteUnidad.php">Unidad</a></li>
+            <li><a href="reporteDespacho.php">Despacho</a></li>
+            
+
+          </ul>
+        </li>
+      </ul>
 
         <br>
         <br>
@@ -257,14 +271,18 @@
                    }
                }
                $listadoDeUnidadesAEnviar=$data->determinarCarrosADespacharSegunCodigoDeServicioYSector($idTipoServ,$idSector);
-                foreach ($listadoDeUnidadesAEnviar as $lu => $unidad) {
-                  $disponibilidad=$data->getEstadoDeEmergenciaDeLaUnidad($unidad);
+                
+               foreach ($listadoDeUnidadesAEnviar as $lu => $unidad) {
+                  
+                   $disponibilidad=$data->getEstadoDeEmergenciaDeLaUnidad($unidad);
+                   
                   if($disponibilidad!=1){
                     deleteElement($unidad,$listadoDeUnidadesAEnviar);
                   }else{
                     echo utf8_encode($data->getNombreDeUnidadPorId($unidad));
                     echo " ";
                   }
+                  
                   }
               }
               ?>" type="text"id="txtDespacho" name="txtDespacho" disabled style="width:400px;margin-top:10px;height:30px;">
@@ -274,6 +292,7 @@
                 <input type="hidden" name="sector" id="sector" value="<?php echo $idSector;?>">
 
               </form>
+              
               <button type="submit"  id="btn_despachar" name="btnsonido" onclick="verificarQueUnidadesSeleccionadasEstenDisponibles()" style="width:60px;height:60px;margin-left:530px;margin-top:-19px;">
                 <img src="images/torre.png" alt="x" /></button>
 
@@ -353,7 +372,7 @@
                    // aÃ±adir al despacho, si no se estaa creando un despacho, mostrar despachar undiad extra
                    if(isset($_SESSION["idDeServicioCreado"])){?>
 
-                                        AÃ±adir al despacho:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Añadir al despacho:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <select name="cboUnidades" id="cboUnidades" style="width: 180px;height:30px;" >
                                                    <?php
 
@@ -511,7 +530,7 @@
          <div class="form-group" style="margin-left:-20px;margin-top:-35px;">
 
             Detalles:<br>
-            <textarea style="width:700px;height:100px">
+            <textarea id="txtDetalleEmergenciaCurso" name="txtDetalleEmergenciaCurso" style="width:700px;height:100px">
             </textarea>
 
          </div>
@@ -519,10 +538,10 @@
 
       </div>
       <div style="margin-top: -73px;margin-left: 620px;">
-        <button type="submit"  id="btn_despachar" name="btnsonido" style="width:100px;height:33px;">
-          <img src="images/guardar.png" alt="x" />&nbsp;Guardar</button>
-
+        <button  type="submit" onclick="guardarDetalle()" style="width:100px;height:33px;">
+          <img src="images/guardar.png" alt="x" />&nbsp;Guardar Detalle</button>
       </div>
+      
     </div>
     <br>
 
@@ -552,6 +571,7 @@ if(isset($_SESSION["idDeServicioQueSeEstaManipulando"])){
 ?>
 
 <script>
+
 function redirigirACentralDeAlarmaSiNoQuedanEmergenciasActivas(){
   var opcionesRestantes=$('#cboxdespacho option').length;
   if(opcionesRestantes==1){
@@ -567,7 +587,7 @@ function agregarUnidadAEmergencia(){
   var idEmergencia=document.getElementById("cboxdespacho").value;
   Swal.fire({
     title: 'Sistema de bomberos',
-    text: "Â¿Despachar unidad extra?",
+    text: "¿Despachar unidad extra?",
     type: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -604,7 +624,7 @@ function agregarUnidadADespacho(){
 
   Swal.fire({
     title: 'Sistema de bomberos',
-    text: "Â¿Agregar unidad?",
+    text: "¿Agregar unidad?",
     type: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -741,6 +761,7 @@ function cerrarServicio(){
       }
   });
 }
+
 function guardarApoyo(){
   var idSer=document.getElementById("idDeServicioAlQueSeVaAApoyar").value;
   var entidadExterior=document.getElementById("entidadExteriorApoyando").value;
@@ -754,7 +775,7 @@ function guardarApoyo(){
     success: function(data){
         swal({
           title: "Sistema de bomberos",
-          text:" OperaciÃ³n exitosa",
+          text:" Operación exitosa",
           type:"success"
         });
       document.getElementById("txtresposableapoyo").value="";
@@ -798,6 +819,31 @@ function guardarApoyo(){
       }
   });
 }
+
+function guardarDetalle(){
+	  var idSer = document.getElementById("idDeServicioAlQueSeVaAApoyar").value;
+	  console.log(idSer);
+	  var detalle = document.getElementById("txtDetalleEmergenciaCurso").value;
+	  console.log(detalle);
+	  $.ajax({
+	    url: "controlador/AgregarDetalleAServicio.php",
+	    type: "POST",
+	    data:{"idServicio": idSer, "detalle":detalle},
+	    
+	    success: function(data){
+	        swal({
+	          title: "SIGED",
+	          text:"Operacion exitosa",
+	          type:"success"
+	        });
+	      }
+	  });
+	}
+
+
+
+
+
 function actualizarDatosOBACConductoryNPersonal(idSerUnidad){
   var htmlAPoner='OBAC <input type="text" id="OBAC" class="swal2-input">' +
   'Conductor <input  type="text" id="Conductor" class="swal2-input">'+
@@ -836,7 +882,7 @@ function actualizarDatosOBACConductoryNPersonal(idSerUnidad){
         var nPer=ar[5];
         swal({
             title: "Sistema de bomberos",
-            text: "OperaciÃ³n exitosa",
+            text: "Operación exitosa",
             type: "success",
             confirmButtonColor: "#DD6B55",
             confirmButtonText: "Ok",
@@ -853,6 +899,7 @@ function actualizarDatosOBACConductoryNPersonal(idSerUnidad){
     }
   });
 }
+
 function mostrarhora(){
 var f=new Date();
 cad=f.getHours()+":"+f.getMinutes()+":"+f.getSeconds();
@@ -975,6 +1022,8 @@ function registrarHora6_10(idDeLaEmergencia, e){
     }
   });
 }
+
+
 function cargarTabla(){
   var id = document.getElementById("cboxdespacho").value;
   //cargarInfoDeApoyos aqui
@@ -1021,6 +1070,7 @@ function cargarTabla(){
     console.log(data);
     var objetos=JSON.parse(data);
      $("#tablaDeEmergencia tbody tr").remove();
+     $("#txtDetalleEmergenciaCurso").empty();
     var i;
     for (i = 0; i < objetos.length; i++) {
       var objetoJSON= $.parseJSON(objetos[i]);
@@ -1032,6 +1082,10 @@ function cargarTabla(){
       var momento6_8Emergencia=objetoJSON.momento6_8;
       var momento6_9Emergencia=objetoJSON.momento6_9;
       var momento6_10Emergencia=objetoJSON.momento6_10;
+      var detalleEmergencia=objetoJSON.detalle; 
+
+      $('#txtDetalleEmergenciaCurso').val(detalleEmergencia);
+      
       if (!document.getElementsByTagName) return;
       tabBody=document.getElementsByTagName("tbody").item(0);
       row=document.createElement("tr");
@@ -1085,6 +1139,8 @@ function cargarTabla(){
       row.appendChild(cell7);
       row.appendChild(cell8);
       tabBody.appendChild(row);
+
+      
     }
   });
 }

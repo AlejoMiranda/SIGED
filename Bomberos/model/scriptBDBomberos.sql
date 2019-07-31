@@ -577,7 +577,6 @@ FOREIGN KEY (fk_tipoDeServicio) REFERENCES tbl_tipo_servicio(id_tipo_servicio),
 PRIMARY KEY(id_servicio)
 );
 
-
 CREATE TABLE tbl_servicio_unidad(
 id_servicio_unidad INT AUTO_INCREMENT,
 fk_servicio INT,
@@ -592,6 +591,7 @@ momento6_8 DATETIME,
 momento6_9 DATETIME,
 momento6_10 DATETIME,
 emergenciaActiva BOOLEAN,
+detalleEmergencia VARCHAR(250),
 FOREIGN KEY(fk_servicio) REFERENCES tbl_servicio (id_servicio),
 FOREIGN KEY(fk_unidad) REFERENCES tbl_unidad (id_unidad),
 PRIMARY KEY(id_servicio_unidad)

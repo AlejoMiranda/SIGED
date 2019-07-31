@@ -924,29 +924,29 @@ INSERT INTO tbl_servicio VALUES (NULL, 'Sujeto 4', '12345','+56789','Alguna dire
 INSERT INTO tbl_servicio VALUES (NULL, 'Sujeto 5', '12345','+56789','Alguna direccion','esq1','esq2',1,1,'Algun detalle cualquiera','2019-02-10 10:10:10');
 
 INSERT INTO tbl_servicio_unidad VALUES (NULL, 1,7, '2019-03-03 10:10:10','Alguien','Alguien','quince', '2019-03-03 10:10:10','2019-03-03 10:10:10','2019-03-03 10:10:10',
-'2019-03-03 10:10:10','2019-03-03 10:10:10',1);
+'2019-03-03 10:10:10','2019-03-03 10:10:10',1,'detalle1');
 INSERT INTO tbl_servicio_unidad VALUES (NULL, 1,8, '2019-03-03 10:10:10','Alguien','Alguien','quince', '2019-03-03 10:10:10','2019-03-03 10:10:10','2019-03-03 10:10:10',
-'2019-03-03 10:10:10','2019-03-03 10:10:10',1);
+'2019-03-03 10:10:10','2019-03-03 10:10:10',1,'detalle1');
 
 INSERT INTO tbl_servicio_unidad VALUES (NULL, 2,7, '2019-03-03 10:10:10','Alguien','Alguien','quince', '2019-03-03 10:10:10','2019-03-03 10:10:10','2019-03-03 10:10:10',
-'2019-03-03 10:10:10','2019-03-03 10:10:10',1);
+'2019-03-03 10:10:10','2019-03-03 10:10:10',1,'detalle2');
 INSERT INTO tbl_servicio_unidad VALUES (NULL, 2,8, '2019-03-03 10:10:10','Alguien','Alguien','quince', '2019-03-03 10:10:10','2019-03-03 10:10:10','2019-03-03 10:10:10',
-'2019-03-03 10:10:10','2019-03-03 10:10:10',1);
+'2019-03-03 10:10:10','2019-03-03 10:10:10',1,'detalle2');
 
 INSERT INTO tbl_servicio_unidad VALUES (NULL, 3,7, '2019-03-03 10:10:10','Alguien','Alguien','quince', '2019-03-03 10:10:10','2019-03-03 10:10:10','2019-03-03 10:10:10',
-'2019-03-03 10:10:10','2019-03-03 10:10:10',1);
+'2019-03-03 10:10:10','2019-03-03 10:10:10',1,'detalle3');
 INSERT INTO tbl_servicio_unidad VALUES (NULL, 3,8, '2019-03-03 10:10:10','Alguien','Alguien','quince', '2019-03-03 10:10:10','2019-03-03 10:10:10','2019-03-03 10:10:10',
-'2019-03-03 10:10:10','2019-03-03 10:10:10',1);
+'2019-03-03 10:10:10','2019-03-03 10:10:10',1,'detalle3');
 
 INSERT INTO tbl_servicio_unidad VALUES (NULL, 4,7, '2019-03-03 10:10:10','Alguien','Alguien','quince', '2019-03-03 10:10:10','2019-03-03 10:10:10','2019-03-03 10:10:10',
-'2019-03-03 10:10:10','2019-03-03 10:10:10',1);
+'2019-03-03 10:10:10','2019-03-03 10:10:10',1,'detalle4');
 INSERT INTO tbl_servicio_unidad VALUES (NULL, 4,8, '2019-03-03 10:10:10','Alguien','Alguien','quince', '2019-03-03 10:10:10','2019-03-03 10:10:10','2019-03-03 10:10:10',
-'2019-03-03 10:10:10','2019-03-03 10:10:10',1);
+'2019-03-03 10:10:10','2019-03-03 10:10:10',1,'detalle4');
 
 INSERT INTO tbl_servicio_unidad VALUES (NULL, 5,7, '2019-03-03 10:10:10','Alguien','Alguien','quince', '2019-03-03 10:10:10','2019-03-03 10:10:10','2019-03-03 10:10:10',
-'2019-03-03 10:10:10','2019-03-03 10:10:10',0);
+'2019-03-03 10:10:10','2019-03-03 10:10:10',0,'detalle5');
 INSERT INTO tbl_servicio_unidad VALUES (NULL, 5,8, '2019-03-03 10:10:10','Alguien','Alguien','quince', '2019-03-03 10:10:10','2019-03-03 10:10:10','2019-03-03 10:10:10',
-'2019-03-03 10:10:10','2019-03-03 10:10:10',0);
+'2019-03-03 10:10:10','2019-03-03 10:10:10',0,'detalle5');
 
 INSERT INTO tbl_entidad_exteriror (nombre_entidad_exterior) VALUES ('Carabineros'), ('Samu'), ('Otro cuerpo de bomberos');
 INSERT INTO tbl_apoyo (fk_entidadExterior,responsable, PPUU) VALUES (1,'alguien1','algo'),(1,'alguien1','algo'),(1,'alguien3','algo'),(1,'alguien4','algo'),(1,'alguien5','algo');
@@ -956,7 +956,6 @@ INSERT INTO tbl_estado_de_servicio_de_maquina (nombre_estado_de_servicio_de_maqu
 INSERT INTO tbl_estado_servicio_unidad (fk_unidad,fk_estado)VALUES(1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(9,1),(10,1),(11,1);
 
 -----------------------------------------------
-
 CREATE VIEW mostrarBomberosReporte AS
 SELECT 
 tbl_informacionpersonal.id_informacionPersonal AS 'Registro', 
@@ -975,12 +974,6 @@ tbl_informacionpersonal.id_informacionPersonal = tbl_informacionbomberil.fk_info
 AND tbl_informacionbomberil.fk_id_entidadACargo_informacionBomberil = tbl_entidadACargo.id_entidadACargo
 AND tbl_informacionbomberil.fk_estado_informacionBomberil = tbl_estadoBombero.id_estado;
 
-
-
-
-
-
-
 CREATE VIEW mostrarUnidades AS
 SELECT 
 tbl_unidad.nombre_unidad AS 'Codigo Unidad', 
@@ -994,6 +987,7 @@ WHERE
 tbl_unidad.fk_tipo_vehiculo_unidad = tbl_tipo_vehiculo.id_tipo_vehiculo AND
 tbl_unidad.fk_entidadACargo = tbl_entidadacargo.id_entidadACargo;
 
+/*
 
 SELECT 
 tbl_unidad.nombre_unidad AS 'Codigo Unidad', 
@@ -1014,15 +1008,6 @@ tbl_mantencion.fk_unidad = tbl_unidad.id_unidad AND
 tbl_unidad.fk_tipo_vehiculo_unidad = tbl_tipo_vehiculo.id_tipo_vehiculo AND
 tbl_unidad.fk_entidadACargo = tbl_entidadacargo.id_entidadACargo AND
 tbl_unidad.id_unidad = 1;
-
-
-
-
-
-
-
-
-
 
 SELECT 
 tbl_unidad.nombre_unidad AS 'Codigo Unidad', 
@@ -1083,365 +1068,8 @@ WHERE
         AND tbl_cargio_combustible.fk_unidad = tbl_unidad.id_unidad
         AND tbl_unidad.id_unidad = 1;
 
-------------------------------------------------------------------------------
-CREATE TABLE tbl_mostrarInventario(
-	id INT AUTO_INCREMENT,
-	material VARCHAR (100),
-	compania VARCHAR (100),
-	bodega VARCHAR (100),
-	cantidad VARCHAR (100),
-	marca VARCHAR (100),
-	descripcion VARCHAR (100),
-	estado VARCHAR (100),
-	PRIMARY KEY(id)
-);
-
-		CREATE TABLE tempTable1 (
-			id int,
-            material VARCHAR(250),
-            compania VARCHAR(250),
-            bodega VARCHAR(250),
-            cantidad int,
-            marca VARCHAR(250),
-            descripcion VARCHAR(250),
-            estado VARCHAR(250),
-            PRIMARY KEY (id)
-		);
-        
-	CREATE TABLE tempTable2 (
-			id int,
-            material VARCHAR(250),
-            compania VARCHAR(250),
-            bodega VARCHAR(250),
-            cantidad int,
-            marca VARCHAR(250),
-            descripcion VARCHAR(250),
-            estado VARCHAR(250),
-            PRIMARY KEY (id)
-		);
-        
-	CREATE TABLE tempTable3 (
-			id int,
-            material VARCHAR(250),
-            compania VARCHAR(250),
-            bodega VARCHAR(250),
-            cantidad int,
-            marca VARCHAR(250),
-            descripcion VARCHAR(250),
-            estado VARCHAR(250),
-            PRIMARY KEY (id)
-		);
-        
-	CREATE TABLE tempTable4 (
-			id int,
-            material VARCHAR(250),
-            compania VARCHAR(250),
-            bodega VARCHAR(250),
-            cantidad int,
-            marca VARCHAR(250),
-            descripcion VARCHAR(250),
-            estado VARCHAR(250),
-            PRIMARY KEY (id)
-		);
-        
-	
-    
--- DROP PROCEDURE crearTablas;
-    --
-
-
-DELIMITER //
-CREATE PROCEDURE cargarDatosInventario(IN consultaUno VARCHAR(250), IN consultaDos VARCHAR(250), IN consultaTres VARCHAR(250))
-BEGIN
-    
-	DELETE FROM tbl_mostrarInventario;  
-    DELETE FROM tempTable1;
-    DELETE FROM tempTable2;
-    DELETE FROM tempTable3;
-    DELETE FROM tempTable4;   
-   
-    
-    -- 	IF DEL PRIMER FILTRO
-	IF (consultaUno != "nada") THEN
-		SELECT "ENTRE AL IF 1";
-        INSERT INTO tempTable1 (id, material, compania, bodega, cantidad, marca, descripcion, estado)
-			SELECT 
-				tbl_material_menor.id_material_menor AS 'ID',
-				tbl_material_menor.nombre_material_menor AS 'Material', 
-				tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
-				tbl_ubicacion_fisica.nombre_ubicacion_fisica AS 'Bodega', 
-				tbl_material_menor.cantidad_material_menor AS 'Cantidad', 
-				tbl_material_menor.fabricante_material_menor AS 'Marca', 
-				tbl_material_menor.detalle_material_menor AS 'Descripcion', 
-				tbl_estado_material_menor.nombre_estado_material_menor AS 'Estado'
-			FROM 
-				tbl_material_menor,
-				tbl_entidadacargo,
-				tbl_ubicacion_fisica, 
-				tbl_estado_material_menor
-			WHERE
-				tbl_material_menor.fk_estado_material_menor = tbl_estado_material_menor.id_estado_material_menor AND
-				tbl_material_menor.fk_entidad_a_cargo_material_menor = tbl_entidadACargo.id_entidadACargo AND
-				tbl_material_menor.fk_ubicacion_fisica_material_menor = tbl_ubicacion_fisica.id_ubicacion_fisica;
-            
-            -- llenamos la tabla con los filtros de estado
-            SET @query1 = CONCAT("INSERT INTO tempTable2 (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable1 WHERE ", consultaUno);
-			PREPARE stmt FROM @query1;
-			EXECUTE stmt;		
-            
-            INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable2;
-			
-    END IF;
-    -- FIN IF DEL PRIMER FILTRO
-    
-    
-    -- 	IF DEL SEGUNDO FILTRO
-    IF  (consultaUno != "nada" AND consultaDos != "nada") THEN
-			SELECT "consulta1 y consulta2 vienen con datos";
-            SET @query2 = CONCAT("INSERT INTO tempTable3 (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable2 WHERE ", consultaDos);
-			PREPARE stmt2 FROM @query2;
-			EXECUTE stmt2;
-            
-            DELETE FROM tbl_mostrarInventario;
-            INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado) 
-            SELECT * FROM tempTable3;
-	END IF;	
-    
-    IF (consultaUno = "nada" AND consultaDos != "nada") THEN
-    
-			SELECT "consulta 1 vacia y consulta2 con query";
-			INSERT INTO tempTable1 (id, material, compania, bodega, cantidad, marca, descripcion, estado)
-			SELECT 
-				tbl_material_menor.id_material_menor AS 'ID',
-				tbl_material_menor.nombre_material_menor AS 'Material', 
-				tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
-				tbl_ubicacion_fisica.nombre_ubicacion_fisica AS 'Bodega', 
-				tbl_material_menor.cantidad_material_menor AS 'Cantidad', 
-				tbl_material_menor.fabricante_material_menor AS 'Marca', 
-				tbl_material_menor.detalle_material_menor AS 'Descripcion', 
-				tbl_estado_material_menor.nombre_estado_material_menor AS 'Estado'
-			FROM 
-				tbl_material_menor,
-				tbl_entidadacargo,
-				tbl_ubicacion_fisica, 
-				tbl_estado_material_menor
-			WHERE
-				tbl_material_menor.fk_estado_material_menor = tbl_estado_material_menor.id_estado_material_menor AND
-				tbl_material_menor.fk_entidad_a_cargo_material_menor = tbl_entidadACargo.id_entidadACargo AND
-				tbl_material_menor.fk_ubicacion_fisica_material_menor = tbl_ubicacion_fisica.id_ubicacion_fisica;
-			
-             -- llenamos la tabla con los filtros
-            SET @query1 = CONCAT("INSERT INTO tempTable2 (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable1 WHERE ", consultaDos);
-			PREPARE stmt FROM @query1;
-			EXECUTE stmt;		
-            
-            INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable2;
-	   
-    END IF;
-    -- 	FIN DEL IF DEL SEGUNDO FILTRO
-    
-    -- IF DEL TERCER FILTRO
-    IF (consultaUno != "nada" AND consultaDos != "nada" AND consultaTres != "nada") THEN
-			
-            SELECT "consulta 1, consulta2, consulta 3 con query";
-            
-            SET @query3 = CONCAT("INSERT INTO tempTable4 (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable3 WHERE ", consultaTres);
-			PREPARE stmt3 FROM @query3;
-			EXECUTE stmt3;
-            
-            DELETE FROM tbl_mostrarInventario;
-            INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado) 
-            SELECT * FROM tempTable4;
-	END IF;       
-    
-    -- si los dos primeros viene nulos y el tercero no
-    IF (consultaUno = "nada" AND consultaDos = "nada" AND consultaTres != "nada") THEN
-			
-            SELECT "consulta 1, consulta2 NULOS y consulta 3 con query";
-            
-            
-			INSERT INTO tempTable1 (id, material, compania, bodega, cantidad, marca, descripcion, estado)
-			SELECT 
-				tbl_material_menor.id_material_menor AS 'ID',
-				tbl_material_menor.nombre_material_menor AS 'Material', 
-				tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
-				tbl_ubicacion_fisica.nombre_ubicacion_fisica AS 'Bodega', 
-				tbl_material_menor.cantidad_material_menor AS 'Cantidad', 
-				tbl_material_menor.fabricante_material_menor AS 'Marca', 
-				tbl_material_menor.detalle_material_menor AS 'Descripcion', 
-				tbl_estado_material_menor.nombre_estado_material_menor AS 'Estado'
-			FROM 
-				tbl_material_menor,
-				tbl_entidadacargo,
-				tbl_ubicacion_fisica, 
-				tbl_estado_material_menor
-			WHERE
-				tbl_material_menor.fk_estado_material_menor = tbl_estado_material_menor.id_estado_material_menor AND
-				tbl_material_menor.fk_entidad_a_cargo_material_menor = tbl_entidadACargo.id_entidadACargo AND
-				tbl_material_menor.fk_ubicacion_fisica_material_menor = tbl_ubicacion_fisica.id_ubicacion_fisica;
-			
-             -- llenamos la tabla con los filtros
-            SET @query1 = CONCAT("INSERT INTO tempTable2 (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable1 WHERE ", consultaTres);
-			PREPARE stmt FROM @query1;
-			EXECUTE stmt;		
-            
-            INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable2;
-	END IF;
-    
-    -- si el primero viene con datos, el segundo sin, y el tercero con
-    IF (consultaUno != "nada" AND consultaDos = "nada" AND consultaTres != "nada") THEN
-    
-			SELECT "consulta 1 CON DATOS , consulta2 SIN DATOS , consulta 3 con query";
-    
-            SET @query3 = CONCAT("INSERT INTO tempTable3 (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable2 WHERE ", consultaTres);
-			PREPARE stmt3 FROM @query3;
-			EXECUTE stmt3;
-            
-            DELETE FROM tbl_mostrarInventario;
-            INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado) 
-            SELECT * FROM tempTable3;
-    END IF;
-    
-    -- si el primer viene sin, y el segundo con
-    IF (consultaUno = "nada" AND consultaDos != "nada" AND consultaTres != "nada") THEN
-			
-            SELECT "consulta 1 SIN y consulta2-consulta 3 con query";
-            
-			SET @query3 = CONCAT("INSERT INTO tempTable3 (id, material, compania, bodega, cantidad, marca, descripcion, estado) SELECT * FROM tempTable2 WHERE ", consultaTres);
-			PREPARE stmt3 FROM @query3;
-			EXECUTE stmt3;
-            
-            DELETE FROM tbl_mostrarInventario;
-            INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado) 
-            SELECT * FROM tempTable3;
-    END IF;
-    
-    IF (consultaUno = "nada" AND consultaDos = "nada" AND consultaTres = "nada") THEN
-			            
-			INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado)
-			SELECT 
-				tbl_material_menor.id_material_menor AS 'ID',
-				tbl_material_menor.nombre_material_menor AS 'Material', 
-				tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
-				tbl_ubicacion_fisica.nombre_ubicacion_fisica AS 'Bodega', 
-				tbl_material_menor.cantidad_material_menor AS 'Cantidad', 
-				tbl_material_menor.fabricante_material_menor AS 'Marca', 
-				tbl_material_menor.detalle_material_menor AS 'Descripcion', 
-				tbl_estado_material_menor.nombre_estado_material_menor AS 'Estado'
-			FROM 
-				tbl_material_menor,
-				tbl_entidadacargo,
-				tbl_ubicacion_fisica, 
-				tbl_estado_material_menor
-			WHERE
-				tbl_material_menor.fk_estado_material_menor = tbl_estado_material_menor.id_estado_material_menor AND
-				tbl_material_menor.fk_entidad_a_cargo_material_menor = tbl_entidadACargo.id_entidadACargo AND
-				tbl_material_menor.fk_ubicacion_fisica_material_menor = tbl_ubicacion_fisica.id_ubicacion_fisica;
-    END IF;
-    
-    
-    -- FIN DEL IF DEL TERCER FILTRO
-    
-END //
-DELIMITER ;
-
--- DROP PROCEDURE cargarDatosInventario;
-CALL cargarDatosInventario("estado LIKE 'Operativo' OR estado LIKE 'caducado'", " compania LIKE '1° Compañia'", "nada");
-SELECT * FROM tbl_mostrarInventario;
-
-
-DELETE FROM tbl_mostrarInventario;
-SELECT * FROM tbl_mostrarInventario;
-SELECT * FROM test;
-
-----------------------------------------------------------------
-
-    
-    
-    
------------------------------------------------------------------
-
-INSERT INTO tbl_mostrarInventario (id, material, compania, bodega, cantidad, marca, descripcion, estado)
-	SELECT 
-	tbl_material_menor.id_material_menor AS 'ID',
-	tbl_material_menor.nombre_material_menor AS 'Material', 
-	tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
-	tbl_ubicacion_fisica.nombre_ubicacion_fisica AS 'Bodega', 
-	tbl_material_menor.cantidad_material_menor AS 'Cantidad', 
-	tbl_material_menor.fabricante_material_menor AS 'Marca', 
-	tbl_material_menor.detalle_material_menor AS 'Descripcion', 
-	tbl_estado_material_menor.nombre_estado_material_menor AS 'Estado'
-	FROM 
-	tbl_material_menor,
-	tbl_entidadacargo,
-	tbl_ubicacion_fisica, 
-	tbl_estado_material_menor
-	WHERE
-	tbl_material_menor.fk_estado_material_menor = tbl_estado_material_menor.id_estado_material_menor AND
-	tbl_material_menor.fk_entidad_a_cargo_material_menor = tbl_entidadACargo.id_entidadACargo AND
-	tbl_material_menor.fk_ubicacion_fisica_material_menor = tbl_ubicacion_fisica.id_ubicacion_fisica;
-    
-----------------------------------------------------------------
-
- 
-/*
-bodega LIKE '%Unidad B-0%' OR bodega LIKE '%Bodega Cuerpo%' OR bodega LIKE '%Cuartel cuerpo%' OR
-bodega LIKE '%Unidad B-1%' OR bodega LIKE '%Bodega Primera%' OR bodega LIKE '%Cuartel Primera%' OR 
-bodega LIKE '%Unidad B-2%' OR bodega LIKE '%Bodega Segunda%' OR bodega LIKE '%Cuartel Segunda%' OR 
-bodega LIKE '%Unidad B-3%' OR bodega LIKE '%Bodega Tercera%' OR bodega LIKE '%Cuartel Tercera%';
-*/
-
-------------------------------------------------------------------------
-
-
-SELECT 
-tbl_material_menor.nombre_material_menor AS 'Material', 
-tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', 
-tbl_informacionpersonal.nombre_informacionPersonal AS 'Nombre', 
-concat_ws(" ",tbl_informacionpersonal.apellido_paterno_informacionPersonal ,tbl_informacionpersonal.apellido_materno_informacionPersonal) AS 'Apellido',
-tbl_informaciondecargos.cantidadAsignada_informacionDeCargos AS 'Cantidad', 
-tbl_material_menor.detalle_material_menor AS 'Descripcion',
-DATE_FORMAT(tbl_informaciondecargos.fechaEntrega  , '%d/%m/%Y') AS 'Fecha'
-FROM 
-tbl_material_menor, 
-tbl_entidadacargo,
-tbl_informacionpersonal, 
-tbl_informaciondecargos,
-tbl_informacionbomberil
-WHERE
-tbl_informaciondecargos.fk_materialMenorAsignado_informacionDeCargos = tbl_material_menor.id_material_menor
-AND tbl_informaciondecargos.fk_personal_informacionDeCargos = tbl_informacionPersonal.id_informacionPersonal
-AND tbl_informacionpersonal.id_informacionPersonal = tbl_informacionbomberil.fk_informacion_personal__informacionBomberil
-AND tbl_informacionbomberil.fk_id_entidadACargo_informacionBomberil = tbl_entidadACargo.id_entidadACargo
-AND tbl_entidadacargo.nombre_entidadACargo LIKE '';
-
-
---------------------------------------------------------
--- PRUEBAS PARA PROCEDIMIENTOS
---------------------------------------------------------
-
-DELIMITER //
-CREATE PROCEDURE cargarDatos(IN filtro1 VARCHAR(250), IN filtro2 VARCHAR(250), IN filtro3 VARCHAR(250))
-BEGIN
-    
-	DELETE FROM tbl_mostrarInventario;  
-    DELETE FROM tempTable1;
-    DELETE FROM tempTable2;
-    DELETE FROM tempTable3;
-    DELETE FROM tempTable4;   
-   
-   INSERT INTO test VALUES (4, filtro1 , filtro2 ,filtro3);
-    
-END //
-DELIMITER ;
-
--- DROP PROCEDURE cargarDatos;
-CALL cargarDatos("estado LIKE Operativo OR estado LIKE caducado", " compania LIKE 1° Compañia", "nada");
-CALL cargarDatos("compania LIKE 'Cuerpo de Bomberos de Machali'", estado LIKE 'Operativo', bodega LIKE 'Bodega Cuerpo');
-SELECT * FROM test;
-delete from test;
 
 -----------------------------------------------------
-SELECT tbl_material_menor.id_material_menor AS 'ID', tbl_material_menor.nombre_material_menor AS 'Material', tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', tbl_ubicacion_fisica.nombre_ubicacion_fisica AS 'Bodega', tbl_material_menor.cantidad_material_menor AS 'Cantidad', tbl_material_menor.fabricante_material_menor AS 'Marca', tbl_material_menor.detalle_material_menor AS 'Descripcion', tbl_estado_material_menor.nombre_estado_material_menor AS 'Estado' FROM tbl_material_menor, tbl_entidadacargo, tbl_ubicacion_fisica, tbl_estado_material_menor WHERE tbl_material_menor.fk_estado_material_menor = tbl_estado_material_menor.id_estado_material_menor AND tbl_material_menor.fk_entidad_a_cargo_material_menor = tbl_entidadACargo.id_entidadACargo AND tbl_material_menor.fk_ubicacion_fisica_material_menor = tbl_ubicacion_fisica.id_ubicacion_fisica AND tbl_entidadacargo.id_entidadACargo = 2 AND tbl_estado_material_menor.id_estado_material_menor = 2 AND tbl_ubicacion_fisica.id_ubicacion_fisica = 4
+-- SELECT tbl_material_menor.id_material_menor AS 'ID', tbl_material_menor.nombre_material_menor AS 'Material', tbl_entidadacargo.nombre_entidadACargo AS 'Compañia', tbl_ubicacion_fisica.nombre_ubicacion_fisica AS 'Bodega', tbl_material_menor.cantidad_material_menor AS 'Cantidad', tbl_material_menor.fabricante_material_menor AS 'Marca', tbl_material_menor.detalle_material_menor AS 'Descripcion', tbl_estado_material_menor.nombre_estado_material_menor AS 'Estado' FROM tbl_material_menor, tbl_entidadacargo, tbl_ubicacion_fisica, tbl_estado_material_menor WHERE tbl_material_menor.fk_estado_material_menor = tbl_estado_material_menor.id_estado_material_menor AND tbl_material_menor.fk_entidad_a_cargo_material_menor = tbl_entidadACargo.id_entidadACargo AND tbl_material_menor.fk_ubicacion_fisica_material_menor = tbl_ubicacion_fisica.id_ubicacion_fisica AND tbl_entidadacargo.id_entidadACargo = 2 AND tbl_estado_material_menor.id_estado_material_menor = 2 AND tbl_ubicacion_fisica.id_ubicacion_fisica = 4
 -----------------------------------------------------
-SELECT tbl_material_menor.nombre_material_menor AS 'Material', tbl_entidadacargo.nombre_entidadACargo AS 'Compania', tbl_informacionpersonal.nombre_informacionPersonal AS 'Nombre', concat_ws(' ',tbl_informacionpersonal.apellido_paterno_informacionPersonal ,tbl_informacionpersonal.apellido_materno_informacionPersonal) AS 'Apellido', tbl_informaciondecargos.cantidadAsignada_informacionDeCargos AS 'Cantidad', tbl_material_menor.detalle_material_menor AS 'Descripcion', DATE_FORMAT(tbl_informaciondecargos.fechaEntrega , '%d/%m/%Y') AS 'Fecha' FROM tbl_material_menor, tbl_entidadacargo, tbl_informacionpersonal, tbl_informaciondecargos, tbl_informacionbomberil WHERE tbl_informaciondecargos.fk_materialMenorAsignado_informacionDeCargos = tbl_material_menor.id_material_menor AND tbl_informaciondecargos.fk_personal_informacionDeCargos = tbl_informacionPersonal.id_informacionPersonal AND tbl_informacionpersonal.id_informacionPersonal = tbl_informacionbomberil.fk_informacion_personal__informacionBomberil AND tbl_informacionbomberil.fk_id_entidadACargo_informacionBomberil = tbl_entidadACargo.id_entidadACargo AND tbl_entidadacargo.id_entidadACargo = 2 AND tbl_informaciondecargos.fechaEntrega BETWEEN '2019/03/11' AND '2019/06/20' ORDER BY tbl_informacionpersonal.nombre_informacionPersonal, tbl_informaciondecargos.fechaEntrega ASC;
+-- SELECT tbl_material_menor.nombre_material_menor AS 'Material', tbl_entidadacargo.nombre_entidadACargo AS 'Compania', tbl_informacionpersonal.nombre_informacionPersonal AS 'Nombre', concat_ws(' ',tbl_informacionpersonal.apellido_paterno_informacionPersonal ,tbl_informacionpersonal.apellido_materno_informacionPersonal) AS 'Apellido', tbl_informaciondecargos.cantidadAsignada_informacionDeCargos AS 'Cantidad', tbl_material_menor.detalle_material_menor AS 'Descripcion', DATE_FORMAT(tbl_informaciondecargos.fechaEntrega , '%d/%m/%Y') AS 'Fecha' FROM tbl_material_menor, tbl_entidadacargo, tbl_informacionpersonal, tbl_informaciondecargos, tbl_informacionbomberil WHERE tbl_informaciondecargos.fk_materialMenorAsignado_informacionDeCargos = tbl_material_menor.id_material_menor AND tbl_informaciondecargos.fk_personal_informacionDeCargos = tbl_informacionPersonal.id_informacionPersonal AND tbl_informacionpersonal.id_informacionPersonal = tbl_informacionbomberil.fk_informacion_personal__informacionBomberil AND tbl_informacionbomberil.fk_id_entidadACargo_informacionBomberil = tbl_entidadACargo.id_entidadACargo AND tbl_entidadacargo.id_entidadACargo = 2 AND tbl_informaciondecargos.fechaEntrega BETWEEN '2019/03/11' AND '2019/06/20' ORDER BY tbl_informacionpersonal.nombre_informacionPersonal, tbl_informaciondecargos.fechaEntrega ASC;

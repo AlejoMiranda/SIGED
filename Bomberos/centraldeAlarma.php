@@ -122,6 +122,8 @@
             <li><a href="reporteBombero.php">Bombero</a></li>
             <li><a href="reporteInventario.php">Inventario</a></li>
             <li><a href="reporteUnidad.php">Unidad</a></li>
+            <li><a href="reporteDespacho.php">Despacho</a></li>
+            
 
           </ul>
         </li>
@@ -473,6 +475,7 @@
          <div class="container">
 
          <div class="form-group" style="margin-left:-20px;margin-top:-35px;">
+         
            <form id="formDespacho" action="controlador/CrearDespacho.php" method="post">
 
            Nombre:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="nombreDePersonaQueLlama" name="txtnombre" style="width:290px;">
@@ -717,11 +720,11 @@ function despachar(){
 
   swal({
       title: "Sistema de bomberos",
-      text: "¿Esta seguro de que desea despachar un "+tipoDeServicio+" al sector de "+sector+"?",
+      text: "�Esta seguro de que desea despachar un "+tipoDeServicio+" al sector de "+sector+"?",
       type: "info",
       showCancelButton: true,
       confirmButtonColor: "#03fe00",
-      confirmButtonText: "Sí",
+      confirmButtonText: "Si",
       cancelButtonText: "No",
       closeOnConfirm: false,
   },function(isConfirm){

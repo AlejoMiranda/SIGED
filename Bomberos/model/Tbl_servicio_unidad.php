@@ -14,6 +14,7 @@ Class Tbl_servicio_unidad{
   private $momento6_9;
   private $momento6_10;
   private $emergenciaActiva;
+  private $detalleEmergencia;
 
 
   public function __construct(){
@@ -131,9 +132,14 @@ Class Tbl_servicio_unidad{
   public function setEmergenciaActiva($emergenciaActiva){
       $this->emergenciaActiva = $emergenciaActiva;
   }
-
-
-
+  
+  public function getDetalleEmergencia(){
+      return $this->detalleEmergencia;
+  }
+  
+  public function setDetalleEmergencia($detalleEmergencia){
+      $this->detalleEmergencia = $detalleEmergencia;
+ }
 
 }
 
